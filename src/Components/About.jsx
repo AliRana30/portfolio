@@ -1,7 +1,6 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
-import { Code, Database, Globe, Sparkles, Rocket, Heart, Coffee, Monitor } from 'lucide-react';
+import { Code, Database, Globe, Rocket, Heart, Coffee, Monitor } from 'lucide-react';
 
 const About = () => {
   const stats = [

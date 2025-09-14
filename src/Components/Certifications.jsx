@@ -1,6 +1,6 @@
-import React from 'react';
 import { motion } from 'framer-motion';
-import { FaCertificate, FaCalendarAlt, FaAward, FaExternalLinkAlt } from 'react-icons/fa';
+import { FaAward, FaCalendarAlt, FaCertificate, FaExternalLinkAlt } from 'react-icons/fa';
+
 
 const Certifications = () => {
   const certifications = [
