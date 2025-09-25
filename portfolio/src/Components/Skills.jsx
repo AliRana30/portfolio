@@ -6,28 +6,28 @@ const Skills = () => {
   const skillCategories = [
     {
       title: "Full-Stack",
-      icon: <Code className="w-5 h-5" />,
+      icon: <Code className="w-5 h-5 text-blue-500" />,
       skills: [
-        { name: "React", icon: <SiReact className="text-gray-800" size={32} />, level: 90 },
-        { name: "JavaScript", icon: <SiJavascript className="text-gray-800" size={32} />, level: 85 },
-        { name: "Tailwind CSS", icon: <SiTailwindcss className="text-gray-800" size={32} />, level: 88 }
+        { name: "React", icon: <SiReact className="text-blue-500" size={32} />, level: 90 },
+        { name: "JavaScript", icon: <SiJavascript className="text-yellow-500" size={32} />, level: 85 },
+        { name: "Tailwind CSS", icon: <SiTailwindcss className="text-cyan-500" size={32} />, level: 88 }
       ]
     },
     {
       title: "Backend",
-      icon: <Database className="w-5 h-5" />,
+      icon: <Database className="w-5 h-5 text-green-500" />,
       skills: [
-        { name: "Node.js", icon: <SiNodedotjs className="text-gray-800" size={32} />, level: 85 },
-        { name: "Express.js", icon: <SiExpress className="text-gray-800" size={32} />, level: 80 },
-        { name: "MongoDB", icon: <SiMongodb className="text-gray-800" size={32} />, level: 82 }
+        { name: "Node.js", icon: <SiNodedotjs className="text-green-600" size={32} />, level: 85 },
+        { name: "Express.js", icon: <SiExpress className="text-gray-700" size={32} />, level: 80 },
+        { name: "MongoDB", icon: <SiMongodb className="text-green-600" size={32} />, level: 82 }
       ]
     },
     {
       title: "Tools",
-      icon: <Settings className="w-5 h-5" />,
+      icon: <Settings className="w-5 h-5 text-gray-600" />,
       skills: [
-        { name: "Git", icon: <SiGit className="text-gray-800" size={32} />, level: 88 },
-        { name: "VS Code", icon: <SiVscodium className="text-gray-800" size={32} />, level: 92 }
+        { name: "Git", icon: <SiGit className="text-orange-500" size={32} />, level: 88 },
+        { name: "VS Code", icon: <SiVscodium className="text-blue-600" size={32} />, level: 92 }
       ]
     }
   ];
@@ -107,10 +107,7 @@ const Skills = () => {
                 <br />
                 <span className="font-bold text-black">Proficiency</span>
               </h2>
-              
-              <p className="text-lg text-gray-600 font-light max-w-2xl">
-                A comprehensive toolkit of modern technologies and frameworks for building scalable web applications.
-              </p>
+         
             </motion.div>
             
             <motion.div

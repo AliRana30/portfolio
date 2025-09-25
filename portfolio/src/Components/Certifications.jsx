@@ -134,32 +134,6 @@ const Certifications = () => {
               ))}
             </div>
 
-            {/* Stats Section */}
-            <motion.div
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              viewport={{ once: true }}
-              className="mt-20 bg-white border border-gray-200 p-8"
-            >
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-                <div className="space-y-2">
-                  <h4 className="text-3xl font-bold text-black mono">1+</h4>
-                  <p className="text-gray-600 font-medium">Certifications Earned</p>
-                  <div className="w-8 h-[1px] bg-black mx-auto"></div>
-                </div>
-                <div className="space-y-2">
-                  <h4 className="text-3xl font-bold text-black mono">2024</h4>
-                  <p className="text-gray-600 font-medium">Latest Achievement</p>
-                  <div className="w-8 h-[1px] bg-black mx-auto"></div>
-                </div>
-                <div className="space-y-2">
-                  <h4 className="text-3xl font-bold text-black mono">100%</h4>
-                  <p className="text-gray-600 font-medium">Completion Rate</p>
-                  <div className="w-8 h-[1px] bg-black mx-auto"></div>
-                </div>
-              </div>
-            </motion.div>
 
             {/* Learning commitment */}
             <motion.div

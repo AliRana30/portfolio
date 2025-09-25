@@ -106,7 +106,7 @@ const Navbar = () => {
             <div className="hidden md:flex items-center space-x-4">
               <button
                 onClick={handleResumeDownload}
-                className="flex items-center gap-2 px-4 py-3 bg-black text-white hover:bg-gray-800 transition-colors duration-200 font-medium text-sm"
+                className="flex items-center gap-2 px-5 py-3 rounded-xl bg-black text-white hover:bg-gray-800 transition-colors duration-200 font-medium text-sm"
               >
                 <FaDownload className="w-2 h-2" />
                 <span>Resume</span>

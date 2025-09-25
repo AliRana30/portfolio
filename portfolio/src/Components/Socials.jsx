@@ -101,10 +101,6 @@ const Socials = () => {
                 <br />
                 <span className="font-bold text-black">Collaborate</span>
               </h2>
-              
-              <p className="text-lg text-gray-600 font-light max-w-3xl leading-relaxed">
-                Ready to bring your ideas to life? I'm always excited to work on innovative projects and connect with amazing people. Let's create something incredible together.
-              </p>
             </motion.div>
             
             <motion.div 
@@ -151,50 +147,6 @@ const Socials = () => {
                 );
               })}
             </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.8, duration: 0.6 }}
-              viewport={{ once: true }}
-              className="mt-20"
-            >
-              <div className="bg-gray-50 border border-gray-200 p-12 text-center">
-                <div className="flex items-center justify-center gap-3 mb-6">
-                  <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
-                  <span className="text-lg font-semibold text-gray-700">Open to New Opportunities</span>
-                </div>
-                <h3 className="text-2xl md:text-3xl font-bold text-black mb-6">
-                  Ready to Start Your Next Project?
-                </h3>
-                <p className="text-gray-600 max-w-2xl mx-auto leading-relaxed mb-8 font-light">
-                  Whether you need a full-stack developer, want to collaborate on an exciting project, 
-                  or just want to say hello - I'd love to hear from you.
-                </p>
-                
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <a
-                    href="https://mail.google.com/mail/?view=cm&to=alimahmoodrana82@gmail.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="px-8 py-4 bg-black text-white hover:bg-gray-800 transition-colors duration-300 font-medium flex items-center justify-center gap-2"
-                  >
-                    <Mail className="w-5 h-5" />
-                    Send Email
-                  </a>
-                  <a
-                    href="https://www.linkedin.com/in/ali-mahmood-rana-7093322a7/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="px-8 py-4 bg-white border-2 border-black text-black hover:bg-black hover:text-white transition-all duration-300 font-medium flex items-center justify-center gap-2"
-                  >
-                    <Linkedin className="w-5 h-5" />
-                    Connect on LinkedIn
-                  </a>
-                </div>
-              </div>
-            </motion.div>
-
             {/* Footer note */}
             <motion.div
               initial={{ opacity: 0 }}
@@ -203,11 +155,6 @@ const Socials = () => {
               viewport={{ once: true }}
               className="mt-12 text-center"
             >
-              <div className="flex items-center justify-center gap-4">
-                <div className="w-8 h-[1px] bg-gray-300"></div>
-                <p className="text-sm text-gray-500 mono">Available for freelance work</p>
-                <div className="w-8 h-[1px] bg-gray-300"></div>
-              </div>
             </motion.div>
           </div>
         </section>

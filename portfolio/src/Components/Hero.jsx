@@ -58,12 +58,6 @@ const Hero = () => {
     }
   };
 
-  const techStack = [
-    { icon: <Globe className="w-4 h-4" />, name: "React" },
-    { icon: <Database className="w-4 h-4" />, name: "MongoDB" },
-    { icon: <Code className="w-4 h-4" />, name: "Node.js" }
-  ];
-
   return (
     <>
       <style jsx>{`
@@ -78,7 +72,7 @@ const Hero = () => {
         }
       `}</style>
       
-      <div className="relative min-h-screen bg-white">
+      <div className="relative min-h-screen bg-white mt-10">
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute top-20 right-20 w-64 h-64 border border-gray-100 rotate-45"></div>
           <div className="absolute bottom-40 left-10 w-32 h-32 border border-gray-100 rounded-full"></div>
@@ -101,11 +95,8 @@ const Hero = () => {
                 variants={itemVariants}
                 className="mb-6"
               >
-                <p className="text-sm font-medium text-gray-500 tracking-wider uppercase mb-2 mono">
-                  Welcome to my portfolio
-                </p>
                 <h1 className="text-5xl md:text-6xl lg:text-7xl font-light leading-[0.9] mb-4">
-                  <span className="block font-extralight text-gray-900">I'm Ali</span>
+                  <span className="block font-extralight text-gray-900">Ali Mahmood</span>
                 </h1>
               </motion.div>
 
@@ -126,21 +117,6 @@ const Hero = () => {
                 I build modern web applications with clean code and thoughtful design. 
                 Specializing in the MERN stack to create digital experiences that matter.
               </motion.p>
-
-              <motion.div 
-                variants={itemVariants}
-                className="flex flex-wrap gap-4 mb-12"
-              >
-                {techStack.map((tech, index) => (
-                  <div
-                    key={tech.name}
-                    className="flex items-center gap-2 px-4 py-2 border border-gray-200 rounded-none hover:border-black transition-colors duration-200"
-                  >
-                    <span className="text-gray-700">{tech.icon}</span>
-                    <span className="text-gray-900 text-sm font-medium mono">{tech.name}</span>
-                  </div>
-                ))}
-              </motion.div>
 
               {/* CTA Buttons */}
               <motion.div 
@@ -192,7 +168,7 @@ const Hero = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1.5 }}
-            className="absolute bottom-8 left-8"
+            className="absolute bottom-0 left-12"
           >
             <ScrollLink
               to="about"
@@ -208,19 +184,6 @@ const Hero = () => {
             </ScrollLink>
           </motion.div>
 
-          {/* Page indicator */}
-          <motion.div 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1.5 }}
-            className="absolute bottom-8 right-8"
-          >
-            <div className="flex flex-col items-end text-right">
-              <span className="text-sm font-medium text-gray-500 mono mb-2">01</span>
-              <div className="w-8 h-[1px] bg-black mb-2"></div>
-              <span className="text-xs text-gray-400 mono">HOME</span>
-            </div>
-          </motion.div>
         </section>
       </div>
     </>
