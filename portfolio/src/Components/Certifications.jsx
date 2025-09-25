@@ -1,7 +1,10 @@
-import { motion } from 'framer-motion';
-import { Award, Calendar, ExternalLink, CheckCircle } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Award, Calendar, ExternalLink, CheckCircle, X, Eye } from 'lucide-react';
+import { useState } from 'react';
 
 const Certifications = () => {
+  const [selectedImage, setSelectedImage] = useState(null);
+  
   const certifications = [
     {
       id: 1,
@@ -11,6 +14,16 @@ const Certifications = () => {
       image: "Internship.PNG",
       description: "Comprehensive web development training covering modern frameworks and best practices",
       skills: ["JavaScript", "HTML/CSS"],
+      credentialUrl: "#"
+    },
+    {
+      id: 2,
+      title: "Quiz Competition Winner",
+      issuer: "University of South Asia",
+      date: "2025",
+      image: "Quiz_Competition.jpg",
+      description: "Won university-wide quiz competition demonstrating excellence in Object-Oriented Programming, Data Structures & Algorithms, Database Management Systems, and general knowledge concepts",
+      skills: ["OOP", "DSA", "DBMS", "Problem Solving"],
       credentialUrl: "#"
     }
   ];
@@ -73,12 +86,16 @@ const Certifications = () => {
                   className="group bg-white border border-gray-200 hover:border-black transition-all duration-300 overflow-hidden"
                 >
                   {/* Certificate Image */}
-                  <div className="relative h-48 bg-gray-100 overflow-hidden">
+                  <div className="relative h-48 bg-gray-100 overflow-hidden group/image cursor-pointer">
                     <img 
                       src={cert.image} 
                       alt={cert.title}
                       className="w-full h-full object-cover group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500"
+                      onClick={() => setSelectedImage(cert)}
                     />
+                    <div className="absolute inset-0 bg-black/0 group-hover/image:bg-black/20 transition-all duration-300 flex items-center justify-center">
+                      <Eye className="text-white opacity-0 group-hover/image:opacity-100 transition-all duration-300 w-6 h-6" />
+                    </div>
                     <div className="absolute top-4 right-4">
                       <div className="bg-white/90 p-2">
                         <Award className="text-black w-5 h-5" />
@@ -134,7 +151,6 @@ const Certifications = () => {
               ))}
             </div>
 
-
             {/* Learning commitment */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -144,6 +160,69 @@ const Certifications = () => {
               className="mt-12 text-center"
             >
             </motion.div>
+
+            {/* Image Preview Modal */}
+            <AnimatePresence>
+              {selectedImage && (
+                <motion.div 
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4"
+                  onClick={() => setSelectedImage(null)}
+                >
+                  <motion.div 
+                    initial={{ scale: 0.8, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    exit={{ scale: 0.8, opacity: 0 }}
+                    className="relative max-w-4xl max-h-[90vh] bg-white rounded-lg overflow-hidden"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    {/* Close Button */}
+                    <button 
+                      onClick={() => setSelectedImage(null)}
+                      className="absolute top-4 right-4 bg-white/90 hover:bg-white p-2 rounded-full z-10 transition-colors duration-200"
+                    >
+                      <X className="w-5 h-5 text-black" />
+                    </button>
+                    
+                    {/* Image */}
+                    <img 
+                      src={selectedImage.image}
+                      alt={selectedImage.title}
+                      className="w-full h-auto max-h-[70vh] object-contain"
+                    />
+                    
+                    {/* Image Info */}
+                    <div className="p-6 bg-white">
+                      <div className="flex items-start justify-between mb-4">
+                        <div>
+                          <h3 className="text-xl font-bold text-black mb-2">{selectedImage.title}</h3>
+                          <div className="flex items-center gap-3 text-gray-600">
+                            <Calendar className="w-4 h-4" />
+                            <span className="font-medium text-sm">{selectedImage.issuer} • {selectedImage.date}</span>
+                          </div>
+                        </div>
+                        <CheckCircle className="text-green-500 w-6 h-6" />
+                      </div>
+                      
+                      <p className="text-gray-700 mb-4 leading-relaxed">{selectedImage.description}</p>
+                      
+                      <div className="flex flex-wrap gap-2">
+                        {selectedImage.skills.map((skill, index) => (
+                          <span 
+                            key={index}
+                            className="px-3 py-1 bg-gray-100 text-gray-700 text-sm font-medium rounded-full"
+                          >
+                            {skill}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </motion.div>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
         </section>
       </div>
