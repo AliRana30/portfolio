@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowLeft, ExternalLink, Target, Zap, Code2, CheckCircle, Github, AlertCircle, Lightbulb } from 'lucide-react';
-import { SiReact, SiNodedotjs, SiMongodb, SiExpress, SiTailwindcss, SiCloudinary, SiJsonwebtokens } from 'react-icons/si';
+import { SiReact, SiNodedotjs, SiMongodb, SiExpress, SiTailwindcss, SiMulter, SiJsonwebtokens } from 'react-icons/si';
 import { useParams, useNavigate } from 'react-router-dom';
 
 const ProjectDetails = () => {
@@ -9,14 +9,13 @@ const ProjectDetails = () => {
   const { id } = useParams(); 
   const navigate = useNavigate();
   
-  // All projects data
   const projects = {
     multimart: {
       id: 'multimart',
       title: "MultiMart",
       description: "A comprehensive full-stack multivendor e-commerce platform where vendors can list products, manage inventory, and customers can shop across multiple stores with secure payments",
       image: "multivendor.jpg",
-      tech: ["React", "Node.js", "MongoDB", "Express", "Cloudinary", "Tailwind CSS", "JWT"],
+      tech: ["React", "Node.js", "MongoDB", "Express", "Multer", "Tailwind CSS", "JWT"],
       link: "http://multimarts.vercel.app/",
       githubLink: "https://github.com/AliRana30/multimart",
       category: "Full-Stack",
@@ -155,23 +154,20 @@ const ProjectDetails = () => {
     }
   };
 
-  // Get the current project based on URL parameter
   const project = projects[id];
-
-  // Rest of your component code stays the same...
 
   const getTechIcon = (tech) => {
     const iconMap = {
-      'react': <SiReact className="w-5 h-5" />,
-      'node.js': <SiNodedotjs className="w-5 h-5" />,
-      'mongodb': <SiMongodb className="w-5 h-5" />,
-      'express': <SiExpress className="w-5 h-5" />,
-      'tailwind css': <SiTailwindcss className="w-5 h-5" />,
-      'cloudinary': <SiCloudinary className="w-5 h-5" />,
-      'jwt': <SiJsonwebtokens className="w-5 h-5" />
+      'react': <SiReact className="w-4 h-4 md:w-5 md:h-5" />,
+      'node.js': <SiNodedotjs className="w-4 h-4 md:w-5 md:h-5" />,
+      'mongodb': <SiMongodb className="w-4 h-4 md:w-5 md:h-5" />,
+      'express': <SiExpress className="w-4 h-4 md:w-5 md:h-5" />,
+      'tailwind css': <SiTailwindcss className="w-4 h-4 md:w-5 md:h-5" />,
+      'multer': <SiCloudinary className="w-4 h-4 md:w-5 md:h-5" />,
+      'jwt': <SiJsonwebtokens className="w-4 h-4 md:w-5 md:h-5" />
     };
     
-    return iconMap[tech.toLowerCase()] || <Code2 className="w-5 h-5" />;
+    return iconMap[tech.toLowerCase()] || <Code2 className="w-4 h-4 md:w-5 md:h-5" />;
   };
 
   const getTechColor = (tech) => {
@@ -194,12 +190,11 @@ const ProjectDetails = () => {
     window.scrollTo(0, 0);
   }, [id]);
 
-  // If project not found, show error
   if (!project) {
     return (
-      <div className="min-h-screen bg-white flex items-center justify-center">
+      <div className="min-h-screen bg-white flex items-center justify-center px-4">
         <div className="text-center">
-          <h1 className="text-2xl font-bold text-black mb-4">Project not found</h1>
+          <h1 className="text-xl md:text-2xl font-bold text-black mb-4">Project not found</h1>
           <button 
             onClick={() => navigate('/')}
             className="inline-flex items-center gap-2 bg-black text-white px-6 py-3 hover:bg-gray-800 transition-colors"
@@ -229,8 +224,8 @@ const ProjectDetails = () => {
       <div className="min-h-screen bg-white relative overflow-hidden">
         {/* Background elements */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-20 right-10 w-72 h-72 border border-gray-100 rotate-12"></div>
-          <div className="absolute bottom-20 left-10 w-48 h-48 border border-gray-100 rounded-full"></div>
+          <div className="absolute top-20 right-4 md:right-10 w-48 md:w-72 h-48 md:h-72 border border-gray-100 rotate-12"></div>
+          <div className="absolute bottom-20 left-4 md:left-10 w-32 md:w-48 h-32 md:h-48 border border-gray-100 rounded-full"></div>
         </div>
 
         <div className="relative z-10">
@@ -238,20 +233,20 @@ const ProjectDetails = () => {
           <motion.div 
             initial={{ opacity: 0, y: -30 }}
             animate={{ opacity: 1, y: 0 }}
-            className="container mx-auto px-8 py-8 max-w-7xl"
+            className="container mx-auto px-4 sm:px-6 lg:px-8 py-6 md:py-8 max-w-7xl"
           >
             <button 
               onClick={() => navigate('/')}
-              className="inline-flex items-center gap-2 text-gray-600 hover:text-black transition-colors group"
+              className="inline-flex items-center gap-2 text-gray-600 hover:text-black transition-colors group text-sm md:text-base"
             >
-              <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
+              <ArrowLeft className="w-4 h-4 md:w-5 md:h-5 group-hover:-translate-x-1 transition-transform" />
               <span className="font-medium">Back to Projects</span>
             </button>
           </motion.div>
 
           {/* Hero Section */}
-          <div className="container mx-auto px-8 max-w-7xl pb-12">
-            <div className="grid lg:grid-cols-5 gap-12">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl pb-8 md:pb-12">
+            <div className="grid lg:grid-cols-5 gap-8 md:gap-12">
               {/* Left: Image */}
               <motion.div 
                 initial={{ opacity: 0, x: -30 }}
@@ -269,19 +264,19 @@ const ProjectDetails = () => {
                     }}
                   />
                   {project.featured && (
-                    <div className="absolute top-4 left-4 bg-black text-white px-3 py-1.5 text-xs font-medium mono">
+                    <div className="absolute top-3 left-3 md:top-4 md:left-4 bg-black text-white px-2 py-1 md:px-3 md:py-1.5 text-xs font-medium mono">
                       FEATURED
                     </div>
                   )}
                 </div>
 
                 {/* Action Buttons */}
-                <div className="flex gap-3 mt-6">
+                <div className="flex flex-col sm:flex-row gap-3 mt-4 md:mt-6">
                   <a 
                     href={project.link} 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="flex-1 inline-flex items-center justify-center gap-2 bg-black text-white px-5 py-3 hover:bg-gray-800 transition-all font-medium"
+                    className="flex-1 inline-flex items-center justify-center gap-2 bg-black text-white px-4 py-2.5 md:px-5 md:py-3 hover:bg-gray-800 transition-all font-medium text-sm"
                   >
                     <ExternalLink className="w-4 h-4" />
                     <span>Live Demo</span>
@@ -290,7 +285,7 @@ const ProjectDetails = () => {
                     href={project.githubLink} 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="flex-1 inline-flex items-center justify-center gap-2 border-2 border-black text-black hover:bg-black hover:text-white px-5 py-3 transition-all font-medium"
+                    className="flex-1 inline-flex items-center justify-center gap-2 border-2 border-black text-black hover:bg-black hover:text-white px-4 py-2.5 md:px-5 md:py-3 transition-all font-medium text-sm"
                   >
                     <Github className="w-4 h-4" />
                     <span>Code</span>
@@ -303,32 +298,32 @@ const ProjectDetails = () => {
                 initial={{ opacity: 0, x: 30 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.3 }}
-                className="lg:col-span-3 space-y-8"
+                className="lg:col-span-3 space-y-6 md:space-y-8"
               >
                 {/* Title */}
                 <div>
-                  <div className="inline-block px-3 py-1 bg-gray-100 text-gray-700 text-xs font-medium mono mb-4">
+                  <div className="inline-block px-2.5 py-1 md:px-3 md:py-1 bg-gray-100 text-gray-700 text-xs font-medium mono mb-3 md:mb-4">
                     {project.category}
                   </div>
-                  <h1 className="text-4xl md:text-5xl font-bold text-black mb-4">
+                  <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-black mb-3 md:mb-4 break-words">
                     {project.title}
                   </h1>
-                  <p className="text-lg text-gray-600 leading-relaxed">
+                  <p className="text-base md:text-lg text-gray-600 leading-relaxed">
                     {project.description}
                   </p>
                 </div>
 
                 {/* Tech Stack */}
                 <div>
-                  <h3 className="text-sm font-semibold text-black mb-4 tracking-wide uppercase">Tech Stack</h3>
-                  <div className="flex flex-wrap gap-3">
+                  <h3 className="text-xs md:text-sm font-semibold text-black mb-3 md:mb-4 tracking-wide uppercase">Tech Stack</h3>
+                  <div className="flex flex-wrap gap-2 md:gap-3">
                     {project.tech.map((tech) => (
                       <div
                         key={tech}
-                        className={`flex items-center gap-2 px-3 py-2 border border-gray-200 bg-white hover:border-gray-400 transition-all ${getTechColor(tech)}`}
+                        className={`flex items-center gap-1.5 md:gap-2 px-2.5 py-1.5 md:px-3 md:py-2 border border-gray-200 bg-white hover:border-gray-400 transition-all ${getTechColor(tech)}`}
                       >
                         {getTechIcon(tech)}
-                        <span className="text-sm font-medium text-gray-700">{tech}</span>
+                        <span className="text-xs md:text-sm font-medium text-gray-700">{tech}</span>
                       </div>
                     ))}
                   </div>
@@ -338,14 +333,14 @@ const ProjectDetails = () => {
           </div>
 
           {/* Tabs Section */}
-          <div className="container mx-auto px-8 max-w-7xl">
-            <div className="border-b border-gray-200 mb-8">
-              <div className="flex gap-8">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+            <div className="border-b border-gray-200 mb-6 md:mb-8 overflow-x-auto">
+              <div className="flex gap-4 md:gap-8 min-w-max sm:min-w-0">
                 {['overview', 'features', 'challenges'].map((tab) => (
                   <button
                     key={tab}
                     onClick={() => setActiveTab(tab)}
-                    className={`pb-4 text-sm font-medium uppercase tracking-wide transition-all relative ${
+                    className={`pb-3 md:pb-4 text-xs md:text-sm font-medium uppercase tracking-wide transition-all relative whitespace-nowrap ${
                       activeTab === tab 
                         ? 'text-black' 
                         : 'text-gray-500 hover:text-gray-700'
@@ -369,32 +364,32 @@ const ProjectDetails = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3 }}
-              className="pb-20"
+              className="pb-12 md:pb-20"
             >
               {activeTab === 'overview' && (
-                <div className="space-y-8 max-w-4xl">
+                <div className="space-y-6 md:space-y-8 max-w-4xl">
                   <div>
-                    <div className="flex items-center gap-3 mb-4">
-                      <Target className="w-5 h-5 text-black" />
-                      <h3 className="text-xl font-semibold text-black">Project Purpose</h3>
+                    <div className="flex items-center gap-2 md:gap-3 mb-3 md:mb-4">
+                      <Target className="w-4 h-4 md:w-5 md:h-5 text-black flex-shrink-0" />
+                      <h3 className="text-lg md:text-xl font-semibold text-black">Project Purpose</h3>
                     </div>
-                    <p className="text-gray-700 leading-relaxed bg-gray-50 p-6 border-l-2 border-black">
+                    <p className="text-sm md:text-base text-gray-700 leading-relaxed bg-gray-50 p-4 md:p-6 border-l-2 border-black">
                       {project.purpose}
                     </p>
                   </div>
 
-                  <div className="grid grid-cols-3 gap-6 pt-6">
-                    <div className="text-center p-6 border border-gray-200">
-                      <div className="text-3xl font-bold text-black mb-2">{project.tech.length}</div>
-                      <div className="text-sm text-gray-600 font-medium mono uppercase">Technologies</div>
+                  <div className="grid grid-cols-3 gap-3 md:gap-6 pt-4 md:pt-6">
+                    <div className="text-center p-4 md:p-6 border border-gray-200">
+                      <div className="text-2xl md:text-3xl font-bold text-black mb-1 md:mb-2">{project.tech.length}</div>
+                      <div className="text-xs md:text-sm text-gray-600 font-medium mono uppercase">Technologies</div>
                     </div>
-                    <div className="text-center p-6 border border-gray-200">
-                      <div className="text-3xl font-bold text-black mb-2">{project.keyFeatures.length}</div>
-                      <div className="text-sm text-gray-600 font-medium mono uppercase">Features</div>
+                    <div className="text-center p-4 md:p-6 border border-gray-200">
+                      <div className="text-2xl md:text-3xl font-bold text-black mb-1 md:mb-2">{project.keyFeatures.length}</div>
+                      <div className="text-xs md:text-sm text-gray-600 font-medium mono uppercase">Features</div>
                     </div>
-                    <div className="text-center p-6 border border-gray-200">
-                      <div className="text-3xl font-bold text-black mb-2">{project.challenges.length}</div>
-                      <div className="text-sm text-gray-600 font-medium mono uppercase">Challenges</div>
+                    <div className="text-center p-4 md:p-6 border border-gray-200">
+                      <div className="text-2xl md:text-3xl font-bold text-black mb-1 md:mb-2">{project.challenges.length}</div>
+                      <div className="text-xs md:text-sm text-gray-600 font-medium mono uppercase">Challenges</div>
                     </div>
                   </div>
                 </div>
@@ -402,24 +397,24 @@ const ProjectDetails = () => {
 
               {activeTab === 'features' && (
                 <div className="max-w-4xl">
-                  <div className="flex items-center gap-3 mb-6">
-                    <Zap className="w-5 h-5 text-black" />
-                    <h3 className="text-xl font-semibold text-black">Key Features</h3>
+                  <div className="flex items-center gap-2 md:gap-3 mb-4 md:mb-6">
+                    <Zap className="w-4 h-4 md:w-5 md:h-5 text-black flex-shrink-0" />
+                    <h3 className="text-lg md:text-xl font-semibold text-black">Key Features</h3>
                   </div>
                   
-                  <div className="grid md:grid-cols-2 gap-4">
+                  <div className="grid sm:grid-cols-2 gap-3 md:gap-4">
                     {project.keyFeatures.map((feature, index) => (
                       <motion.div
                         key={feature}
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: index * 0.1 }}
-                        className="flex items-start gap-3 p-4 border border-gray-200 hover:border-gray-400 transition-all bg-white"
+                        className="flex items-start gap-2 md:gap-3 p-3 md:p-4 border border-gray-200 hover:border-gray-400 transition-all bg-white"
                       >
-                        <div className="flex-shrink-0 w-5 h-5 rounded-full bg-green-100 flex items-center justify-center mt-0.5">
-                          <CheckCircle className="w-3.5 h-3.5 text-green-600" />
+                        <div className="flex-shrink-0 w-4 h-4 md:w-5 md:h-5 rounded-full bg-green-100 flex items-center justify-center mt-0.5">
+                          <CheckCircle className="w-3 h-3 md:w-3.5 md:h-3.5 text-green-600" />
                         </div>
-                        <p className="text-sm text-gray-700 leading-relaxed">
+                        <p className="text-xs md:text-sm text-gray-700 leading-relaxed">
                           {feature}
                         </p>
                       </motion.div>
@@ -430,38 +425,38 @@ const ProjectDetails = () => {
 
               {activeTab === 'challenges' && (
                 <div className="max-w-5xl">
-                  <div className="flex items-center gap-3 mb-6">
-                    <Lightbulb className="w-5 h-5 text-black" />
-                    <h3 className="text-xl font-semibold text-black">Challenges & Solutions</h3>
+                  <div className="flex items-center gap-2 md:gap-3 mb-4 md:mb-6">
+                    <Lightbulb className="w-4 h-4 md:w-5 md:h-5 text-black flex-shrink-0" />
+                    <h3 className="text-lg md:text-xl font-semibold text-black">Challenges & Solutions</h3>
                   </div>
 
-                  <div className="space-y-6">
+                  <div className="space-y-4 md:space-y-6">
                     {project.challenges.map((item, index) => (
                       <motion.div
                         key={item.challenge}
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: index * 0.1 }}
-                        className="border border-gray-200 hover:border-gray-400 transition-all"
+                        className="border border-gray-200 hover:border-gray-400 transition-all overflow-hidden"
                       >
                         <div className="grid md:grid-cols-2">
-                          <div className="p-6 border-b md:border-b-0 md:border-r border-gray-200 bg-red-50">
-                            <div className="flex items-start gap-3">
-                              <AlertCircle className="w-5 h-5 text-red-600 flex-shrink-0 mt-0.5" />
+                          <div className="p-4 md:p-6 border-b md:border-b-0 md:border-r border-gray-200 bg-red-50">
+                            <div className="flex items-start gap-2 md:gap-3">
+                              <AlertCircle className="w-4 h-4 md:w-5 md:h-5 text-red-600 flex-shrink-0 mt-0.5" />
                               <div>
-                                <h4 className="font-semibold text-black mb-2">Challenge</h4>
-                                <p className="text-sm text-gray-700 leading-relaxed">
+                                <h4 className="font-semibold text-black mb-1 md:mb-2 text-sm md:text-base">Challenge</h4>
+                                <p className="text-xs md:text-sm text-gray-700 leading-relaxed">
                                   {item.challenge}
                                 </p>
                               </div>
                             </div>
                           </div>
-                          <div className="p-6 bg-green-50">
-                            <div className="flex items-start gap-3">
-                              <Lightbulb className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
+                          <div className="p-4 md:p-6 bg-green-50">
+                            <div className="flex items-start gap-2 md:gap-3">
+                              <Lightbulb className="w-4 h-4 md:w-5 md:h-5 text-green-600 flex-shrink-0 mt-0.5" />
                               <div>
-                                <h4 className="font-semibold text-black mb-2">Solution</h4>
-                                <p className="text-sm text-gray-700 leading-relaxed">
+                                <h4 className="font-semibold text-black mb-1 md:mb-2 text-sm md:text-base">Solution</h4>
+                                <p className="text-xs md:text-sm text-gray-700 leading-relaxed">
                                   {item.solution}
                                 </p>
                               </div>

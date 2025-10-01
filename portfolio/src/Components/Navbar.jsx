@@ -182,7 +182,6 @@ const Navbar = () => {
               </button>
               
               <div className="pt-4 border-t border-gray-200">
-                <p className="text-sm font-medium text-gray-500 mb-4 mono">Connect</p>
                 <div className="flex justify-center space-x-6">
                   {socialLinks.map((social, index) => {
                     const IconComponent = social.icon;
