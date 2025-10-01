@@ -96,7 +96,7 @@ const Socials = () => {
                 <span className="text-sm font-medium text-gray-500 tracking-wider uppercase mono">Get In Touch</span>
               </div>
               
-              <h2 className="text-4xl md:text-5xl font-light leading-tight mb-8">
+              <h2 className="text-3xl md:text-3xl font-light leading-tight mb-8">
                 <span className="font-extralight text-gray-700">Let's Connect &</span>
                 <br />
                 <span className="font-bold text-black">Collaborate</span>

@@ -95,8 +95,8 @@ const Hero = () => {
                 variants={itemVariants}
                 className="mb-6"
               >
-                <h1 className="text-5xl md:text-6xl lg:text-7xl font-light leading-[0.9] mb-4">
-                  <span className="block font-extralight text-gray-900">Ali Mahmood</span>
+                <h1 className="text-5xl md:text-6xl lg:text-5xl font-light leading-[0.9] mb-4">
+                  <span className="block font-bold text-gray-900">Ali Mahmood</span>
                 </h1>
               </motion.div>
 

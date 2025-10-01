@@ -64,7 +64,7 @@ const Certifications = () => {
                 <span className="text-sm font-medium text-gray-500 tracking-wider uppercase mono">Achievements</span>
               </div>
               
-              <h2 className="text-4xl md:text-5xl font-light leading-tight mb-6">
+              <h2 className="text-3xl md:text-3xl font-light leading-tight mb-6">
                 <span className="font-extralight text-gray-700">Professional</span>
                 <br />
                 <span className="font-bold text-black">Certifications</span>

@@ -26,7 +26,7 @@ const Skills = () => {
       title: "Tools",
       icon: <Settings className="w-5 h-5 text-gray-600" />,
       skills: [
-        { name: "Git", icon: <SiGit className="text-orange-500" size={32} />, level: 88 },
+        { name: "Git/Github", icon: <SiGit className="text-orange-500" size={32} />, level: 88 },
         { name: "VS Code", icon: <SiVscodium className="text-blue-600" size={32} />, level: 92 }
       ]
     }
@@ -102,7 +102,7 @@ const Skills = () => {
                 <span className="text-sm font-medium text-gray-500 tracking-wider uppercase mono">Skills & Expertise</span>
               </div>
               
-              <h2 className="text-4xl md:text-5xl font-light leading-tight mb-6">
+              <h2 className="text-3xl md:text-3xl font-light leading-tight mb-6">
                 <span className="font-extralight text-gray-700">Technical</span>
                 <br />
                 <span className="font-bold text-black">Proficiency</span>
