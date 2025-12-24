@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowLeft, ExternalLink, Target, Zap, Code2, CheckCircle, Github, AlertCircle, Lightbulb } from 'lucide-react';
-import { SiReact, SiNodedotjs, SiMongodb, SiExpress, SiTailwindcss, SiJsonwebtokens, SiCloudinary } from 'react-icons/si';
+import { SiReact, SiNodedotjs, SiMongodb, SiExpress, SiTailwindcss, SiJsonwebtokens, SiCloudinary, SiNextdotjs, SiRedis, SiSocketdotio, SiStripe } from 'react-icons/si';
 import { useParams, useNavigate } from 'react-router-dom';
 
 const ProjectDetails = () => {
@@ -10,6 +10,48 @@ const ProjectDetails = () => {
   const navigate = useNavigate();
   
   const projects = {
+    campuscore: {
+      id: 'campuscore',
+      title: "CampusCore LMS",
+      description: "A comprehensive full-stack Learning Management System with course creation, video streaming, Stripe payments, real-time notifications, and admin analytics dashboard",
+      image: "LMS-homepage.jpg",
+      tech: ["Next.js", "Node.js", "MongoDB", "Express", "Redis", "Stripe", "Cloudinary", "Socket.io", "JWT", "Tailwind CSS"],
+      link: "https://lms-e-learning-system.vercel.app/",
+      githubLink: "https://github.com/AliRana30/LMS",
+      category: "Full-Stack",
+      featured: true,
+      purpose: "To build a modern e-learning platform that enables instructors to create and sell courses while providing students with an engaging learning experience with video content, progress tracking, and interactive Q&A.",
+      keyFeatures: [
+        "Course creation with video uploads via Cloudinary",
+        "Secure Stripe payment integration for course purchases",
+        "Real-time notifications using Socket.io",
+        "Admin dashboard with user/course/order analytics",
+        "Email verification with custom EJS templates",
+        "Redis caching for improved performance",
+        "OAuth social login support (Google, GitHub)",
+        "Course progress tracking and student reviews",
+        "Question & Answer system for each course",
+        "Mobile-responsive design with dark/light mode"
+      ],
+      challenges: [
+        {
+          challenge: "Cross-Origin Authentication",
+          solution: "Configured cookies with sameSite: 'none' and secure: true for production, enabling cross-origin authentication between Vercel frontend and Render backend"
+        },
+        {
+          challenge: "Email Template Resolution in Production",
+          solution: "Fixed template path resolution using __dirname instead of process.cwd() ensuring EJS templates are found correctly in the build directory"
+        },
+        {
+          challenge: "Real-time Notification System",
+          solution: "Implemented Socket.io for instant notifications when students purchase courses or post questions, with Redis for pub/sub in production"
+        },
+        {
+          challenge: "Stripe Payment Integration",
+          solution: "Built secure payment flow with payment intent creation, client-side confirmation, and server-side verification before order creation"
+        }
+      ]
+    },
     multimart: {
       id: 'multimart',
       title: "MultiMart",
@@ -159,12 +201,17 @@ const ProjectDetails = () => {
   const getTechIcon = (tech) => {
     const iconMap = {
       'react': <SiReact className="w-4 h-4 md:w-5 md:h-5" />,
+      'next.js': <SiNextdotjs className="w-4 h-4 md:w-5 md:h-5" />,
       'node.js': <SiNodedotjs className="w-4 h-4 md:w-5 md:h-5" />,
       'mongodb': <SiMongodb className="w-4 h-4 md:w-5 md:h-5" />,
       'express': <SiExpress className="w-4 h-4 md:w-5 md:h-5" />,
       'tailwind css': <SiTailwindcss className="w-4 h-4 md:w-5 md:h-5" />,
       'multer': <SiCloudinary className="w-4 h-4 md:w-5 md:h-5" />,
-      'jwt': <SiJsonwebtokens className="w-4 h-4 md:w-5 md:h-5" />
+      'cloudinary': <SiCloudinary className="w-4 h-4 md:w-5 md:h-5" />,
+      'jwt': <SiJsonwebtokens className="w-4 h-4 md:w-5 md:h-5" />,
+      'redis': <SiRedis className="w-4 h-4 md:w-5 md:h-5" />,
+      'socket.io': <SiSocketdotio className="w-4 h-4 md:w-5 md:h-5" />,
+      'stripe': <SiStripe className="w-4 h-4 md:w-5 md:h-5" />
     };
     
     return iconMap[tech.toLowerCase()] || <Code2 className="w-4 h-4 md:w-5 md:h-5" />;
@@ -173,6 +220,7 @@ const ProjectDetails = () => {
   const getTechColor = (tech) => {
     const colorMap = {
       'react': 'text-[#61DAFB]',
+      'next.js': 'text-black',
       'node.js': 'text-[#339933]',
       'mongodb': 'text-[#47A248]',
       'express': 'text-gray-700',
@@ -180,7 +228,10 @@ const ProjectDetails = () => {
       'ai api': 'text-indigo-600',
       'tailwind css': 'text-[#06B6D4]',
       'cloudinary': 'text-[#3448C5]',
-      'jwt': 'text-pink-600'
+      'jwt': 'text-pink-600',
+      'redis': 'text-[#DC382D]',
+      'socket.io': 'text-black',
+      'stripe': 'text-[#635BFF]'
     };
     
     return colorMap[tech.toLowerCase()] || 'text-gray-600';
@@ -254,11 +305,11 @@ const ProjectDetails = () => {
                 transition={{ delay: 0.2 }}
                 className="lg:col-span-2"
               >
-                <div className="relative aspect-[6/3] bg-gray-100 overflow-hidden border border-gray-200">
+                <div className="relative aspect-video bg-gray-100 overflow-hidden border border-gray-200">
                   <img 
                     src={`/${project.image}`} 
                     alt={project.title}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover object-top"
                     onError={(e) => {
                       e.target.src = 'https://via.placeholder.com/600x400/f3f4f6/374151?text=Project';
                     }}
