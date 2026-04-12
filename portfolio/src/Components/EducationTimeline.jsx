@@ -52,14 +52,14 @@ const EducationTimeline = () => {
       subtitle: 'BS Computer Science',
       duration: 'Dec 2022 - Present',
       location: 'Lahore, Pakistan',
-      description: 'CGPA: 3.55, Fall 2025.',
+      description: 'CGPA: 3.55, Fall 2026.',
       badge: 'Current'
     },
     {
       id: 2,
       title: 'DevWeekends Fellowship',
       subtitle: 'Full Stack Developer Fellow',
-      duration: 'Jun 2024 - Aug 2024',
+      duration: 'Jun 2025 - Aug 2025',
       location: 'Remote',
       description: 'Built production full-stack systems with secure auth, APIs, and performance-focused patterns.',
       badge: 'Fellowship'

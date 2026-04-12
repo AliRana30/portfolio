@@ -179,14 +179,9 @@ const About = () => {
                         }
                       }
                     `}</style>
-                    <div className="space-y-5 text-gray-700 leading-relaxed">
-                      <p className="text-sm md:text-base">
-                        I'm Ali Mahmood Rana, a full-stack developer building web applications that solve real problems. I create platforms that make everyday tasks simpler—from car rentals to movie discovery to e-commerce solutions.
-                      </p>
-                    </div>
 
                     {/* Core Technologies */}
-                    <div className="mt-6 md:mt-8 pt-6 md:pt-8 border-t border-gray-100">
+                    <div className="border-t border-gray-100">
                       <h3 className="text-xs md:text-sm font-semibold text-black mb-4 md:mb-5 tracking-wide uppercase">Tech Stack</h3>
                       <div className="flex flex-wrap gap-2">
                         {techStack.map((tech) => (
