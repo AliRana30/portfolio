@@ -5,7 +5,7 @@ import { FaGithub, FaLinkedin, FaEnvelope, FaBars, FaTimes, FaDownload } from 'r
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [activeSection, setActiveSection] = useState('home');
+  const [activeSection, setActiveSection] = useState('about');
 
   useEffect(() => {
     const handleScroll = () => {
@@ -31,10 +31,11 @@ const Navbar = () => {
   };
 
   const navLinks = [
-    { name: "Home", to: "home" },
     { name: "About", to: "about" },
     { name: "Skills", to: "skills" },
     { name: "Projects", to: "projects" },
+    { name: "Open Source", to: "openSource" },
+    { name: "Education", to: "education" },
     { name: "Certifications", to: "certifications" },
     { name: "Contact", to: "socials" }
   ];
@@ -61,8 +62,8 @@ const Navbar = () => {
       
       <nav className={`fixed w-full top-0 z-50 transition-all duration-300 ${
         scrolled 
-          ? 'bg-white/95 backdrop-blur-sm border-b border-gray-200' 
-          : 'bg-white/90 backdrop-blur-sm'
+          ? 'bg-white/85 backdrop-blur-xl border-b border-gray-200 shadow-sm' 
+          : 'bg-white/65 backdrop-blur-lg'
       }`}>
         <div className="max-w-6xl mx-auto px-6">
           <div className="flex justify-between items-center h-20">
@@ -81,7 +82,7 @@ const Navbar = () => {
             </div>
 
             {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center space-x-8">
+            <div className="hidden md:flex items-center gap-7 lg:gap-9">
               {navLinks.map((link) => (
                 <ScrollLink
                   key={link.name}
@@ -91,9 +92,9 @@ const Navbar = () => {
                   spy={true}
                   offset={-80}
                   onSetActive={() => setActiveSection(link.to)}
-                  className={`text-sm font-medium transition-all duration-200 cursor-pointer hover:text-black ${
+                  className={`text-sm font-medium px-2 py-1 rounded-md transition-all duration-200 cursor-pointer hover:text-black hover:bg-gray-100 ${
                     activeSection === link.to
-                      ? 'text-black border-b-2 border-black pb-1'
+                      ? 'text-black bg-gray-100'
                       : 'text-gray-600'
                   }`}
                 >
@@ -103,7 +104,7 @@ const Navbar = () => {
             </div>
 
             {/* Desktop Actions */}
-            <div className="hidden md:flex items-center space-x-4">
+            <div className="hidden md:flex items-center gap-3">
               <button
                 onClick={handleResumeDownload}
                 className="flex items-center gap-2 px-5 py-3 rounded-xl bg-black text-white hover:bg-gray-800 transition-colors duration-200 font-medium text-sm"
@@ -112,21 +113,6 @@ const Navbar = () => {
                 <span>Resume</span>
               </button>
 
-              {socialLinks.map((social, index) => {
-                const IconComponent = social.icon;
-                return (
-                  <a
-                    key={index}
-                    href={social.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={social.label}
-                    className="p-2 text-gray-600 hover:text-black transition-colors duration-200"
-                  >
-                    <IconComponent className="w-5 h-5" />
-                  </a>
-                );
-              })}
             </div>
 
             {/* Mobile Navigation Toggle */}

@@ -13,25 +13,26 @@ const ProjectDetails = () => {
     campuscore: {
       id: 'campuscore',
       title: "CampusCore LMS",
-      description: "A comprehensive full-stack Learning Management System with course creation, video streaming, Stripe payments, real-time notifications, and admin analytics dashboard",
+      description: "Production-oriented LMS built for scalability, security, and real-world EdTech requirements across content, payments, notifications, and analytics.",
       image: "LMS-homepage.jpg",
       tech: ["Next.js", "Node.js", "MongoDB", "Express", "Redis", "Stripe", "Cloudinary", "Socket.io", "JWT", "Tailwind CSS"],
       link: "https://lms-e-learning-system.vercel.app/",
       githubLink: "https://github.com/AliRana30/LMS",
       category: "Full-Stack",
       featured: true,
-      purpose: "To build a modern e-learning platform that enables instructors to create and sell courses while providing students with an engaging learning experience with video content, progress tracking, and interactive Q&A.",
+      purpose: "Designed and developed CampusCore as a production-oriented LMS focused on scalability, secure delivery, and practical EdTech workflows. The platform handles the full lifecycle of online learning, including instructor-side course publishing and monetization, student-side enrollments and progress access, and platform-level administration through analytics dashboards. It emphasizes secure content delivery, resilient payment flows, role-based access, and performance optimization so the system can support real users and real business operations.",
       keyFeatures: [
-        "Course creation with video uploads via Cloudinary",
-        "Secure Stripe payment integration for course purchases",
+        "Course creation and management with secure VDOCipher video streaming",
+        "Paid enrollments with Stripe payment integration",
+        "Multi-authentication support (Email, Google, GitHub OAuth)",
         "Real-time notifications using Socket.io",
-        "Admin dashboard with user/course/order analytics",
-        "Email verification with custom EJS templates",
-        "Redis caching for improved performance",
-        "OAuth social login support (Google, GitHub)",
-        "Course progress tracking and student reviews",
-        "Question & Answer system for each course",
-        "Mobile-responsive design with dark/light mode"
+        "Role-based admin dashboard with analytics for users, courses, and orders",
+        "Q&A module with threaded discussions",
+        "Course reviews and rating system",
+        "Redis-based caching for performance optimization",
+        "Email notifications via Nodemailer",
+        "Dark and light theme support",
+        "Fully responsive, cross-device UI"
       ],
       challenges: [
         {
@@ -385,13 +386,13 @@ const ProjectDetails = () => {
 
           {/* Tabs Section */}
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-            <div className="border-b border-gray-200 mb-6 md:mb-8 overflow-x-auto">
+            <div className="border border-gray-200 bg-white mb-6 md:mb-8 overflow-x-auto px-4 md:px-6">
               <div className="flex gap-4 md:gap-8 min-w-max sm:min-w-0">
                 {['overview', 'features', 'challenges'].map((tab) => (
                   <button
                     key={tab}
                     onClick={() => setActiveTab(tab)}
-                    className={`pb-3 md:pb-4 text-xs md:text-sm font-medium uppercase tracking-wide transition-all relative whitespace-nowrap ${
+                    className={`py-3 md:py-4 text-xs md:text-sm font-medium uppercase tracking-wide transition-all relative whitespace-nowrap ${
                       activeTab === tab 
                         ? 'text-black' 
                         : 'text-gray-500 hover:text-gray-700'
@@ -424,21 +425,21 @@ const ProjectDetails = () => {
                       <Target className="w-4 h-4 md:w-5 md:h-5 text-black flex-shrink-0" />
                       <h3 className="text-lg md:text-xl font-semibold text-black">Project Purpose</h3>
                     </div>
-                    <p className="text-sm md:text-base text-gray-700 leading-relaxed bg-gray-50 p-4 md:p-6 border-l-2 border-black">
+                    <p className="text-sm md:text-base text-gray-700 leading-relaxed bg-gradient-to-br from-gray-50 to-white p-4 md:p-6 border border-gray-200 border-l-4 border-l-black shadow-sm">
                       {project.purpose}
                     </p>
                   </div>
 
                   <div className="grid grid-cols-3 gap-3 md:gap-6 pt-4 md:pt-6">
-                    <div className="text-center p-4 md:p-6 border border-gray-200">
+                    <div className="text-center p-4 md:p-6 border border-gray-200 bg-white hover:border-gray-400 hover:shadow-md transition-all duration-300">
                       <div className="text-2xl md:text-3xl font-bold text-black mb-1 md:mb-2">{project.tech.length}</div>
                       <div className="text-xs md:text-sm text-gray-600 font-medium mono uppercase">Technologies</div>
                     </div>
-                    <div className="text-center p-4 md:p-6 border border-gray-200">
+                    <div className="text-center p-4 md:p-6 border border-gray-200 bg-white hover:border-gray-400 hover:shadow-md transition-all duration-300">
                       <div className="text-2xl md:text-3xl font-bold text-black mb-1 md:mb-2">{project.keyFeatures.length}</div>
                       <div className="text-xs md:text-sm text-gray-600 font-medium mono uppercase">Features</div>
                     </div>
-                    <div className="text-center p-4 md:p-6 border border-gray-200">
+                    <div className="text-center p-4 md:p-6 border border-gray-200 bg-white hover:border-gray-400 hover:shadow-md transition-all duration-300">
                       <div className="text-2xl md:text-3xl font-bold text-black mb-1 md:mb-2">{project.challenges.length}</div>
                       <div className="text-xs md:text-sm text-gray-600 font-medium mono uppercase">Challenges</div>
                     </div>
@@ -460,14 +461,17 @@ const ProjectDetails = () => {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: index * 0.1 }}
-                        className="flex items-start gap-2 md:gap-3 p-3 md:p-4 border border-gray-200 hover:border-gray-400 transition-all bg-white"
+                        className="flex items-start gap-2 md:gap-3 p-3 md:p-4 border border-gray-200 hover:border-gray-400 transition-all bg-white hover:shadow-md"
                       >
                         <div className="flex-shrink-0 w-4 h-4 md:w-5 md:h-5 rounded-full bg-green-100 flex items-center justify-center mt-0.5">
                           <CheckCircle className="w-3 h-3 md:w-3.5 md:h-3.5 text-green-600" />
                         </div>
-                        <p className="text-xs md:text-sm text-gray-700 leading-relaxed">
+                        <div className="space-y-1">
+                          <div className="text-[10px] md:text-xs text-gray-500 mono">FEATURE {String(index + 1).padStart(2, '0')}</div>
+                          <p className="text-xs md:text-sm text-gray-700 leading-relaxed">
                           {feature}
-                        </p>
+                          </p>
+                        </div>
                       </motion.div>
                     ))}
                   </div>
@@ -488,10 +492,13 @@ const ProjectDetails = () => {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: index * 0.1 }}
-                        className="border border-gray-200 hover:border-gray-400 transition-all overflow-hidden"
+                        className="border border-gray-200 hover:border-gray-400 transition-all overflow-hidden bg-white hover:shadow-md"
                       >
+                        <div className="px-4 md:px-6 py-2 border-b border-gray-200 bg-gray-50">
+                          <span className="text-[10px] md:text-xs text-gray-500 mono">CASE {String(index + 1).padStart(2, '0')}</span>
+                        </div>
                         <div className="grid md:grid-cols-2">
-                          <div className="p-4 md:p-6 border-b md:border-b-0 md:border-r border-gray-200 bg-red-50">
+                          <div className="p-4 md:p-6 border-b md:border-b-0 md:border-r border-gray-200 bg-red-50/70">
                             <div className="flex items-start gap-2 md:gap-3">
                               <AlertCircle className="w-4 h-4 md:w-5 md:h-5 text-red-600 flex-shrink-0 mt-0.5" />
                               <div>
@@ -502,7 +509,7 @@ const ProjectDetails = () => {
                               </div>
                             </div>
                           </div>
-                          <div className="p-4 md:p-6 bg-green-50">
+                          <div className="p-4 md:p-6 bg-green-50/70">
                             <div className="flex items-start gap-2 md:gap-3">
                               <Lightbulb className="w-4 h-4 md:w-5 md:h-5 text-green-600 flex-shrink-0 mt-0.5" />
                               <div>

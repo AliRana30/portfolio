@@ -1,33 +1,122 @@
 import { motion } from 'framer-motion';
-import { SiMongodb, SiExpress, SiReact, SiNodedotjs, SiTailwindcss, SiGit, SiJavascript, SiVscodium } from 'react-icons/si';
-import { Code, Database, Settings, Layers } from 'lucide-react';
+import { SiMongodb, SiExpress, SiReact, SiNodedotjs, SiTailwindcss, SiGit, SiJavascript, SiNextdotjs, SiRedux, SiDocker, SiRedis, SiGithubactions } from 'react-icons/si';
+import { Code, Database, Settings } from 'lucide-react';
+import { useState, useEffect, useRef } from 'react';
+import { use3DTilt } from '../hooks/use3DAnimations';
+
+const SkillCard = ({ skill, skillVariants }) => {
+  const tiltRef = use3DTilt({ maxRotation: 8, perspective: 800 });
+  const progressRef = useRef(null);
+  const [progressWidth, setProgressWidth] = useState(0);
+
+  useEffect(() => {
+    if (!progressRef.current) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) return;
+
+        const startTime = Date.now();
+        const duration = 1000;
+
+        const animate = () => {
+          const now = Date.now();
+          const progress = Math.min((now - startTime) / duration, 1);
+          setProgressWidth(progress * skill.level);
+
+          if (progress < 1) {
+            requestAnimationFrame(animate);
+          }
+        };
+
+        animate();
+        observer.unobserve(entry.target);
+      },
+      { threshold: 0.15 }
+    );
+
+    observer.observe(progressRef.current);
+    return () => observer.disconnect();
+  }, [skill.level]);
+
+  return (
+    <motion.div
+      variants={skillVariants}
+      className="group bg-gray-50 hover:bg-white p-6 border border-gray-200 hover:border-black transition-all duration-300 skill-badge cursor-pointer"
+      onMouseEnter={(e) => {
+        e.currentTarget.style.transform = 'translateY(-6px)';
+        e.currentTarget.style.boxShadow = '0 12px 24px rgba(0, 0, 0, 0.1)';
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.transform = 'translateY(0)';
+        e.currentTarget.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.05)';
+      }}
+    >
+      <div ref={tiltRef} style={{ perspective: '800px', transformStyle: 'preserve-3d' }}>
+        <div className="mb-6 flex justify-center group-hover:scale-110 transition-transform duration-200">
+          <div className={skill.iconColor}>{skill.icon}</div>
+        </div>
+
+        <h4 className="text-lg font-semibold text-center mb-6 text-black transition-colors duration-300">
+          {skill.name}
+        </h4>
+
+        <div className="space-y-3" ref={progressRef}>
+          <div className="flex justify-between items-center">
+            <span className="text-sm text-gray-600 font-medium">Proficiency</span>
+            <span className="text-sm font-bold text-black mono">{Math.round(progressWidth)}%</span>
+          </div>
+          <div className="w-full bg-gray-200 h-2 overflow-hidden border border-gray-200">
+            <div
+              style={{
+                width: `${progressWidth}%`,
+                transition: 'width 1s ease-out'
+              }}
+              className={`h-full ${skill.barColor}`}
+            />
+          </div>
+        </div>
+      </div>
+    </motion.div>
+  );
+};
 
 const Skills = () => {
   const skillCategories = [
     {
       title: "Full-Stack",
-      icon: <Code className="w-5 h-5 text-blue-500" />,
+      icon: <Code className="w-5 h-5" />,
       skills: [
-        { name: "React", icon: <SiReact className="text-blue-500" size={32} />, level: 90 },
-        { name: "JavaScript", icon: <SiJavascript className="text-yellow-500" size={32} />, level: 85 },
-        { name: "Tailwind CSS", icon: <SiTailwindcss className="text-cyan-500" size={32} />, level: 88 }
+        { name: "React", icon: <SiReact size={32} />, level: 90, iconColor: 'text-[#61DAFB]', barColor: 'bg-[#61DAFB]' },
+        { name: "JavaScript", icon: <SiJavascript size={32} />, level: 85, iconColor: 'text-[#F7DF1E]', barColor: 'bg-[#E9D200]' },
+        { name: "Next.js", icon: <SiNextdotjs size={32} />, level: 82, iconColor: 'text-black', barColor: 'bg-black' }
       ]
     },
     {
       title: "Backend",
-      icon: <Database className="w-5 h-5 text-green-500" />,
+      icon: <Database className="w-5 h-5" />,
       skills: [
-        { name: "Node.js", icon: <SiNodedotjs className="text-green-600" size={32} />, level: 85 },
-        { name: "Express.js", icon: <SiExpress className="text-gray-700" size={32} />, level: 80 },
-        { name: "MongoDB", icon: <SiMongodb className="text-green-600" size={32} />, level: 82 }
+        { name: "Node.js", icon: <SiNodedotjs size={32} />, level: 85, iconColor: 'text-[#339933]', barColor: 'bg-[#339933]' },
+        { name: "Express.js", icon: <SiExpress size={32} />, level: 80, iconColor: 'text-[#444444]', barColor: 'bg-[#444444]' },
+        { name: "MongoDB", icon: <SiMongodb size={32} />, level: 82, iconColor: 'text-[#47A248]', barColor: 'bg-[#47A248]' }
       ]
     },
     {
       title: "Tools",
-      icon: <Settings className="w-5 h-5 text-gray-600" />,
+      icon: <Settings className="w-5 h-5" />,
       skills: [
-        { name: "Git/Github", icon: <SiGit className="text-orange-500" size={32} />, level: 88 },
-        { name: "VS Code", icon: <SiVscodium className="text-blue-600" size={32} />, level: 92 }
+        { name: "Docker", icon: <SiDocker size={32} />, level: 50, iconColor: 'text-[#2496ED]', barColor: 'bg-[#2496ED]' },
+        { name: "Redis", icon: <SiRedis size={32} />, level: 70, iconColor: 'text-[#DC382D]', barColor: 'bg-[#DC382D]' },
+        { name: "GitHub Actions", icon: <SiGithubactions size={32} />, level: 75, iconColor: 'text-[#2088FF]', barColor: 'bg-[#2088FF]' }
+      ]
+    },
+    {
+      title: "State & Workflow",
+      icon: <Settings className="w-5 h-5" />,
+      skills: [
+        { name: "RTK Query", icon: <SiRedux size={32} />, level: 80, iconColor: 'text-[#764ABC]', barColor: 'bg-[#764ABC]' },
+        { name: "Tailwind CSS", icon: <SiTailwindcss size={32} />, level: 88, iconColor: 'text-[#06B6D4]', barColor: 'bg-[#06B6D4]' },
+        { name: "Git/GitHub", icon: <SiGit size={32} />, level: 88, iconColor: 'text-[#F05032]', barColor: 'bg-[#F05032]' }
       ]
     }
   ];
@@ -102,7 +191,7 @@ const Skills = () => {
                 <span className="text-sm font-medium text-gray-500 tracking-wider uppercase mono">Skills & Expertise</span>
               </div>
               
-              <h2 className="text-3xl md:text-3xl font-light leading-tight mb-6">
+              <h2 className="text-3xl md:text-3xl font-light leading-tight mb-6 section-heading">
                 <span className="font-extralight text-gray-700">Technical</span>
                 <br />
                 <span className="font-bold text-black">Proficiency</span>
@@ -120,11 +209,21 @@ const Skills = () => {
                 <motion.div
                   key={category.title}
                   variants={categoryVariants}
-                  className="bg-white border border-gray-200 p-8"
+                  className="bg-white border border-gray-200 p-8 mb-6 last:mb-0 hover:border-gray-300 transition-all duration-300"
+                  style={{
+                    transitionProperty: 'all',
+                    transitionDuration: '0.3s'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'translateY(-3px)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = 'translateY(0)';
+                  }}
                 >
                   {/* Category Header */}
                   <div className="flex items-center gap-4 mb-12">
-                    <div className="p-3 bg-black text-white">
+                    <div className="p-3 border border-black text-black bg-white">
                       {category.icon}
                     </div>
                     <div>
@@ -141,39 +240,9 @@ const Skills = () => {
                   </div>
 
                   {/* Skills Grid */}
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {category.skills.map((skill, skillIndex) => (
-                      <motion.div
-                        key={skill.name}
-                        variants={skillVariants}
-                        className="group bg-gray-50 p-6 border border-gray-200 hover:border-black hover:bg-white transition-all duration-300"
-                      >
-                        {/* Icon */}
-                        <div className="mb-6 flex justify-center">
-                          {skill.icon}
-                        </div>
-                        
-                        {/* Skill name */}
-                        <h4 className="text-lg font-semibold text-center mb-6 text-black group-hover:text-black transition-colors duration-300">
-                          {skill.name}
-                        </h4>
-                        
-                        {/* Progress bar */}
-                        <div className="space-y-3">
-                          <div className="flex justify-between items-center">
-                            <span className="text-sm text-gray-600 font-medium">Proficiency</span>
-                            <span className="text-sm font-bold text-black mono">{skill.level}%</span>
-                          </div>
-                          <div className="w-full bg-gray-200 h-2 overflow-hidden">
-                            <motion.div
-                              initial={{ width: 0 }}
-                              whileInView={{ width: `${skill.level}%` }}
-                              transition={{ duration: 1, delay: categoryIndex * 0.2 + skillIndex * 0.1 }}
-                              className="h-full bg-black"
-                            />
-                          </div>
-                        </div>
-                      </motion.div>
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+                    {category.skills.map((skill) => (
+                      <SkillCard key={skill.name} skill={skill} skillVariants={skillVariants} />
                     ))}
                   </div>
                 </motion.div>

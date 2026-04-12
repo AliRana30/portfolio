@@ -11,8 +11,8 @@ const Socials = () => {
       value: "alimahmoodrana82@gmail.com",
       link: "https://mail.google.com/mail/?view=cm&to=alimahmoodrana82@gmail.com",
       description: "Send me an email",
-      iconColor: "text-red-500",
-      hoverBg: "group-hover:bg-red-500"
+      color: '#EA4335',
+      bgColor: '#FDECEC'
     },
     {
       icon: Linkedin,
@@ -21,8 +21,8 @@ const Socials = () => {
       value: "Ali Mahmood Rana",
       link: "https://www.linkedin.com/in/ali-mahmood-rana-7093322a7/",
       description: "Let's connect",
-      iconColor: "text-blue-600",
-      hoverBg: "group-hover:bg-blue-600"
+      color: '#0A66C2',
+      bgColor: '#EAF3FF'
     },
     {
       icon: Github,
@@ -31,8 +31,8 @@ const Socials = () => {
       value: "AliRana30",
       link: "https://github.com/AliRana30",
       description: "Check out my code",
-      iconColor: "text-gray-800",
-      hoverBg: "group-hover:bg-gray-800"
+      color: '#24292E',
+      bgColor: '#EEF1F4'
     },
     {
       icon: Code,
@@ -41,8 +41,8 @@ const Socials = () => {
       value: "AliRana28",
       link: "https://leetcode.com/u/AliRana28/",
       description: "See my problem solving",
-      iconColor: "text-orange-500",
-      hoverBg: "group-hover:bg-orange-500"
+      color: '#FFA116',
+      bgColor: '#FFF4E5'
     }
   ];
 
@@ -57,15 +57,16 @@ const Socials = () => {
   };
 
   const cardVariants = {
-    hidden: { opacity: 0, y: 40 },
-    visible: {
+    hidden: { opacity: 0, y: 24 },
+    visible: (index) => ({
       opacity: 1,
-      y: 0,
+      y: [24, -4, 0],
       transition: {
-        duration: 0.6,
+        delay: index * 0.08,
+        duration: 0.55,
         ease: [0.25, 0.46, 0.45, 0.94]
       }
-    }
+    })
   };
 
   return (
@@ -126,12 +127,22 @@ const Socials = () => {
                     href={social.link}
                     target="_blank"
                     rel="noopener noreferrer"
+                    custom={index}
                     variants={cardVariants}
-                    className="group bg-white border border-gray-200 hover:border-black p-6 md:p-8 transition-all duration-300 overflow-hidden"
+                    className="group bg-white border border-gray-200 p-6 md:p-8 transition-all duration-300 overflow-hidden"
+                    style={{ '--social-color': social.color, '--social-bg': social.bgColor }}
+                    whileHover={{ y: -4 }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.borderColor = social.color;
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.borderColor = '#e5e7eb';
+                    }}
                   >
                     <div className="text-center space-y-3 md:space-y-4">
-                      <div className={`w-14 md:w-16 h-14 md:h-16 mx-auto bg-gray-100 ${social.hoverBg} transition-colors duration-300 flex items-center justify-center`}>
-                        <IconComponent className={`${social.iconColor} group-hover:text-white w-6 h-6 transition-colors duration-300`} />
+                      <div className="w-14 md:w-16 h-14 md:h-16 mx-auto border border-gray-200 transition-all duration-300 flex items-center justify-center group-hover:scale-105"
+                        style={{ backgroundColor: social.bgColor, borderColor: social.color }}>
+                        <IconComponent className="w-6 h-6 transition-all duration-200 group-hover:scale-110" style={{ color: social.color }} />
                       </div>
                       
                       <h3 className="text-base md:text-lg font-bold text-black transition-colors duration-300">
@@ -146,9 +157,9 @@ const Socials = () => {
                         {social.value}
                       </p>
                       
-                      <div className="flex items-center justify-center gap-2 text-xs md:text-sm text-gray-600 group-hover:text-black transition-colors duration-300 group-hover:gap-3 transition-all duration-300">
+                      <div className="flex items-center justify-center gap-2 text-xs md:text-sm text-gray-600 group-hover:text-black transition-all duration-300 group-hover:gap-3">
                         <span>{social.description}</span>
-                        <ArrowUpRight className="w-4 h-4 flex-shrink-0 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-200" />
+                        <ArrowUpRight className="w-4 h-4 flex-shrink-0 group-hover:-translate-y-1 transition-transform duration-200" />
                       </div>
                     </div>
                   </motion.a>

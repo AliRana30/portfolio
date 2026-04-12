@@ -4,28 +4,121 @@ import { SiReact, SiNodedotjs, SiMongodb, SiExpress, SiTailwindcss, SiStripe, Si
 import { Lock, Bell, Zap } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
+const ProjectCard = ({ project, index, cardVariants, getTechIcon, getTechColor }) => {
+  return (
+    <motion.div
+      key={index}
+      variants={cardVariants}
+      className="group bg-white border border-gray-200 hover:border-gray-300 hover:shadow-md transition-all duration-300 overflow-hidden relative"
+    >
+      <div>
+        {project.featured && (
+          <div className="absolute top-4 left-4 z-10">
+            <div className="bg-black text-white px-3 py-1.5 text-xs font-medium mono">FEATURED</div>
+          </div>
+        )}
+
+        <div className="absolute top-4 right-4 z-10">
+          <div className="bg-white/95 backdrop-blur-sm border border-gray-300 text-black px-3 py-1.5 text-xs font-medium mono">
+            {project.category}
+          </div>
+        </div>
+
+        <div className="relative h-56 overflow-hidden bg-gray-100">
+          <img
+            src={`/${project.image}`}
+            alt={project.title}
+            className="w-full h-full object-cover object-top transition-transform duration-500"
+            onMouseEnter={(e) => {
+              e.currentTarget.style.transform = 'scale(1.03)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.transform = 'scale(1)';
+            }}
+            onError={(e) => {
+              e.target.src = 'https://via.placeholder.com/600x400/e5e7eb/374151?text=Project+Image';
+            }}
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
+          <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">
+            <a
+              href={project.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-white hover:bg-gray-100 text-black p-3 border border-gray-300 transition-colors duration-200"
+            >
+              <ExternalLink className="w-5 h-5" />
+            </a>
+          </div>
+        </div>
+
+        <div className="p-6 space-y-4">
+          <h3 className="text-xl font-semibold text-black">{project.title}</h3>
+          <p className="text-gray-600 text-sm leading-relaxed line-clamp-2">{project.description}</p>
+
+          <div className="flex flex-wrap gap-2 pt-2">
+            {project.tech.slice(0, 16).map((tech) => (
+              <div
+                key={tech}
+                className={`flex items-center gap-1.5 px-2.5 py-1 border bg-white text-xs font-medium mono transition-all duration-200 hover:border-gray-400 tech-pill ${getTechColor(tech)}`}
+              >
+                {getTechIcon(tech)}
+                <span className="text-gray-700">{tech}</span>
+              </div>
+            ))}
+          </div>
+
+          <div className="pt-4 flex gap-3">
+            <Link
+              to={`/project/${project.id}`}
+              className="flex-1 inline-flex items-center justify-center gap-2 border-2 border-black text-black px-4 py-2.5 hover:bg-black hover:text-white transition-all duration-300 font-medium"
+            >
+              <Eye className="w-4 h-4" />
+              <span>Details</span>
+            </Link>
+
+            <Link
+              to={project.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex-1 inline-flex items-center justify-center gap-2 bg-black text-white px-4 py-2.5 hover:bg-gray-800 transition-all duration-300 font-medium group/link"
+            >
+              <span>Live Demo</span>
+              <ArrowUpRight className="w-4 h-4 transition-all duration-200 group-hover/link:rotate-45 group-hover/link:scale-110" />
+            </Link>
+          </div>
+        </div>
+      </div>
+    </motion.div>
+  );
+};
+
 const Projects = () => {
   const projects = [
     {
       id: 'campuscore',
       title: "CampusCore LMS",
-      description: "A comprehensive full-stack Learning Management System with course creation, video streaming, Stripe payments, real-time notifications, and admin analytics dashboard",
+      description: "Production-oriented LMS built for scalability, security, and real-world EdTech workflows with secure streaming, paid enrollments, analytics, and admin controls.",
       image: "LMS-homepage.jpg",
       tech: ["Next.js", "Node.js", "MongoDB", "Express", "Redis", "Stripe", "Cloudinary", "Socket.io", "JWT", "Tailwind CSS"],
       link: "https://lms-e-learning-system.vercel.app/",
       githubLink: "https://github.com/AliRana30/LMS",
       category: "Full-Stack",
       featured: true,
-      purpose: "To build a modern e-learning platform that enables instructors to create and sell courses while providing students with an engaging learning experience with video content, progress tracking, and interactive Q&A.",
+      purpose: "Designed and developed CampusCore to cover the full lifecycle of online learning platforms, from instructor-side course publishing and monetization to student-side content consumption, progress tracking, and interaction. The system is engineered around secure media delivery, payment reliability, operational visibility, and scalable architecture for real deployment conditions.",
       keyFeatures: [
-        "Course creation with video uploads via Cloudinary",
-        "Secure Stripe payment integration",
-        "Real-time notifications with Socket.io",
-        "Admin dashboard with analytics",
-        "Email verification with EJS templates",
-        "Redis caching for performance",
-        "OAuth social login (Google, GitHub)",
-        "Course progress tracking and reviews"
+        "Course creation and management with secure VDOCipher video streaming",
+        "Paid enrollments with Stripe payment integration",
+        "Multi-authentication support (Email, Google, GitHub OAuth)",
+        "Real-time notifications using Socket.io",
+        "Role-based admin dashboard with analytics for users, courses, and orders",
+        "Q&A module with threaded discussions",
+        "Course reviews and rating system",
+        "Redis-based caching for performance optimization",
+        "Email notifications via Nodemailer",
+        "Dark and light theme support",
+        "Fully responsive, cross-device UI"
       ]
     },
     {
@@ -215,7 +308,7 @@ const Projects = () => {
                 <span className="text-sm font-medium text-gray-500 tracking-wider uppercase mono">Projects</span>
               </div>
               
-              <h2 className="text-3xl md:text-3xl font-light leading-tight mb-6">
+              <h2 className="text-3xl md:text-3xl font-light leading-tight mb-6 section-heading">
                 <span className="font-extralight text-gray-700">Featured</span>
                 <br />
                 <span className="font-bold text-black">Projects</span>
@@ -225,7 +318,6 @@ const Projects = () => {
                 Explore my latest work showcasing modern web development with cutting-edge technologies.
               </p>
             </motion.div>
-            
             <motion.div 
               variants={containerVariants}
               initial="hidden"
@@ -234,97 +326,14 @@ const Projects = () => {
               className="grid grid-cols-1 md:grid-cols-2 gap-8"
             >
               {projects.map((project, index) => (
-                <motion.div 
-                  key={index}
-                  variants={cardVariants}
-                  className="group bg-white border border-gray-200 hover:border-gray-400 transition-all duration-300 overflow-hidden relative"
-                >
-                  {/* Featured badge */}
-                  {project.featured && (
-                    <div className="absolute top-4 left-4 z-10">
-                      <div className="bg-black text-white px-3 py-1.5 text-xs font-medium mono">
-                        FEATURED
-                      </div>
-                    </div>
-                  )}
-
-                  {/* Category badge */}
-                  <div className="absolute top-4 right-4 z-10">
-                    <div className="bg-white/95 backdrop-blur-sm border border-gray-300 text-black px-3 py-1.5 text-xs font-medium mono">
-                      {project.category}
-                    </div>
-                  </div>
-
-                  {/* Image container */}
-                  <div className="relative h-56 overflow-hidden bg-gray-100">
-                    <img 
-                      src={`/${project.image}`} 
-                      alt={project.title} 
-                      className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
-                      onError={(e) => {
-                        e.target.src = 'https://via.placeholder.com/600x400/e5e7eb/374151?text=Project+Image';
-                      }}
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                    
-                    {/* Overlay button */}
-                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">
-                      <a
-                        href={project.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="bg-white hover:bg-gray-100 text-black p-3 border border-gray-300 transition-colors duration-200"
-                      >
-                        <ExternalLink className="w-5 h-5" />
-                      </a>
-                    </div>
-                  </div>
-
-                  {/* Content */}
-                  <div className="p-6 space-y-4">
-                    <h3 className="text-xl font-semibold text-black">
-                      {project.title}
-                    </h3>
-                    <p className="text-gray-600 text-sm leading-relaxed line-clamp-2">
-                      {project.description}
-                    </p>
-                    
-                    {/* Tech stack */}
-                    <div className="flex flex-wrap gap-2 pt-2">
-                      {project.tech.slice(0, 16).map((tech) => (
-                        <div
-                          key={tech}
-                          className={`flex items-center gap-1.5 px-2.5 py-1 border bg-white text-xs font-medium mono transition-all duration-200 hover:border-gray-400 ${getTechColor(tech)}`}
-                        >
-                          {getTechIcon(tech)}
-                          <span className="text-gray-700">{tech}</span>
-                        </div>
-                      ))}
-                    </div>
-                    
-                    {/* CTA Buttons */}
-                    <div className="pt-4 flex gap-3">
-                      <Link
-                        to={`/project/${project.id}`}
-                        className="flex-1 inline-flex items-center justify-center gap-2 border-2 border-black text-black px-4 py-2.5 hover:bg-black hover:text-white transition-all duration-300 font-medium"
-                      >
-                        <Eye className="w-4 h-4" />
-                        <span>Details</span>
-                      </Link>
-                      
-                      <Link 
-                        to={project.link} 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        className="flex-1 inline-flex items-center justify-center gap-2 bg-black text-white px-4 py-2.5 hover:bg-gray-800 transition-all duration-300 font-medium group/link"
-                      >
-                        <span>Live Demo</span>
-                        <ArrowUpRight className="w-4 h-4 group-hover/link:translate-x-1 group-hover/link:-translate-y-1 transition-transform duration-200" />
-                      </Link>
-
-                    </div>
-                  </div>
-                </motion.div>
+                <ProjectCard
+                  key={project.id}
+                  project={project}
+                  index={index}
+                  cardVariants={cardVariants}
+                  getTechIcon={getTechIcon}
+                  getTechColor={getTechColor}
+                />
               ))}
             </motion.div>
 

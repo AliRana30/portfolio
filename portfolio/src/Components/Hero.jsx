@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Link as ScrollLink } from 'react-scroll';
-import { ChevronDown, Code, Database, Globe, ArrowRight } from 'lucide-react';
+import { ChevronDown, ArrowRight } from 'lucide-react';
 
 const Hero = () => {
-  const profileImage = "me.jpg";
+  const profileImage = "/my_image.png";
   
   const [displayedText, setDisplayedText] = useState('');
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -70,6 +70,58 @@ const Hero = () => {
         .mono {
           font-family: 'JetBrains Mono', 'Fira Code', monospace;
         }
+
+        /* Floating background dots */
+        .floating-dots {
+          position: absolute;
+          inset: 0;
+          overflow: hidden;
+          pointer-events: none;
+        }
+
+        .floating-dot {
+          position: absolute;
+          width: 4px;
+          height: 4px;
+          background: currentColor;
+          border-radius: 50%;
+          opacity: 0.07;
+        }
+
+        .dot-1 { animation: float1 8s ease-in-out infinite; top: 10%; left: 8%; }
+        .dot-2 { animation: float2 10s ease-in-out infinite; top: 20%; left: 85%; }
+        .dot-3 { animation: float3 12s ease-in-out infinite; top: 50%; left: 15%; }
+        .dot-4 { animation: float4 9s ease-in-out infinite; top: 60%; left: 80%; }
+        .dot-5 { animation: float5 11s ease-in-out infinite; top: 70%; left: 30%; }
+        .dot-6 { animation: float6 13s ease-in-out infinite; top: 15%; left: 50%; }
+        .dot-7 { animation: float7 7s ease-in-out infinite; top: 75%; left: 60%; }
+
+        @keyframes float1 { 0%, 100% { transform: translateY(0) translateX(0); } 50% { transform: translateY(-20px) translateX(10px); } }
+        @keyframes float2 { 0%, 100% { transform: translateY(0) translateX(0); } 50% { transform: translateY(15px) translateX(-8px); } }
+        @keyframes float3 { 0%, 100% { transform: translateY(0) translateX(0); } 50% { transform: translateY(-25px) translateX(-12px); } }
+        @keyframes float4 { 0%, 100% { transform: translateY(0) translateX(0); } 50% { transform: translateY(18px) translateX(15px); } }
+        @keyframes float5 { 0%, 100% { transform: translateY(0) translateX(0); } 50% { transform: translateY(-15px) translateX(8px); } }
+        @keyframes float6 { 0%, 100% { transform: translateY(0) translateX(0); } 50% { transform: translateY(20px) translateX(-10px); } }
+        @keyframes float7 { 0%, 100% { transform: translateY(0) translateX(0); } 50% { transform: translateY(-18px) translateX(12px); } }
+
+        /* Bounce animation for scroll indicator */
+        @keyframes gentleBounce {
+          0%, 100% {
+            transform: translateY(0);
+          }
+          50% {
+            transform: translateY(-8px);
+          }
+        }
+
+        .scroll-indicator {
+          animation: gentleBounce 2s ease-in-out infinite;
+        }
+
+        @keyframes heroFloat {
+          0%, 100% { transform: translateY(0px); }
+          50% { transform: translateY(-12px); }
+        }
       `}</style>
       
       <div className="relative min-h-screen bg-white mt-10">
@@ -77,6 +129,17 @@ const Hero = () => {
           <div className="absolute top-20 right-20 w-64 h-64 border border-gray-100 rotate-45"></div>
           <div className="absolute bottom-40 left-10 w-32 h-32 border border-gray-100 rounded-full"></div>
           <div className="absolute top-1/2 left-1/4 w-2 h-20 bg-gray-100 rotate-12"></div>
+          
+          {/* Floating background dots */}
+          <div className="floating-dots text-gray-800">
+            <div className="floating-dot dot-1"></div>
+            <div className="floating-dot dot-2"></div>
+            <div className="floating-dot dot-3"></div>
+            <div className="floating-dot dot-4"></div>
+            <div className="floating-dot dot-5"></div>
+            <div className="floating-dot dot-6"></div>
+            <div className="floating-dot dot-7"></div>
+          </div>
         </div>
         
         <section 
@@ -95,7 +158,7 @@ const Hero = () => {
                 variants={itemVariants}
                 className="mb-6"
               >
-                <h1 className="text-5xl md:text-6xl lg:text-5xl font-light leading-[0.9] mb-4">
+                <h1 className="text-5xl md:text-6xl lg:text-5xl font-light leading-[0.9] mb-4 section-heading">
                   <span className="block font-bold text-gray-900">Ali Mahmood</span>
                 </h1>
               </motion.div>
@@ -149,16 +212,19 @@ const Hero = () => {
               variants={itemVariants}
               className="w-full lg:w-2/5 flex justify-center lg:justify-end"
             >
-              <div className="relative">
-                <div className="relative w-72 h-72 md:w-80 md:h-80 overflow-hidden bg-gray-100 shadow-2xl">
-                  <div className="absolute inset-0 border-8 border-white z-10"></div>
-                  <img
-                    src={profileImage}
-                    alt="Ali - Full Stack Developer"
-                    className="w-full h-full object-cover hover:grayscale-0 transition-all duration-500"
-                  />
-                </div>
-                
+              <div
+                className="relative w-72 h-72 md:w-80 md:h-80 bg-white p-2 border border-gray-200 hover:shadow-md transition-all duration-300"
+                style={{
+                  borderRadius: '38% 62% 55% 45% / 44% 36% 64% 56%',
+                  animation: 'heroFloat 4.2s ease-in-out infinite'
+                }}
+              >
+                <img
+                  src={profileImage}
+                  alt="Ali Mahmood Rana"
+                  className="w-full h-full object-cover"
+                  style={{ borderRadius: '36% 64% 48% 52% / 52% 38% 62% 48%' }}
+                />
               </div>
             </motion.div>
           </motion.div>
@@ -168,7 +234,7 @@ const Hero = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1.5 }}
-            className="absolute bottom-0 left-12"
+            className="absolute bottom-0 left-12 scroll-indicator"
           >
             <ScrollLink
               to="about"
