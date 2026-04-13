@@ -97,6 +97,30 @@ const ProjectCard = ({ project, index, cardVariants, getTechIcon, getTechColor }
 const Projects = () => {
   const projects = [
     {
+      id: 'sonicwave-pro',
+      title: "SonicWave Pro",
+      description: "A cinematic scrollytelling landing page with scroll-linked canvas frame animation, glassmorphism UI, and high-performance motion design inspired by premium product launches.",
+      image: "SonicWave.png",
+      tech: ["Next.js", "TypeScript", "Framer Motion", "GSAP", "Tailwind CSS", "Canvas API", "ScrollTrigger", "App Router"],
+      link: "https://sonicwave-animate.vercel.app/",
+      githubLink: "#",
+      category: "Frontend",
+      featured: true,
+      purpose: "To design and engineer an Awwwards-style, production-ready scrollytelling experience for a fictional premium headphone brand. The project focuses on cinematic storytelling through a scroll-scrubbed frame sequence, immersive section transitions, polished motion language, and strict performance optimization for smooth interaction across devices.",
+      keyFeatures: [
+        "Scroll-linked frame-by-frame product reveal using Canvas API",
+        "Auto preload pipeline for frame sequence with loading progress UI",
+        "Pinning and scrubbed animation flow with Framer Motion + spring smoothing",
+        "Layered pseudo-3D visual depth using CSS perspective and transforms",
+        "Floating text overlays synchronized to timeline checkpoints",
+        "Premium dark visual system with noise grain and glassmorphism components",
+        "Responsive behavior for mobile, tablet, and desktop scrollytelling",
+        "Feature grid, marquee separator, specs comparison, and CTA funnel",
+        "Magnetic button interactions and custom cursor for brand feel",
+        "Performance-oriented rendering with requestAnimationFrame draw loop"
+      ]
+    },
+    {
       id: 'campuscore',
       title: "CampusCore LMS",
       description: "Production-oriented LMS built for scalability, security, and real-world EdTech workflows with secure streaming, paid enrollments, analytics, and admin controls.",

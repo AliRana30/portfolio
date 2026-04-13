@@ -10,6 +10,48 @@ const ProjectDetails = () => {
   const navigate = useNavigate();
   
   const projects = {
+    'sonicwave-pro': {
+      id: 'sonicwave-pro',
+      title: "SonicWave Pro",
+      description: "A premium scrollytelling product page built with Next.js 14, TypeScript, Framer Motion, and Canvas-based frame sequencing for cinematic product reveal.",
+      image: "SonicWave.png",
+      tech: ["Next.js", "TypeScript", "Framer Motion", "GSAP", "Tailwind CSS", "Canvas API", "ScrollTrigger", "App Router"],
+      link: "https://sonicwave-animate.vercel.app/",
+      githubLink: "#",
+      category: "Frontend",
+      featured: true,
+      purpose: "Built SonicWave Pro as an immersive, high-fidelity brand storytelling experience where product identity is revealed progressively through scroll. The objective was to combine cinematic motion design, frame-perfect canvas rendering, and premium visual styling into a responsive and performance-aware landing page that feels modern, intentional, and interactive on every screen size.",
+      keyFeatures: [
+        "Canvas-driven frame sequence animation synced to scroll progress",
+        "Promise-based preloading pipeline for all frames with loading feedback",
+        "Retina-aware canvas rendering and requestAnimationFrame draw scheduling",
+        "Sticky navigation with animated active link indicator",
+        "Hero section with staggered reveal and dynamic scroll prompt",
+        "Glassmorphism overlays that enter/exit at timeline checkpoints",
+        "Animated features grid with viewport-triggered stagger transitions",
+        "Infinite marquee separator and specs comparison section",
+        "Magnetic CTA interactions with branded gradient accents",
+        "Custom cursor and nuanced micro-motion for premium feel"
+      ],
+      challenges: [
+        {
+          challenge: "Smooth Frame Scrubbing During Fast Scroll",
+          solution: "Mapped scroll progress to frame index through a spring-smoothed motion value and rendered updates inside requestAnimationFrame to avoid jank and flicker."
+        },
+        {
+          challenge: "Canvas Sharpness and Responsive Fit Across Devices",
+          solution: "Implemented devicePixelRatio-aware canvas sizing and contain-style draw calculations so frames stay sharp and visually centered on mobile, tablet, and desktop."
+        },
+        {
+          challenge: "Heavy Asset Preload Without Visible Hitches",
+          solution: "Preloaded the sequence using Promise.all, tracked loading progress, and gated reveal behind a branded loader so playback begins only when frames are ready."
+        },
+        {
+          challenge: "Complex Motion Layering While Maintaining Performance",
+          solution: "Split animation responsibilities between Framer Motion transforms, CSS compositing, and lightweight section triggers to keep interactions fluid without layout thrash."
+        }
+      ]
+    },
     campuscore: {
       id: 'campuscore',
       title: "CampusCore LMS",
@@ -222,6 +264,12 @@ const ProjectDetails = () => {
     const colorMap = {
       'react': 'text-[#61DAFB]',
       'next.js': 'text-black',
+      'typescript': 'text-[#3178C6]',
+      'framer motion': 'text-[#0055FF]',
+      'gsap': 'text-[#88CE02]',
+      'canvas api': 'text-[#0F172A]',
+      'scrolltrigger': 'text-[#84CC16]',
+      'app router': 'text-gray-700',
       'node.js': 'text-[#339933]',
       'mongodb': 'text-[#47A248]',
       'express': 'text-gray-700',
