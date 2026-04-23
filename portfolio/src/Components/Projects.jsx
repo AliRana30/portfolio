@@ -18,6 +18,7 @@ const ProjectCard = ({ project, index, cardVariants, getTechIcon, getTechColor }
       transition={{ duration: 0.25, ease: 'easeOut' }}
       className="group bg-white border border-gray-200 hover:border-gray-300 overflow-hidden relative"
       style={{ boxShadow: '0 1px 3px rgba(0, 0, 0, 0.08)' }}
+      data-cursor="pointer"
     >
       <div>
         {project.featured && (
@@ -80,6 +81,7 @@ const ProjectCard = ({ project, index, cardVariants, getTechIcon, getTechColor }
                   whileHover={{ scale: 1.08, borderColor: 'rgba(255,255,255,0.3)' }}
                   transition={{ duration: 0.2 }}
                 className={`flex items-center gap-1.5 px-2.5 py-1 border bg-white text-xs font-medium mono transition-all duration-200 hover:border-gray-400 tech-pill ${getTechColor(tech)}`}
+                data-cursor="pointer"
               >
                 {getTechIcon(tech)}
                 <span className="text-gray-700">{tech}</span>
@@ -121,27 +123,27 @@ const ProjectCard = ({ project, index, cardVariants, getTechIcon, getTechColor }
 const Projects = () => {
   const projects = [
     {
-      id: 'sonicwave-pro',
-      title: "SonicWave Pro",
-      description: "A cinematic scrollytelling landing page with scroll-linked canvas frame animation, glassmorphism UI, and high-performance motion design inspired by premium product launches.",
-      image: "SonicWave.png",
-      tech: ["Next.js", "TypeScript", "Framer Motion", "GSAP", "Tailwind CSS", "Canvas API", "ScrollTrigger", "App Router"],
-      link: "https://sonicwave-animate.vercel.app/",
+      id: 'noretmy',
+      title: "Noretmy",
+      description: "A production-level freelancing marketplace combining Fiverr's gig model with Upwork's milestone-based project flow, featuring real-time chat, automated seller leveling, and secure multi-payment gateway integration.",
+      image: "Noretmy.png",
+      tech: ["Next.js", "Node.js", "MongoDB", "Express", "Redux Toolkit", "Socket.io", "Stripe", "PayPal", "AWS S3", "Cloudinary", "Framer Motion", "Tailwind CSS", "Shadcn/UI"],
+      link: "https://noretmy.vercel.app/",
       githubLink: "#",
-      category: "Frontend",
+      category: "Full-Stack",
       featured: true,
-      purpose: "To design and engineer an Awwwards-style, production-ready scrollytelling experience for a fictional premium headphone brand. The project focuses on cinematic storytelling through a scroll-scrubbed frame sequence, immersive section transitions, polished motion language, and strict performance optimization for smooth interaction across devices.",
+      purpose: "To build a highly robust and scalable freelancing platform that bridges the gap between gig-based services and milestone-driven project management, ensuring secure transactions and automated operational logic.",
       keyFeatures: [
-        "Scroll-linked frame-by-frame product reveal using Canvas API",
-        "Auto preload pipeline for frame sequence with loading progress UI",
-        "Pinning and scrubbed animation flow with Framer Motion + spring smoothing",
-        "Layered pseudo-3D visual depth using CSS perspective and transforms",
-        "Floating text overlays synchronized to timeline checkpoints",
-        "Premium dark visual system with noise grain and glassmorphism components",
-        "Responsive behavior for mobile, tablet, and desktop scrollytelling",
-        "Feature grid, marquee separator, specs comparison, and CTA funnel",
-        "Magnetic button interactions and custom cursor for brand feel",
-        "Performance-oriented rendering with requestAnimationFrame draw loop"
+        "Gig-based services and milestone-driven job posts",
+        "Secure milestone-based payment release system",
+        "Real-time chat with file sharing via Socket.io",
+        "Automated seller badge leveling system via Cron jobs",
+        "Dual payment gateway integration (Stripe & PayPal)",
+        "Formal withdrawal request flow for freelancers",
+        "AWS S3 and Cloudinary for media management",
+        "Redux Toolkit for advanced state management",
+        "Server-side VAT calculation and timeline extensions",
+        "Interactive UI with Framer Motion and Shadcn/UI"
       ]
     },
     {
@@ -174,7 +176,7 @@ const Projects = () => {
       title: "MultiMart",
       description: "A comprehensive full-stack multivendor e-commerce platform where vendors can list products, manage inventory, and customers can shop across multiple stores with secure payments",
       image: "multivendor.jpg",
-      tech: ["React", "Node.js", "MongoDB", "Express","API Integration", "JWT" ,"Tailwind CSS","Tailwind CSS"],
+      tech: ["React", "Node.js", "MongoDB", "Express","API Integration", "JWT" ,"Tailwind CSS"],
       link: "http://multimarts.vercel.app/",
       githubLink: "https://github.com/AliRana30/multimart",
       category: "Full-Stack",
@@ -189,6 +191,30 @@ const Projects = () => {
         "Order management system",
         "Image optimization with Cloudinary",
         "Responsive design for all devices"
+      ]
+    },
+    {
+      id: 'sonicwave-pro',
+      title: "SonicWave Pro",
+      description: "A cinematic scrollytelling landing page with scroll-linked canvas frame animation, glassmorphism UI, and high-performance motion design inspired by premium product launches.",
+      image: "SonicWave.png",
+      tech: ["Next.js", "TypeScript", "Framer Motion", "GSAP", "Tailwind CSS", "Canvas API", "ScrollTrigger", "App Router"],
+      link: "https://sonicwave-animate.vercel.app/",
+      githubLink: "#",
+      category: "Frontend",
+      featured: true,
+      purpose: "To design and engineer an Awwwards-style, production-ready scrollytelling experience for a fictional premium headphone brand. The project focuses on cinematic storytelling through a scroll-scrubbed frame sequence, immersive section transitions, polished motion language, and strict performance optimization for smooth interaction across devices.",
+      keyFeatures: [
+        "Scroll-linked frame-by-frame product reveal using Canvas API",
+        "Auto preload pipeline for frame sequence with loading progress UI",
+        "Pinning and scrubbed animation flow with Framer Motion + spring smoothing",
+        "Layered pseudo-3D visual depth using CSS perspective and transforms",
+        "Floating text overlays synchronized to timeline checkpoints",
+        "Premium dark visual system with noise grain and glassmorphism components",
+        "Responsive behavior for mobile, tablet, and desktop scrollytelling",
+        "Feature grid, marquee separator, specs comparison, and CTA funnel",
+        "Magnetic button interactions and custom cursor for brand feel",
+        "Performance-oriented rendering with requestAnimationFrame draw loop"
       ]
     },
     {

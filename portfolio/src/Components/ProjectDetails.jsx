@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowLeft, ExternalLink, Target, Zap, Code2, CheckCircle, Github, AlertCircle, Lightbulb } from 'lucide-react';
-import { SiReact, SiNodedotjs, SiMongodb, SiExpress, SiTailwindcss, SiJsonwebtokens, SiCloudinary, SiNextdotjs, SiRedis, SiSocketdotio, SiStripe } from 'react-icons/si';
+import { SiReact, SiNodedotjs, SiMongodb, SiExpress, SiTailwindcss, SiJsonwebtokens, SiCloudinary, SiNextdotjs, SiRedis, SiSocketdotio, SiStripe, SiRedux, SiPaypal, SiAmazons3, SiShadcnui, SiFramer } from 'react-icons/si';
 import { useParams, useNavigate } from 'react-router-dom';
 
 const ProjectDetails = () => {
@@ -10,6 +10,48 @@ const ProjectDetails = () => {
   const navigate = useNavigate();
   
   const projects = {
+    noretmy: {
+      id: 'noretmy',
+      title: "Noretmy",
+      description: "A production-level freelancing marketplace combining Fiverr's gig model with Upwork's milestone-based project flow, featuring real-time chat, automated seller leveling, and secure multi-payment gateway integration.",
+      image: "Noretmy.png",
+      tech: ["Next.js", "Node.js", "MongoDB", "Express", "Redux Toolkit", "Socket.io", "Stripe", "PayPal", "AWS S3", "Cloudinary", "Framer Motion", "Tailwind CSS", "Shadcn/UI"],
+      link: "https://noretmy.vercel.app/",
+      githubLink: "#",
+      category: "Full-Stack",
+      featured: true,
+      purpose: "Noretmy was engineered to solve the fragmentation in freelance platforms by merging gig-based services with milestone-driven project management. The goal was to build a robust system that handles the entire lifecycle of a freelance contract—from service listing and job posting to secure escrow-style payments, real-time collaboration, and automated performance tracking. It focuses on closing the operational gaps found in basic marketplace clones, such as formal dispute handling, VAT calculations, and dynamic seller leveling.",
+      keyFeatures: [
+        "Gig-based services and milestone-driven job posts",
+        "Secure milestone-based payment release system (Escrow logic)",
+        "Real-time chat with file sharing via Socket.io",
+        "Automated seller badge leveling system via Cron jobs",
+        "Dual payment gateway integration (Stripe & PayPal)",
+        "Formal withdrawal request flow for freelancers",
+        "AWS S3 and Cloudinary for media management",
+        "Redux Toolkit for advanced state management",
+        "Server-side VAT calculation and timeline extensions",
+        "Interactive UI with Framer Motion and Shadcn/UI"
+      ],
+      challenges: [
+        {
+          challenge: "Escrow-style Milestone Payments",
+          solution: "Implemented a custom payment flow where funds are held at the order level and released to the seller only upon client approval of specific milestones, with built-in dispute logic handled via the admin panel."
+        },
+        {
+          challenge: "Automated Seller Leveling System",
+          solution: "Built a Node-based cron job service that runs nightly to recalculate seller metrics (delivery rate, ratings, order volume) and automatically upgrades or downgrades seller badges (Level 1, Level 2, Pro)."
+        },
+        {
+          challenge: "Real-time Multi-user Collaboration",
+          solution: "Leveraged Socket.io for a persistent chat system that supports real-time message delivery, online status indicators, and secure file attachments stored on AWS S3."
+        },
+        {
+          challenge: "Complex Business Logic (VAT & Extensions)",
+          solution: "Developed server-side modules to handle dynamic VAT calculation based on user location and an extension request system that recalibrates order timelines only after mutual agreement."
+        }
+      ]
+    },
     'sonicwave-pro': {
       id: 'sonicwave-pro',
       title: "SonicWave Pro",
@@ -254,7 +296,12 @@ const ProjectDetails = () => {
       'jwt': <SiJsonwebtokens className="w-4 h-4 md:w-5 md:h-5" />,
       'redis': <SiRedis className="w-4 h-4 md:w-5 md:h-5" />,
       'socket.io': <SiSocketdotio className="w-4 h-4 md:w-5 md:h-5" />,
-      'stripe': <SiStripe className="w-4 h-4 md:w-5 md:h-5" />
+      'stripe': <SiStripe className="w-4 h-4 md:w-5 md:h-5" />,
+      'redux toolkit': <SiRedux className="w-4 h-4 md:w-5 md:h-5" />,
+      'paypal': <SiPaypal className="w-4 h-4 md:w-5 md:h-5" />,
+      'aws s3': <SiAmazons3 className="w-4 h-4 md:w-5 md:h-5" />,
+      'shadcn/ui': <SiShadcnui className="w-4 h-4 md:w-5 md:h-5" />,
+      'framer motion': <SiFramer className="w-4 h-4 md:w-5 md:h-5" />
     };
     
     return iconMap[tech.toLowerCase()] || <Code2 className="w-4 h-4 md:w-5 md:h-5" />;
@@ -280,7 +327,11 @@ const ProjectDetails = () => {
       'jwt': 'text-pink-600',
       'redis': 'text-[#DC382D]',
       'socket.io': 'text-black',
-      'stripe': 'text-[#635BFF]'
+      'stripe': 'text-[#635BFF]',
+      'redux toolkit': 'text-[#764ABC]',
+      'paypal': 'text-[#00457C]',
+      'aws s3': 'text-[#FF9900]',
+      'shadcn/ui': 'text-gray-700'
     };
     
     return colorMap[tech.toLowerCase()] || 'text-gray-600';

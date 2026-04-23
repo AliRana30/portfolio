@@ -10,7 +10,6 @@ import Navbar from './Components/Navbar';
 import OpenSourceContributions from './Components/OpenSourceContributions';
 import EducationTimeline from './Components/EducationTimeline';
 import FloatingCodeBlock from './Components/FloatingCodeBlock';
-import SmoothCursor from './Components/SmoothCursor';
 
 
 const Portfolio = () => {
@@ -18,7 +17,7 @@ const Portfolio = () => {
 
   return (
     <div className="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-100 min-h-screen">
-      <SmoothCursor />
+
 
       {/* Navigation */}
       <Navbar/>

@@ -9,7 +9,7 @@ const SkillCard = ({ skill, skillVariants }) => {
   return (
     <motion.div
       variants={skillVariants}
-      whileHover={{ y: -6, scale: 1.02 }}
+      whileHover={{ y: -6 }}
       transition={{ duration: 0.25, ease: 'easeOut' }}
       className="group bg-gray-50 hover:bg-white p-6 border border-gray-200 hover:border-black skill-badge"
       data-cursor="pointer"
@@ -24,7 +24,7 @@ const SkillCard = ({ skill, skillVariants }) => {
       }}
     >
       <div ref={tiltRef} style={{ perspective: '800px', transformStyle: 'preserve-3d' }} className="min-h-[160px] flex flex-col items-center justify-center">
-        <motion.div className="mb-5 flex justify-center" whileHover={{ scale: 1.15 }} transition={{ duration: 0.2 }}>
+        <motion.div className="mb-5 flex justify-center" transition={{ duration: 0.2 }}>
           <div className={skill.iconColor}>{skill.icon}</div>
         </motion.div>
 
@@ -99,10 +99,9 @@ const Skills = () => {
   };
 
   const skillVariants = {
-    hidden: { opacity: 0, scale: 0.9 },
+    hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      scale: 1,
           transition: {
             duration: 0.6,
             ease: [0.22, 1, 0.36, 1]
@@ -172,7 +171,6 @@ const Skills = () => {
                   <div className="flex items-center gap-4 mb-12">
                     <motion.div 
                       className="p-3 border border-black text-black bg-white"
-                      whileHover={{ scale: 1.1 }}
                       transition={{ duration: 0.2 }}
                     >
                       {category.icon}

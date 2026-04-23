@@ -1,116 +1,86 @@
-import { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion, useSpring, useMotionValue } from 'framer-motion';
 
-const GlovedHandSVG = ({ isPointing = false }) => (
-  <svg 
-    viewBox="0 0 32 32" 
-    fill="none" 
+const ArrowCursorSVG = () => (
+  <svg
+    width="32"
+    height="32"
+    viewBox="0 0 32 32"
+    fill="none"
     xmlns="http://www.w3.org/2000/svg"
-    className="w-full h-full"
-    style={{ transform: isPointing ? 'rotate(-12deg)' : 'rotate(0deg)', transition: 'transform 0.2s ease' }}
+    style={{ filter: 'drop-shadow(2px 2px 2px rgba(0,0,0,0.2))' }}
   >
-    {/* Glove hand style close to reference image */}
-    <path 
-      d="M10 28V16l-3-1V9a2 2 0 014 0v5h1V6a2 2 0 014 0v8h1V8a2 2 0 014 0v6h1v-3a2 2 0 014 0v10c0 4-2 7-6 7h-4a6 6 0 01-6-6z" 
-      stroke="#101010" 
-      strokeWidth="2" 
-      fill="#FFFFFF"
-      strokeLinecap="round"
+    <path
+      d="M4 4L14 28L19 19L28 14L4 4Z"
+      fill="white"
+      stroke="black"
+      strokeWidth="2.5"
       strokeLinejoin="round"
     />
-    <path d="M15 22v4" stroke="#101010" strokeWidth="2" strokeLinecap="round" />
-    <path d="M19 22v4" stroke="#101010" strokeWidth="2" strokeLinecap="round" />
   </svg>
 );
 
 const CustomCursor = () => {
-  const cursorRef = useRef(null);
-  const [enabled, setEnabled] = useState(false);
-  const [isPointing, setIsPointing] = useState(false);
-  const [scale, setScale] = useState(1);
+  const [isPointer, setIsPointer] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
+  const rawX = useMotionValue(-100);
+  const rawY = useMotionValue(-100);
   
-  const springX = useSpring(mouseX, { stiffness: 300, damping: 28 });
-  const springY = useSpring(mouseY, { stiffness: 300, damping: 28 });
+  const springConfig = { stiffness: 450, damping: 40, mass: 0.5 };
+  const cursorX = useSpring(rawX, springConfig);
+  const cursorY = useSpring(rawY, springConfig);
 
   useEffect(() => {
-    const isFinePointer = window.matchMedia('(pointer: fine)').matches;
-    setEnabled(isFinePointer);
+    const touchQuery = window.matchMedia('(hover: none)');
+    const handleTouchChange = (e) => setIsMobile(e.matches);
+    setIsMobile(touchQuery.matches);
+    touchQuery.addEventListener('change', handleTouchChange);
 
-    if (!isFinePointer) {
-      return undefined;
-    }
+    const handleMouseMove = (e) => {
+      rawX.set(e.clientX);
+      rawY.set(e.clientY);
 
-    const handleMouseMove = (event) => {
-      mouseX.set(event.clientX);
-      mouseY.set(event.clientY);
-
-      // Check if hovering over interactive element
-      const interactive = event.target.closest(
-        'a, button, input, textarea, select, [role="button"], [data-cursor="pointer"], .cursor-pointer'
-      );
-      
-      setIsPointing(Boolean(interactive));
-      setScale(interactive ? 1.18 : 1);
+      const target = e.target;
+      const isInteractive = target.closest('a, button, [data-cursor="pointer"], .cursor-pointer');
+      setIsPointer(!!isInteractive);
     };
 
-    const handleMouseLeave = () => {
-      setIsPointing(false);
-      setScale(1);
-    };
-
-    window.addEventListener('mousemove', handleMouseMove, { passive: true });
-    window.addEventListener('mouseleave', handleMouseLeave, { passive: true });
-
+    window.addEventListener('mousemove', handleMouseMove);
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);
-      window.removeEventListener('mouseleave', handleMouseLeave);
+      touchQuery.removeEventListener('change', handleTouchChange);
     };
-  }, [mouseX, mouseY]);
+  }, [rawX, rawY]);
 
-  if (!enabled) return null;
+  if (isMobile) return null;
 
   return (
     <motion.div
-      ref={cursorRef}
-      className="fixed top-0 left-0 w-9 h-9 pointer-events-none z-[9999]"
       style={{
-        x: springX,
-        y: springY,
-        translateX: '-50%',
-        translateY: '-50%',
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        pointerEvents: 'none',
+        zIndex: 99999,
+        x: cursorX,
+        y: cursorY,
+        translateX: '-12%',
+        translateY: '-12%',
+      }}
+      animate={{
+        scale: isPointer ? 1.25 : 1,
+        rotate: isPointer ? -15 : 0,
+      }}
+      transition={{
+        type: 'spring',
+        stiffness: 500,
+        damping: 30
       }}
     >
-      <motion.div
-        className="w-full h-full"
-        animate={{ scale }}
-        transition={{ duration: 0.15, ease: 'easeOut' }}
-      >
-        <GlovedHandSVG isPointing={isPointing} />
-      </motion.div>
+      <ArrowCursorSVG />
     </motion.div>
   );
 };
 
-const SmoothCursor = () => {
-  useEffect(() => {
-    const isFinePointer = window.matchMedia('(pointer: fine)').matches;
-
-    if (!isFinePointer) {
-      document.documentElement.classList.remove('custom-cursor-enabled');
-      return undefined;
-    }
-
-    document.documentElement.classList.add('custom-cursor-enabled');
-
-    return () => {
-      document.documentElement.classList.remove('custom-cursor-enabled');
-    };
-  }, []);
-
-  return <CustomCursor />;
-};
-
-export default SmoothCursor;
+export default CustomCursor;

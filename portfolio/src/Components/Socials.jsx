@@ -69,7 +69,7 @@ const Socials = () => {
 
         <section id="socials" className="py-12 md:py-24 relative z-10">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
-            <div className="mb-12 md:mb-20 border border-gray-200 bg-white/90 backdrop-blur-sm p-6 md:p-8 shadow-sm">
+            <div className="mb-12 md:mb-20">
               <div className="flex items-center gap-4 mb-6 md:mb-8">
                 <div className="w-8 md:w-12 h-[1px] bg-black"></div>
                 <span className="text-xs md:text-sm font-medium text-gray-500 tracking-wider uppercase mono">Get In Touch</span>
@@ -91,8 +91,7 @@ const Socials = () => {
                     href={social.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group bg-white border border-gray-200 p-6 md:p-8 transition-all duration-300 overflow-hidden hover:shadow-md"
-                    style={{ '--social-color': social.color, '--social-bg': social.bgColor }}
+                    className="group bg-white border border-gray-200 p-6 md:p-8 transition-all duration-300 overflow-hidden hover:shadow-lg hover:-translate-y-1"
                     onMouseEnter={(e) => {
                       e.currentTarget.style.borderColor = social.color;
                     }}
@@ -101,12 +100,12 @@ const Socials = () => {
                     }}
                   >
                     <div className="text-center space-y-3 md:space-y-4">
-                      <div className="w-14 md:w-16 h-14 md:h-16 mx-auto border border-gray-200 transition-all duration-300 flex items-center justify-center"
-                        style={{ backgroundColor: social.bgColor, borderColor: social.color }}>
-                        <IconComponent className="w-6 h-6 transition-all duration-200" style={{ color: social.color }} />
+                      <div className="w-14 md:w-16 h-14 md:h-16 mx-auto border border-gray-200 transition-all duration-300 flex items-center justify-center rounded-xl shadow-inner"
+                        style={{ backgroundColor: `${social.color}15`, borderColor: `${social.color}40` }}>
+                        <IconComponent className="w-7 h-7 transition-all duration-300" style={{ color: social.color }} />
                       </div>
                       
-                      <h3 className="text-base md:text-lg font-bold text-black transition-colors duration-300">
+                      <h3 className="text-lg md:text-xl font-bold text-black transition-colors duration-300">
                         {social.title}
                       </h3>
                       
@@ -114,11 +113,7 @@ const Socials = () => {
                         {social.subtitle}
                       </p>
                       
-                      <p className="text-gray-700 font-semibold text-xs md:text-sm mono break-all px-2">
-                        {social.value}
-                      </p>
-                      
-                      <div className="flex items-center justify-center gap-2 text-xs md:text-sm text-gray-600 group-hover:text-black transition-all duration-300">
+                      <div className="flex items-center justify-center gap-2 text-xs md:text-sm text-gray-600 group-hover:text-black transition-all duration-300 pt-2">
                         <span>{social.description}</span>
                         <ArrowUpRight className="w-4 h-4 flex-shrink-0 transition-transform duration-200 group-hover:rotate-45" />
                       </div>
