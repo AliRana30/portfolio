@@ -1,5 +1,4 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 import { Mail, Linkedin, Github, Code, ArrowUpRight } from 'lucide-react';
 
 const Socials = () => {
@@ -46,29 +45,6 @@ const Socials = () => {
     }
   ];
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.15
-      }
-    }
-  };
-
-  const cardVariants = {
-    hidden: { opacity: 0, y: 24 },
-    visible: (index) => ({
-      opacity: 1,
-      y: [24, -4, 0],
-      transition: {
-        delay: index * 0.08,
-        duration: 0.55,
-        ease: [0.25, 0.46, 0.45, 0.94]
-      }
-    })
-  };
-
   return (
     <>
       <style jsx>{`
@@ -93,13 +69,7 @@ const Socials = () => {
 
         <section id="socials" className="py-12 md:py-24 relative z-10">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
-            <motion.div 
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
-              className="mb-12 md:mb-20"
-            >
+            <div className="mb-12 md:mb-20 border border-gray-200 bg-white/90 backdrop-blur-sm p-6 md:p-8 shadow-sm">
               <div className="flex items-center gap-4 mb-6 md:mb-8">
                 <div className="w-8 md:w-12 h-[1px] bg-black"></div>
                 <span className="text-xs md:text-sm font-medium text-gray-500 tracking-wider uppercase mono">Get In Touch</span>
@@ -110,28 +80,19 @@ const Socials = () => {
                 <br />
                 <span className="font-bold text-black">Collaborate</span>
               </h2>
-            </motion.div>
+            </div>
             
-            <motion.div 
-              variants={containerVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6"
-            >
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
               {socialLinks.map((social, index) => {
                 const IconComponent = social.icon;
                 return (
-                  <motion.a
+                  <a
                     key={index}
                     href={social.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    custom={index}
-                    variants={cardVariants}
-                    className="group bg-white border border-gray-200 p-6 md:p-8 transition-all duration-300 overflow-hidden"
+                    className="group bg-white border border-gray-200 p-6 md:p-8 transition-all duration-300 overflow-hidden hover:shadow-md"
                     style={{ '--social-color': social.color, '--social-bg': social.bgColor }}
-                    whileHover={{ y: -4 }}
                     onMouseEnter={(e) => {
                       e.currentTarget.style.borderColor = social.color;
                     }}
@@ -140,9 +101,9 @@ const Socials = () => {
                     }}
                   >
                     <div className="text-center space-y-3 md:space-y-4">
-                      <div className="w-14 md:w-16 h-14 md:h-16 mx-auto border border-gray-200 transition-all duration-300 flex items-center justify-center group-hover:scale-105"
+                      <div className="w-14 md:w-16 h-14 md:h-16 mx-auto border border-gray-200 transition-all duration-300 flex items-center justify-center"
                         style={{ backgroundColor: social.bgColor, borderColor: social.color }}>
-                        <IconComponent className="w-6 h-6 transition-all duration-200 group-hover:scale-110" style={{ color: social.color }} />
+                        <IconComponent className="w-6 h-6 transition-all duration-200" style={{ color: social.color }} />
                       </div>
                       
                       <h3 className="text-base md:text-lg font-bold text-black transition-colors duration-300">
@@ -157,15 +118,15 @@ const Socials = () => {
                         {social.value}
                       </p>
                       
-                      <div className="flex items-center justify-center gap-2 text-xs md:text-sm text-gray-600 group-hover:text-black transition-all duration-300 group-hover:gap-3">
+                      <div className="flex items-center justify-center gap-2 text-xs md:text-sm text-gray-600 group-hover:text-black transition-all duration-300">
                         <span>{social.description}</span>
-                        <ArrowUpRight className="w-4 h-4 flex-shrink-0 group-hover:-translate-y-1 transition-transform duration-200" />
+                        <ArrowUpRight className="w-4 h-4 flex-shrink-0 transition-transform duration-200 group-hover:rotate-45" />
                       </div>
                     </div>
-                  </motion.a>
+                  </a>
                 );
               })}
-            </motion.div>
+            </div>
           </div>
         </section>
       </div>

@@ -9,7 +9,15 @@ const ProjectCard = ({ project, index, cardVariants, getTechIcon, getTechColor }
     <motion.div
       key={index}
       variants={cardVariants}
-      className="group bg-white border border-gray-200 hover:border-gray-300 hover:shadow-md transition-all duration-300 overflow-hidden relative"
+      whileHover={{
+        y: -6,
+        scale: 1.015,
+        boxShadow: '0 0 0 1.5px rgba(255,255,255,0.15), 0 8px 32px rgba(0,0,0,0.25)',
+        backgroundColor: 'rgb(253 253 253)'
+      }}
+      transition={{ duration: 0.25, ease: 'easeOut' }}
+      className="group bg-white border border-gray-200 hover:border-gray-300 overflow-hidden relative"
+      style={{ boxShadow: '0 1px 3px rgba(0, 0, 0, 0.08)' }}
     >
       <div>
         {project.featured && (
@@ -54,18 +62,28 @@ const ProjectCard = ({ project, index, cardVariants, getTechIcon, getTechColor }
         </div>
 
         <div className="p-6 space-y-4">
-          <h3 className="text-xl font-semibold text-black">{project.title}</h3>
+          <Link to={`/project/${project.id}`} className="group/title inline-block" data-cursor="pointer">
+            <div className="inline-flex items-center gap-2">
+              <h3 className="text-xl font-semibold text-black group-hover/title:text-gray-900 transition-colors duration-200">
+                {project.title}
+              </h3>
+              <ArrowUpRight className="w-4 h-4 text-gray-500 group-hover/title:text-black group-hover/title:rotate-45 transition-all duration-200" />
+            </div>
+            <span className="block h-[1px] bg-black mt-1 w-0 group-hover/title:w-full transition-all duration-300" />
+          </Link>
           <p className="text-gray-600 text-sm leading-relaxed line-clamp-2">{project.description}</p>
 
           <div className="flex flex-wrap gap-2 pt-2">
             {project.tech.slice(0, 16).map((tech) => (
-              <div
+              <motion.div
                 key={tech}
+                  whileHover={{ scale: 1.08, borderColor: 'rgba(255,255,255,0.3)' }}
+                  transition={{ duration: 0.2 }}
                 className={`flex items-center gap-1.5 px-2.5 py-1 border bg-white text-xs font-medium mono transition-all duration-200 hover:border-gray-400 tech-pill ${getTechColor(tech)}`}
               >
                 {getTechIcon(tech)}
                 <span className="text-gray-700">{tech}</span>
-              </div>
+              </motion.div>
             ))}
           </div>
 
@@ -73,20 +91,26 @@ const ProjectCard = ({ project, index, cardVariants, getTechIcon, getTechColor }
             <Link
               to={`/project/${project.id}`}
               className="flex-1 inline-flex items-center justify-center gap-2 border-2 border-black text-black px-4 py-2.5 hover:bg-black hover:text-white transition-all duration-300 font-medium"
+              data-cursor="pointer"
             >
               <Eye className="w-4 h-4" />
               <span>Details</span>
             </Link>
 
-            <Link
-              to={project.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex-1 inline-flex items-center justify-center gap-2 bg-black text-white px-4 py-2.5 hover:bg-gray-800 transition-all duration-300 font-medium group/link"
-            >
-              <span>Live Demo</span>
-              <ArrowUpRight className="w-4 h-4 transition-all duration-200 group-hover/link:rotate-45 group-hover/link:scale-110" />
-            </Link>
+            <motion.div className="flex-1">
+              <Link
+                to={project.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex w-full items-center justify-center gap-2 bg-black text-white px-4 py-2.5 hover:bg-gray-800 transition-all duration-300 font-medium group/link"
+                data-cursor="pointer"
+              >
+                <span>Live Demo</span>
+                <motion.div whileHover={{ rotate: 45, scale: 1.15 }} transition={{ duration: 0.2 }}>
+                  <ArrowUpRight className="w-4 h-4" />
+                </motion.div>
+              </Link>
+            </motion.div>
           </div>
         </div>
       </div>
@@ -233,7 +257,7 @@ const Projects = () => {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.2
+        staggerChildren: 0.08
       }
     }
   };
@@ -245,7 +269,7 @@ const Projects = () => {
       y: 0,
       transition: {
         duration: 0.6,
-        ease: [0.25, 0.46, 0.45, 0.94]
+        ease: [0.22, 1, 0.36, 1]
       }
     }
   };
@@ -346,7 +370,7 @@ const Projects = () => {
               variants={containerVariants}
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: true }}
+              viewport={{ once: true, amount: 0.2 }}
               className="grid grid-cols-1 md:grid-cols-2 gap-8"
             >
               {projects.map((project, index) => (

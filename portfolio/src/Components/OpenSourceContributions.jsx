@@ -11,18 +11,12 @@ const ContributionCard = ({ contribution, cardVariants }) => {
     <motion.div
       ref={cardRef}
       variants={cardVariants}
+      whileHover={{ y: -6, scale: 1.015, boxShadow: '0 0 0 1.5px rgba(255,255,255,0.15), 0 8px 32px rgba(0,0,0,0.25)' }}
+      transition={{ duration: 0.25, ease: 'easeOut' }}
       className="contribution-card transition-all duration-300"
       style={{
         perspective: '1000px',
         transformStyle: 'preserve-3d'
-      }}
-      onMouseEnter={(e) => {
-        e.currentTarget.style.transform = 'translateY(-5px)';
-        e.currentTarget.style.boxShadow = '0 12px 24px rgba(0, 0, 0, 0.1)';
-      }}
-      onMouseLeave={(e) => {
-        e.currentTarget.style.transform = 'translateY(0)';
-        e.currentTarget.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.05)';
       }}
     >
       <div className="contribution-card-inner">
@@ -91,7 +85,7 @@ const OpenSourceContributions = () => {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.1
+        staggerChildren: 0.08
       }
     }
   };
@@ -103,7 +97,7 @@ const OpenSourceContributions = () => {
       y: 0,
       transition: {
         duration: 0.6,
-        ease: [0.25, 0.46, 0.45, 0.94]
+        ease: [0.22, 1, 0.36, 1]
       }
     }
   };
@@ -166,8 +160,8 @@ const OpenSourceContributions = () => {
             <motion.div
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
+              transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+              viewport={{ once: true, amount: 0.2 }}
               className="mb-20"
             >
               <div className="flex items-center gap-4 mb-8">
@@ -191,8 +185,8 @@ const OpenSourceContributions = () => {
                 <motion.div
                   initial={{ opacity: 0, scale: 0.8 }}
                   whileInView={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.6, delay: 0.2 }}
-                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+                  viewport={{ once: true, amount: 0.2 }}
                   className="text-gray-600 opacity-75 hover:opacity-100 transition-opacity duration-300"
                 >
                   <SiApache size={48} />
@@ -204,7 +198,7 @@ const OpenSourceContributions = () => {
               variants={containerVariants}
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: true }}
+              viewport={{ once: true, amount: 0.2 }}
               className="grid grid-cols-1 md:grid-cols-2 gap-8"
             >
               {contributions.map((contribution) => (

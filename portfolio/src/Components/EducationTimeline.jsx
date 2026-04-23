@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Calendar, Eye } from 'lucide-react';
 import Lightbox from 'yet-another-react-lightbox';
@@ -76,38 +76,8 @@ const EducationTimeline = () => {
   ];
 
 
-  useEffect(() => {
-    const targets = document.querySelectorAll('.edu-reveal');
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) return;
-          entry.target.classList.add('edu-reveal-visible');
-          observer.unobserve(entry.target);
-        });
-      },
-      { threshold: 0.15 }
-    );
-
-    targets.forEach((node) => observer.observe(node));
-    return () => observer.disconnect();
-  }, []);
-
   return (
     <div className="relative bg-gray-50">
-      <style jsx>{`
-        .edu-reveal {
-          opacity: 0;
-          transform: translateY(24px);
-          transition: opacity 0.5s ease-out, transform 0.5s ease-out;
-        }
-
-        .edu-reveal-visible {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      `}</style>
-
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-32 right-24 h-56 w-56 border border-gray-200 rotate-12" />
         <div className="absolute bottom-24 left-20 h-32 w-32 border border-gray-200 rounded-full" />
@@ -115,7 +85,13 @@ const EducationTimeline = () => {
 
       <section id="education" className="relative z-10 py-24">
         <div className="container mx-auto max-w-6xl px-8">
-          <div className="mb-20 edu-reveal">
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            viewport={{ once: true, amount: 0.2 }}
+            className="mb-20"
+          >
             <div className="mb-8 flex items-center gap-4">
               <div className="h-[1px] w-12 bg-black" />
               <span className="mono text-sm font-medium uppercase tracking-wider text-gray-500">Education</span>
@@ -130,17 +106,17 @@ const EducationTimeline = () => {
             <p className="max-w-2xl text-lg font-light text-gray-600">
               A timeline of formal education and verified milestones with certificate previews.
             </p>
-          </div>
+          </motion.div>
 
           <div className="mb-20 border-l-2 border-gray-200 pl-8">
             {timelineEntries.map((entry, index) => (
               <motion.div
                 key={entry.id}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="edu-reveal relative mb-10 last:mb-0"
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: index * 0.08 }}
+                viewport={{ once: true, amount: 0.2 }}
+                className="relative mb-10 last:mb-0"
               >
                 <span className="absolute -left-[42px] top-1 h-4 w-4 rounded-full border-2 border-black bg-white" />
 
