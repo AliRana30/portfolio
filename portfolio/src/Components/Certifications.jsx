@@ -68,18 +68,18 @@ const Certifications = () => {
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [lightboxIndex, setLightboxIndex] = useState(0);
   const [selectedCert, setSelectedCert] = useState(null);
-  
+
   const certifications = [
     {
       id: 1,
       title: "Dev Weekends Fellowship",
       issuer: "Dev Weekends",
-      date: "2024",
+      date: "2025",
       image: "Dev Weekends Fellowship.png",
       description: "Participated in an intensive software engineering fellowship focused on advanced full-stack development and architectural best practices.",
-      skills: ["Full-Stack Development", "Software Architecture", "Agile Methodologies"],
+      skills: ["Full-Stack Development", "DSA", "Leetcode", "Open-Source"],
       credentialUrl: "#",
-      details: "Completed the highly competitive Dev Weekends Fellowship, which emphasizes building scalable applications, writing clean code, and working in fast-paced, collaborative environments similar to top-tier tech companies."
+      details: "Completed the highly competitive Dev Weekends Fellowship, which emphasizes building scalable applications, writing clean code, and working under the guidance of industry professionals."
     },
     {
       id: 2,
@@ -107,7 +107,7 @@ const Certifications = () => {
           font-family: 'JetBrains Mono', 'Fira Code', monospace;
         }
       `}</style>
-      
+
       <div className="relative bg-gray-50">
         {/* Minimal geometric background */}
         <div className="absolute inset-0 overflow-hidden">
@@ -118,7 +118,7 @@ const Certifications = () => {
 
         <section id="certifications" className="py-24 relative z-10">
           <div className="container mx-auto px-8 max-w-6xl">
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
@@ -129,13 +129,13 @@ const Certifications = () => {
                 <div className="w-12 h-[1px] bg-black"></div>
                 <span className="text-sm font-medium text-gray-500 tracking-wider uppercase mono">Achievements</span>
               </div>
-              
+
               <h2 className="text-3xl md:text-3xl font-light leading-tight mb-6 section-heading">
                 <span className="font-extralight text-gray-700">Professional</span>
                 <br />
                 <span className="font-bold text-black">Certifications</span>
               </h2>
-              
+
               <p className="text-lg text-gray-600 font-light max-w-2xl">
                 Professional achievements and continuous learning milestones.
               </p>
