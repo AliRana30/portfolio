@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
-import { SiMongodb, SiExpress, SiReact, SiNodedotjs, SiTailwindcss, SiGit, SiJavascript, SiNextdotjs, SiRedux, SiDocker, SiRedis, SiGithubactions } from 'react-icons/si';
-import { Code, Database, Settings } from 'lucide-react';
+import { SiMongodb, SiExpress, SiReact, SiNodedotjs, SiTailwindcss, SiGit, SiJavascript, SiNextdotjs, SiRedux, SiDocker, SiRedis, SiGithubactions, SiFigma, SiFramer, SiShadcnui } from 'react-icons/si';
+import { Code, Database, Settings, Layout } from 'lucide-react';
 import { use3DTilt } from '../hooks/use3DAnimations';
 
 const SkillCard = ({ skill, skillVariants }) => {
@@ -39,7 +39,7 @@ const SkillCard = ({ skill, skillVariants }) => {
 const Skills = () => {
   const skillCategories = [
     {
-      title: "Full-Stack",
+      title: "Frontend",
       icon: <Code className="w-5 h-5" />,
       skills: [
         { name: "React", icon: <SiReact size={32} />, iconColor: 'text-[#61DAFB]' },
@@ -73,6 +73,15 @@ const Skills = () => {
         { name: "Tailwind CSS", icon: <SiTailwindcss size={32} />, iconColor: 'text-[#06B6D4]' },
         { name: "Git/GitHub", icon: <SiGit size={32} />, iconColor: 'text-[#F05032]' }
       ]
+    },
+    {
+      title: "UI & Design",
+      icon: <Layout className="w-5 h-5" />,
+      skills: [
+        { name: "Figma", icon: <SiFigma size={32} />, iconColor: 'text-[#F24E1E]' },
+        { name: "Framer Motion", icon: <SiFramer size={32} />, iconColor: 'text-[#0055FF]' },
+        { name: "Shadcn/UI", icon: <SiShadcnui size={32} />, iconColor: 'text-black dark:text-white' }
+      ]
     }
   ];
 
@@ -102,9 +111,9 @@ const Skills = () => {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-          transition: {
-            duration: 0.6,
-            ease: [0.22, 1, 0.36, 1]
+      transition: {
+        duration: 0.6,
+        ease: [0.22, 1, 0.36, 1]
       }
     }
   };
@@ -122,7 +131,7 @@ const Skills = () => {
           font-family: 'JetBrains Mono', 'Fira Code', monospace;
         }
       `}</style>
-      
+
       <div className="relative bg-gray-50">
         {/* Minimal geometric background */}
         <div className="absolute inset-0 overflow-hidden">
@@ -131,33 +140,33 @@ const Skills = () => {
           <div className="absolute top-2/3 right-1/3 w-2 h-24 bg-gray-200 rotate-45"></div>
         </div>
 
-        <section id="skills" className="py-24 relative z-10">
-          <div className="container mx-auto px-8 max-w-6xl">
-            <motion.div 
-              initial={{ opacity: 0, y: 50 }}
+        <section id="skills" className="py-16 md:py-24 relative z-10">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-              viewport={{ once: true, amount: 0.2 }}
-              className="mb-20"
+              viewport={{ once: true, amount: 0.1 }}
+              className="mb-12 md:mb-20"
             >
               <div className="flex items-center gap-4 mb-8">
                 <div className="w-12 h-[1px] bg-black"></div>
                 <span className="text-sm font-medium text-gray-500 tracking-wider uppercase mono">Skills & Expertise</span>
               </div>
-              
+
               <h2 className="text-3xl md:text-3xl font-light leading-tight mb-6 section-heading">
                 <span className="font-extralight text-gray-700">Technical</span>
                 <br />
                 <span className="font-bold text-black">Proficiency</span>
               </h2>
-         
+
             </motion.div>
-            
+
             <motion.div
               variants={containerVariants}
               initial="hidden"
               whileInView="visible"
-                viewport={{ once: true, amount: 0.2 }}
+              viewport={{ once: true, amount: 0.1 }}
             >
               {skillCategories.map((category, categoryIndex) => (
                 <motion.div
@@ -169,7 +178,7 @@ const Skills = () => {
                 >
                   {/* Category Header */}
                   <div className="flex items-center gap-4 mb-12">
-                    <motion.div 
+                    <motion.div
                       className="p-3 border border-black text-black bg-white"
                       transition={{ duration: 0.2 }}
                     >
@@ -202,8 +211,8 @@ const Skills = () => {
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.4, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                    viewport={{ once: true, amount: 0.2 }}
+              transition={{ delay: 0.4, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+              viewport={{ once: true, amount: 0.2 }}
               className="mt-20 text-center"
             >
             </motion.div>

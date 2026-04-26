@@ -33,7 +33,7 @@ const ProjectCard = ({ project, index, cardVariants, getTechIcon, getTechColor }
           </div>
         </div>
 
-        <div className="relative h-56 overflow-hidden bg-gray-100">
+        <div className="relative h-48 md:h-56 overflow-hidden bg-gray-100">
           <img
             src={`/${project.image}`}
             alt={project.title}
@@ -368,14 +368,14 @@ const Projects = () => {
           <div className="absolute top-1/2 right-1/4 w-2 h-32 bg-gray-100 rotate-12"></div>
         </div>
 
-        <section id="projects" className="py-24 relative z-10">
-          <div className="container mx-auto px-8 max-w-6xl">
+        <section id="projects" className="py-16 md:py-24 relative z-10">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
             <motion.div 
-              initial={{ opacity: 0, y: 50 }}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
-              className="mb-20"
+              transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+              viewport={{ once: true, amount: 0.1 }}
+              className="mb-12 md:mb-20"
             >
               <div className="flex items-center gap-4 mb-8">
                 <div className="w-12 h-[1px] bg-black"></div>
@@ -396,7 +396,7 @@ const Projects = () => {
               variants={containerVariants}
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: true, amount: 0.2 }}
+              viewport={{ once: true, amount: 0.1 }}
               className="grid grid-cols-1 md:grid-cols-2 gap-8"
             >
               {projects.map((project, index) => (

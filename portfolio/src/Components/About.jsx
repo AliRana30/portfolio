@@ -25,6 +25,7 @@ import {
   SiAmazons3,
   SiFramer,
   SiShadcnui,
+  SiFigma,
 } from 'react-icons/si';
 
 const sectionVariants = {
@@ -128,7 +129,7 @@ const masterTechStack = [
   ],
   [
     { label: 'Git', icon: <SiGit className="w-4 h-4" />, color: 'text-[#F05032]' },
-    { label: 'C++', icon: <SiCplusplus className="w-4 h-4" />, color: 'text-[#00599C]' },
+    { label: 'Figma', icon: <SiFigma className="w-4 h-4" />, color: 'text-[#F24E1E]' },
     { label: 'Python', icon: <SiPython className="w-4 h-4" />, color: 'text-[#3776AB]' },
     { label: 'Django', icon: <SiDjango className="w-4 h-4" />, color: 'text-[#2BA977]' },
   ],
@@ -146,16 +147,31 @@ const About = () => {
             variants={stackVariants}
             className="space-y-6"
           >
-            <motion.div variants={sectionVariants} className="w-full border border-gray-200 bg-white p-6 md:p-8">
-              <div className="flex items-center justify-between mb-5">
-                <span className="text-xs md:text-sm font-semibold tracking-widest text-black uppercase">About Me</span>
-                <span className="text-[10px] md:text-xs font-medium tracking-widest text-gray-500 uppercase">Profile</span>
+            <motion.div variants={sectionVariants} className="mb-8">
+              <div className="flex items-center gap-4 mb-4">
+                <div className="w-12 h-[1px] bg-black"></div>
+                <span className="text-sm font-medium text-gray-500 tracking-wider uppercase mono">Introduction</span>
               </div>
+              <h2 className="text-3xl md:text-4xl font-light leading-tight section-heading text-black">
+                <span className="font-extralight text-gray-700">About</span> <span className="font-bold">Me</span>
+              </h2>
+            </motion.div>
 
-              <div className="space-y-4 text-sm md:text-base leading-relaxed text-gray-700">
-                <p>I'm Ali Mahmood - a software engineer who builds production-ready systems that actually ship. I care about clean architecture, real performance, and interfaces that don't feel like an afterthought.</p>
-                <p>Beyond code, I'm an active open-source contributor. My patches have landed in Apache Arrow (C++), covering deprecated API removal and sparse tensor safety fixes - real contributions to infrastructure used by thousands of engineers.</p>
-                <p>I work end-to-end: product planning, system design, implementation, and deployment. Not just to get things running, but to get them right.</p>
+            <motion.div variants={sectionVariants} className="w-full border border-gray-200 bg-white p-6 md:p-8 mb-12">
+              <div className="space-y-6 text-sm md:text-base leading-relaxed text-gray-700">
+                <div>
+                  <h4 className="text-black font-semibold text-lg mb-2 mono">→ Who I Am</h4>
+                  <p>I am Ali Mahmood, a Full-Stack Software Engineer who bridges the gap between premium, high-end UI design and robust, scalable backend architecture. I don't just write code; I architect end-to-end solutions, specializing in complex marketplaces, real-time AI assistants, and production-ready Learning Management Systems.</p>
+                </div>
+
+                <div>
+                  <h4 className="text-black font-semibold text-lg mb-2 mono">→ Why Me</h4>
+                  <p>Hiring multiple specialists often leads to fragmented communication, design compromises, and integration headaches. I provide a single point of ownership. From translating pixel-perfect Figma designs using Framer Motion to engineering secure Node.js APIs with Stripe, WebSockets, and Redis—I handle the entire lifecycle. You get consistent quality, predictable timelines, and zero handoff friction.</p>
+                </div>
+
+                <div>
+                  <p>Beyond client work, I am an active open-source contributor. My patches have landed in foundational projects like Apache Arrow (C++), tackling deprecated API removals and sparse tensor safety—proving my commitment to writing code that holds up under enterprise-level scrutiny.</p>
+                </div>
               </div>
             </motion.div>
 
@@ -181,8 +197,17 @@ const About = () => {
               </motion.div>
             ))}
 
+            <motion.div variants={sectionVariants} className="pt-12 mb-8">
+              <div className="flex items-center gap-4 mb-4">
+                <div className="w-12 h-[1px] bg-black"></div>
+                <span className="text-sm font-medium text-gray-500 tracking-wider uppercase mono">Capabilities</span>
+              </div>
+              <h2 className="text-3xl md:text-4xl font-light leading-tight section-heading text-black">
+                <span className="font-extralight text-gray-700">Tech</span> <span className="font-bold">Stack</span>
+              </h2>
+            </motion.div>
+
             <motion.div variants={sectionVariants} className="w-full border border-gray-200 bg-white p-6 md:p-8">
-              <h3 className="text-xs md:text-sm font-semibold tracking-widest text-black uppercase mb-5">Tech Stack</h3>
               <div className="space-y-3.5">
                 {masterTechStack.map((row, rowIndex) => (
                   <div key={rowIndex} className="flex flex-wrap gap-4">

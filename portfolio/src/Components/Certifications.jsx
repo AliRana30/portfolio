@@ -72,14 +72,14 @@ const Certifications = () => {
   const certifications = [
     {
       id: 1,
-      title: "Web Development Remote Internship",
-      issuer: "Cogno-Rise Info-Tech",
+      title: "Dev Weekends Fellowship",
+      issuer: "Dev Weekends",
       date: "2024",
-      image: "Internship.PNG",
-      description: "Comprehensive web development training covering modern frameworks and best practices",
-      skills: ["JavaScript", "HTML/CSS"],
+      image: "Dev Weekends Fellowship.png",
+      description: "Participated in an intensive software engineering fellowship focused on advanced full-stack development and architectural best practices.",
+      skills: ["Full-Stack Development", "Software Architecture", "Agile Methodologies"],
       credentialUrl: "#",
-      details: "Completed a remote internship focused on practical web development workflows. Built responsive interfaces, worked with reusable components, and practiced clean coding standards, debugging, and deployment-oriented thinking in team-style tasks."
+      details: "Completed the highly competitive Dev Weekends Fellowship, which emphasizes building scalable applications, writing clean code, and working in fast-paced, collaborative environments similar to top-tier tech companies."
     },
     {
       id: 2,
