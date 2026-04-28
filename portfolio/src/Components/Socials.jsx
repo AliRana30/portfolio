@@ -1,47 +1,47 @@
-import React from 'react';
-import { Mail, Linkedin, Github, Code, ArrowUpRight } from 'lucide-react';
+import { SiLinkedin, SiGithub, SiLeetcode, SiGmail } from 'react-icons/si';
+import { ArrowUpRight, MessageSquare, Share2, Terminal, Code2 } from 'lucide-react';
 
 const Socials = () => {
   const socialLinks = [
     {
-      icon: Mail,
-      title: "Email",
-      subtitle: "Let's discuss your project",
+      icon: SiGmail,
+      title: "Gmail",
+      subtitle: "Professional Inquiries",
       value: "alimahmoodrana82@gmail.com",
-      link: "https://mail.google.com/mail/?view=cm&to=alimahmoodrana82@gmail.com",
-      description: "Send me an email",
+      link: "mailto:alimahmoodrana82@gmail.com",
+      description: "Send an email",
       color: '#EA4335',
-      bgColor: '#FDECEC'
+      bgColor: 'bg-[#EA4335]10'
     },
     {
-      icon: Linkedin,
+      icon: SiLinkedin,
       title: "LinkedIn",
-      subtitle: "Connect professionally",
+      subtitle: "Professional Network",
       value: "Ali Mahmood Rana",
       link: "https://www.linkedin.com/in/ali-mahmood-rana-7093322a7/",
-      description: "Let's connect",
+      description: "Connect with me",
       color: '#0A66C2',
-      bgColor: '#EAF3FF'
+      bgColor: 'bg-[#0A66C2]10'
     },
     {
-      icon: Github,
+      icon: SiGithub,
       title: "GitHub",
-      subtitle: "Explore my repositories",
+      subtitle: "Open Source Projects",
       value: "AliRana30",
       link: "https://github.com/AliRana30",
-      description: "Check out my code",
-      color: '#24292E',
-      bgColor: '#EEF1F4'
+      description: "Explore my code",
+      color: '#181717',
+      bgColor: 'bg-gray-100'
     },
     {
-      icon: Code,
+      icon: SiLeetcode,
       title: "LeetCode",
-      subtitle: "View coding solutions",
+      subtitle: "Algorithmic Prowess",
       value: "AliRana28",
       link: "https://leetcode.com/u/AliRana28/",
-      description: "See my problem solving",
+      description: "View my solutions",
       color: '#FFA116',
-      bgColor: '#FFF4E5'
+      bgColor: 'bg-[#FFA116]10'
     }
   ];
 
@@ -91,33 +91,42 @@ const Socials = () => {
                     href={social.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group bg-white border border-gray-200 p-6 md:p-8 transition-all duration-300 overflow-hidden hover:shadow-lg hover:-translate-y-1"
+                    className="group relative bg-white border border-gray-100 p-8 transition-all duration-300 overflow-hidden"
                     onMouseEnter={(e) => {
                       e.currentTarget.style.borderColor = social.color;
+                      e.currentTarget.style.boxShadow = `0 15px 30px -5px ${social.color}20`;
                     }}
                     onMouseLeave={(e) => {
-                      e.currentTarget.style.borderColor = '#e5e7eb';
+                      e.currentTarget.style.borderColor = '#f3f4f6';
+                      e.currentTarget.style.boxShadow = 'none';
                     }}
                   >
-                    <div className="text-center space-y-3 md:space-y-4">
-                      <div className="w-14 md:w-16 h-14 md:h-16 mx-auto border border-gray-200 transition-all duration-300 flex items-center justify-center rounded-xl shadow-inner"
-                        style={{ backgroundColor: `${social.color}15`, borderColor: `${social.color}40` }}>
-                        <IconComponent className="w-7 h-7 transition-all duration-300" style={{ color: social.color }} />
+                    <div className="relative z-10 flex flex-col items-center text-center">
+                      <div className={`w-16 h-16 mb-6 flex items-center justify-center rounded-2xl transition-all duration-300 group-hover:bg-transparent ${social.bgColor}`}>
+                        <IconComponent size={32} style={{ color: social.color }} />
                       </div>
                       
-                      <h3 className="text-lg md:text-xl font-bold text-black transition-colors duration-300">
+                      <h3 className="text-xl font-bold text-black mb-2">
                         {social.title}
                       </h3>
                       
-                      <p className="text-xs md:text-sm text-gray-500 font-medium">
+                      <p className="text-sm text-gray-500 mb-6 font-medium max-w-[150px]">
                         {social.subtitle}
                       </p>
                       
-                      <div className="flex items-center justify-center gap-2 text-xs md:text-sm text-gray-600 group-hover:text-black transition-all duration-300 pt-2">
-                        <span>{social.description}</span>
-                        <ArrowUpRight className="w-4 h-4 flex-shrink-0 transition-transform duration-200 group-hover:rotate-45" />
+                      <div className="w-full h-[1px] bg-gray-100 mb-6 transition-colors group-hover:bg-gray-200"></div>
+
+                      <div className="flex items-center justify-center gap-2 text-sm font-semibold text-gray-400 group-hover:text-black transition-all duration-300">
+                        <span className="mono uppercase tracking-tighter">Connect</span>
+                        <ArrowUpRight className="w-4 h-4 transition-transform duration-300 group-hover:rotate-45" />
                       </div>
                     </div>
+
+                    {/* Background glow effect */}
+                    <div 
+                      className="absolute -bottom-10 -right-10 w-24 h-24 blur-3xl opacity-0 group-hover:opacity-20 transition-opacity duration-500"
+                      style={{ backgroundColor: social.color }}
+                    ></div>
                   </a>
                 );
               })}
