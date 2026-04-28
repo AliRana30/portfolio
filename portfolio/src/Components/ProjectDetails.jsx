@@ -15,6 +15,7 @@ const ProjectDetails = () => {
       title: "Noretmy",
       description: "A production-level freelancing marketplace combining Fiverr's gig model with Upwork's milestone-based project flow, featuring real-time chat, automated seller leveling, and secure multi-payment gateway integration.",
       image: "Noretmy.png",
+      objectPosition: "center 10%",
       tech: ["Next.js", "Node.js", "MongoDB", "Express", "Redux Toolkit", "Socket.io", "Stripe", "PayPal", "AWS S3", "Cloudinary", "Framer Motion", "Tailwind CSS", "Shadcn/UI"],
       link: "https://noretmy.vercel.app/",
       githubLink: "#",
@@ -98,7 +99,8 @@ const ProjectDetails = () => {
       id: 'campuscore',
       title: "CampusCore LMS",
       description: "Production-oriented LMS built for scalability, security, and real-world EdTech requirements across content, payments, notifications, and analytics.",
-      image: "LMS-homepage.jpg",
+      image: "LMS-homepage.png",
+      objectPosition: "center 10%",
       tech: ["Next.js", "Node.js", "MongoDB", "Express", "Redis", "Stripe", "Cloudinary", "Socket.io", "JWT", "Tailwind CSS"],
       link: "https://lms-e-learning-system.vercel.app/",
       githubLink: "https://github.com/AliRana30/LMS",
@@ -141,7 +143,8 @@ const ProjectDetails = () => {
       id: 'multimart',
       title: "MultiMart",
       description: "A comprehensive full-stack multivendor e-commerce platform where vendors can list products, manage inventory, and customers can shop across multiple stores with secure payments",
-      image: "multivendor.jpg",
+      image: "multivendor.png",
+      objectPosition: "center 10%",
       tech: ["React", "Node.js", "MongoDB", "Express", "Multer", "Tailwind CSS", "JWT"],
       link: "http://multimarts.vercel.app/",
       githubLink: "https://github.com/AliRana30/multimart",
@@ -181,7 +184,7 @@ const ProjectDetails = () => {
       id: 'moviemate',
       title: "MovieMate",
       description: "A movie discovery platform that helps users find and explore movies with detailed information, reviews, and recommendations",
-      image: "moviemate.jpg",
+      image: "moviemate.png",
       tech: ["React", "Node.js", "API Integration", "MongoDB", "Tailwind CSS", "JWT", "Express"],
       link: "https://moviemate-app-psi.vercel.app/",
       githubLink: "https://github.com/AliRana30/moviemate",
@@ -405,15 +408,23 @@ const ProjectDetails = () => {
                 transition={{ delay: 0.2 }}
                 className="lg:col-span-2"
               >
-                <div className="relative aspect-video bg-gray-100 overflow-hidden border border-gray-200">
-                  <img 
-                    src={`/${project.image}`} 
-                    alt={project.title}
-                    className="w-full h-full object-cover object-top"
-                    onError={(e) => {
-                      e.target.src = 'https://via.placeholder.com/600x400/f3f4f6/374151?text=Project';
-                    }}
-                  />
+                <div className="relative h-[400px] md:h-[650px] overflow-hidden">
+                  <motion.div
+                    initial={{ scale: 1.05, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    transition={{ duration: 0.8 }}
+                    className="w-full h-full"
+                  >
+                    <img 
+                      src={`/${project.image}`} 
+                      alt={project.title}
+                      className="w-full h-full object-cover"
+                      style={{ objectPosition: project.objectPosition || 'center' }}
+                      onError={(e) => {
+                        e.target.src = 'https://via.placeholder.com/600x400/f3f4f6/374151?text=Project';
+                      }}
+                    />
+                  </motion.div>
                   {project.featured && (
                     <div className="absolute top-3 left-3 md:top-4 md:left-4 bg-black text-white px-2 py-1 md:px-3 md:py-1.5 text-xs font-medium mono">
                       FEATURED

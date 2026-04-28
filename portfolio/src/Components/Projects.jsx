@@ -33,13 +33,14 @@ const ProjectCard = ({ project, index, cardVariants, getTechIcon, getTechColor }
           </div>
         </div>
 
-        <div className="relative h-48 md:h-56 overflow-hidden bg-gray-100">
+        <div className="relative h-[350px] md:h-[450px] overflow-hidden">
           <img
             src={`/${project.image}`}
             alt={project.title}
-            className="w-full h-full object-cover object-top transition-transform duration-500"
+            className="w-full h-full object-cover transition-transform duration-500"
+            style={{ objectPosition: project.objectPosition || 'center' }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.transform = 'scale(1.03)';
+              e.currentTarget.style.transform = 'scale(1.02)';
             }}
             onMouseLeave={(e) => {
               e.currentTarget.style.transform = 'scale(1)';
@@ -127,6 +128,7 @@ const Projects = () => {
       title: "Noretmy",
       description: "A production-level freelancing marketplace combining Fiverr's gig model with Upwork's milestone-based project flow, featuring real-time chat, automated seller leveling, and secure multi-payment gateway integration.",
       image: "Noretmy.png",
+      objectPosition: "center 10%",
       tech: ["Next.js", "Node.js", "MongoDB", "Express", "Redux Toolkit", "Socket.io", "Stripe", "PayPal", "AWS S3", "Cloudinary", "Framer Motion", "Tailwind CSS", "Shadcn/UI"],
       link: "https://noretmy.vercel.app/",
       githubLink: "#",
@@ -150,7 +152,8 @@ const Projects = () => {
       id: 'campuscore',
       title: "CampusCore LMS",
       description: "Production-oriented LMS built for scalability, security, and real-world EdTech workflows with secure streaming, paid enrollments, analytics, and admin controls.",
-      image: "LMS-homepage.jpg",
+      image: "LMS-homepage.png",
+      objectPosition: "center 10%",
       tech: ["Next.js", "Node.js", "MongoDB", "Express", "Redis", "Stripe", "Cloudinary", "Socket.io", "JWT", "Tailwind CSS"],
       link: "https://lms-e-learning-system.vercel.app/",
       githubLink: "https://github.com/AliRana30/LMS",
@@ -175,7 +178,8 @@ const Projects = () => {
       id: 'multimart',
       title: "MultiMart",
       description: "A comprehensive full-stack multivendor e-commerce platform where vendors can list products, manage inventory, and customers can shop across multiple stores with secure payments",
-      image: "multivendor.jpg",
+      image: "multivendor.png",
+      objectPosition: "center 10%",
       tech: ["React", "Node.js", "MongoDB", "Express","API Integration", "JWT" ,"Tailwind CSS"],
       link: "http://multimarts.vercel.app/",
       githubLink: "https://github.com/AliRana30/multimart",
@@ -221,7 +225,7 @@ const Projects = () => {
       id: 'moviemate',
       title: "MovieMate",
       description: "A movie discovery platform that helps users find and explore movies with detailed information, reviews, and recommendations",
-      image: "moviemate.jpg",
+      image: "moviemate.png",
       tech: ["React", "Node.js", "API Integration", "MongoDB", "Tailwind CSS", "JWT" , "Express"],
       link: "https://moviemate-app-psi.vercel.app/",
       githubLink: "https://github.com/AliRana30/moviemate",
