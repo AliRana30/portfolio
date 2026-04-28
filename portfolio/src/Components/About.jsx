@@ -45,68 +45,7 @@ const stackVariants = {
   },
 };
 
-const projectCards = [
-  {
-    number: '01',
-    name: 'CampusCore',
-    link: 'https://lms-e-learning-system.vercel.app/',
-    subtitle: 'Full-Stack Learning Management System',
-    description:
-      "Most LMS platforms solve for either instructors or students - not both. CampusCore was built to close that gap. Instructors publish courses with secure VDOCipher video streaming and collect enrollments through a full Stripe payment flow. Students get threaded Q&A, progress tracking, real-time notifications, and a review system. Role-based admin dashboards surface live analytics on users, revenue, and course performance. Under the hood: Redis caching cuts repeat query load, and a Socket.io + Redis pub/sub layer handles notifications at scale without polling. Cross-origin auth between Vercel and Render was solved with same-site cookie configuration - a production detail most tutorials skip entirely.",
-    tech: [
-      { label: 'Next.js', icon: <SiNextdotjs className="w-4 h-4" />, color: 'text-black' },
-      { label: 'Node.js', icon: <SiNodedotjs className="w-4 h-4" />, color: 'text-[#339933]' },
-      { label: 'Express', icon: <SiExpress className="w-4 h-4" />, color: 'text-gray-200' },
-      { label: 'MongoDB', icon: <SiMongodb className="w-4 h-4" />, color: 'text-[#47A248]' },
-      { label: 'Redis', icon: <SiRedis className="w-4 h-4" />, color: 'text-[#DC382D]' },
-      { label: 'Socket.io', icon: <SiSocketdotio className="w-4 h-4" />, color: 'text-gray-700' },
-      { label: 'Stripe', icon: <SiStripe className="w-4 h-4" />, color: 'text-[#635BFF]' },
-      { label: 'Cloudinary', icon: <SiCloudinary className="w-4 h-4" />, color: 'text-[#3448C5]' },
-      { label: 'JWT', icon: <SiJsonwebtokens className="w-4 h-4" />, color: 'text-pink-400' },
-      { label: 'Tailwind CSS', icon: <SiTailwindcss className="w-4 h-4" />, color: 'text-[#06B6D4]' },
-    ],
-  },
-  {
-    number: '02',
-    name: 'MultiMart',
-    link: 'https://multimarts.vercel.app/',
-    subtitle: 'Multivendor E-Commerce Platform',
-    description:
-      "SingleStore e-commerce is easy to build. Multivendor isn't. MultiMart handles the complexity of a shared marketplace where vendors independently manage inventory, orders, and storefronts while customers interact with a single unified shopping experience. Role-separated dashboards keep vendor and customer flows completely isolated. Stripe handles payments with webhook-verified order status. Cloudinary manages product media with transformation on upload. The UI is fully responsive and built to hold up as vendor count scales - not just as a demo with three test accounts.",
-    tech: [
-      { label: 'React', icon: <SiReact className="w-4 h-4" />, color: 'text-[#61DAFB]' },
-      { label: 'Node.js', icon: <SiNodedotjs className="w-4 h-4" />, color: 'text-[#339933]' },
-      { label: 'Express', icon: <SiExpress className="w-4 h-4" />, color: 'text-gray-200' },
-      { label: 'MongoDB', icon: <SiMongodb className="w-4 h-4" />, color: 'text-[#47A248]' },
-      { label: 'Stripe', icon: <SiStripe className="w-4 h-4" />, color: 'text-[#635BFF]' },
-      { label: 'Cloudinary', icon: <SiCloudinary className="w-4 h-4" />, color: 'text-[#3448C5]' },
-      { label: 'Tailwind CSS', icon: <SiTailwindcss className="w-4 h-4" />, color: 'text-[#06B6D4]' },
-    ],
-  },
-  {
-    number: '03',
-    name: 'Noretmy',
-    link: 'https://noretmy.vercel.app/',
-    subtitle: 'Production Freelancing Marketplace',
-    description:
-      "Noretmy combines Fiverr's gig model with Upwork's milestone-based project flow - then goes further. Sellers list services or respond to client job posts. Orders break into funded milestones: money is held, released per stage, and disputed through an admin panel - not just a checkbox workflow. Real-time chat with file attachments is built in via Socket.io. A Node cron job runs nightly to recalculate seller badge levels (Level 1, Level 2, Pro) based on order volume, delivery rate, and ratings - no admin touch needed. Stripe and PayPal both handle payouts, with a formal withdrawal request flow for freelancers. VAT calculation, timeline extension logic, and promotion slots are all handled server-side - the kind of business logic that exposes gaps in systems that look complete on the surface.",
-    tech: [
-      { label: 'Next.js 14', icon: <SiNextdotjs className="w-4 h-4" />, color: 'text-black' },
-      { label: 'Node.js', icon: <SiNodedotjs className="w-4 h-4" />, color: 'text-[#339933]' },
-      { label: 'Express', icon: <SiExpress className="w-4 h-4" />, color: 'text-gray-200' },
-      { label: 'MongoDB', icon: <SiMongodb className="w-4 h-4" />, color: 'text-[#47A248]' },
-      { label: 'Redux Toolkit', icon: <SiRedux className="w-4 h-4" />, color: 'text-[#764ABC]' },
-      { label: 'Socket.io', icon: <SiSocketdotio className="w-4 h-4" />, color: 'text-gray-700' },
-      { label: 'Stripe', icon: <SiStripe className="w-4 h-4" />, color: 'text-[#635BFF]' },
-      { label: 'PayPal', icon: <SiPaypal className="w-4 h-4" />, color: 'text-[#00457C]' },
-      { label: 'AWS S3', icon: <SiAmazons3 className="w-4 h-4" />, color: 'text-[#FF9900]' },
-      { label: 'Cloudinary', icon: <SiCloudinary className="w-4 h-4" />, color: 'text-[#3448C5]' },
-      { label: 'Framer Motion', icon: <SiFramer className="w-4 h-4" />, color: 'text-[#0055FF]' },
-      { label: 'Tailwind CSS', icon: <SiTailwindcss className="w-4 h-4" />, color: 'text-[#06B6D4]' },
-      { label: 'Shadcn/UI', icon: <SiShadcnui className="w-4 h-4" />, color: 'text-gray-700' },
-    ],
-  },
-];
+// Project cards removed in favor of summarized Technical Excellence section
 
 const masterTechStack = [
   [
@@ -138,12 +77,12 @@ const masterTechStack = [
 const About = () => {
   return (
     <div className="relative bg-white">
-      <section id="about" className="py-14 md:py-24 relative z-10">
+      <section id="about" className="pt-14 pb-8 md:pt-24 md:pb-12 relative z-10">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
           <motion.div
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
+            viewport={{ once: true, amount: 0.1 }}
             variants={stackVariants}
             className="space-y-6"
           >
@@ -175,27 +114,35 @@ const About = () => {
               </div>
             </motion.div>
 
-            {projectCards.map((project) => (
-              <motion.div key={project.number} variants={sectionVariants} className="w-full border border-gray-200 bg-white p-6 md:p-8">
-                <div className="text-xs text-gray-500 mb-3 mono">{project.number}</div>
-
-                <h3 className="inline-flex items-center gap-2 text-xl md:text-2xl font-bold text-black">
-                  <span>{project.name}</span>
-                </h3>
-
-                <p className="mt-2 text-sm md:text-base text-gray-600">{project.subtitle}</p>
-                <p className="mt-5 mb-5 text-sm md:text-base leading-relaxed text-gray-700">{project.description}</p>
-
-                <div className="mt-8 flex flex-wrap gap-3">
-                  {project.tech.map((item) => (
-                    <span key={item.label} className="inline-flex items-center gap-2 px-3 py-1.5 rounded-md border border-gray-300 bg-white text-sm text-gray-800">
-                      <span className={item.color}>{item.icon}</span>
-                      <span>{item.label}</span>
-                    </span>
-                  ))}
+            <motion.div variants={sectionVariants} className="w-full border border-gray-200 bg-white p-6 md:p-8 mb-12">
+              <div className="space-y-8 text-sm md:text-base leading-relaxed text-gray-700">
+                <div>
+                  <h4 className="text-black font-semibold text-lg mb-4 mono">→ Technical Excellence</h4>
+                  <div className="space-y-6">
+                    <p>
+                      <a href="https://noretmy.vercel.app/" target="_blank" rel="noopener noreferrer" className="text-black font-bold hover:underline">Noretmy</a> is a high-performance, production-ready freelancing ecosystem that bridges the gap between gig-based models like Fiverr and milestone-driven project flows like Upwork. Built with a focus on enterprise-grade business logic, it features a sophisticated fund-holding system where payments are securely held and released only upon client-verified milestone completion. Real-time communication is powered by a custom Socket.io implementation supporting instant file sharing, while an automated Node.js cron job recalculates freelancer authority levels nightly based on delivery rates and ratings, ensuring the platform remains self-governing and scalable.
+                    </p>
+                    <p>
+                      <a href="https://lms-e-learning-system.vercel.app/" target="_blank" rel="noopener noreferrer" className="text-black font-bold hover:underline">CampusCore</a> is a robust Learning Management System engineered to solve the core challenges of modern EdTech, specifically secure content delivery and low-latency user interactions. By integrating VDOCipher, it provides top-tier encrypted video streaming that prevents unauthorized downloads, while a comprehensive Stripe integration manages the entire student enrollment lifecycle from checkout to revenue analytics. Under the hood, a high-performance Redis caching layer minimizes database load for frequently accessed course data, and a Socket.io pub/sub architecture ensures students receive real-time notifications for threaded Q&A and grade updates without page refreshes.
+                    </p>
+                    <p>
+                      <a href="https://multimarts.vercel.app/" target="_blank" rel="noopener noreferrer" className="text-black font-bold hover:underline">MultiMart</a> is a comprehensive full-stack multivendor marketplace designed to manage the high complexity of shared inventory and independent vendor operations. It provides a seamless experience for both sellers and buyers through role-separated dashboards that keep vendor inventory management completely isolated from the customer storefront. The platform leverages webhook-verified Stripe payments to ensure transaction integrity across multiple disparate vendor accounts, while Cloudinary's dynamic media transformation optimizes product imagery on the fly, ensuring a fast and responsive shopping experience even as the platform scales to hundreds of independent storefronts.
+                    </p>
+                  </div>
                 </div>
-              </motion.div>
-            ))}
+              </div>
+            </motion.div>
+
+            <motion.div variants={sectionVariants} className="w-full border border-gray-200 bg-white p-6 md:p-8 mb-12">
+              <div className="space-y-6 text-sm md:text-base leading-relaxed text-gray-700">
+                <div>
+                  <h4 className="text-black font-semibold text-lg mb-2 mono">→ Problem Solving</h4>
+                  <p>
+                    I am a passionate problem solver who views algorithmic efficiency as the cornerstone of great software engineering. My deep understanding of complex data structures and optimized algorithms allows me to write code that is not only functional but performant at scale. You can track my daily progress and problem-solving journey on <a href="https://leetcode.com/u/AliRana28/" target="_blank" rel="noopener noreferrer" className="text-black font-bold hover:underline">LeetCode</a> where I have tackled hundreds of challenges ranging from dynamic programming and graph theory to system design patterns. This commitment to continuous learning on LeetCode ensures that my engineering decisions are always backed by a rigorous, logic-first approach to solving real-world production bottlenecks.
+                  </p>
+                </div>
+              </div>
+            </motion.div>
 
             <motion.div variants={sectionVariants} className="pt-12 mb-8">
               <div className="flex items-center gap-4 mb-4">

@@ -145,7 +145,7 @@ const Skills = () => {
           <div className="absolute top-2/3 right-1/3 w-2 h-24 bg-gray-200 rotate-45"></div>
         </div>
 
-        <section id="skills" className="py-16 md:py-24 relative z-10">
+        <section id="skills" className="pt-8 pb-16 md:pt-12 md:pb-24 relative z-10">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
