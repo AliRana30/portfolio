@@ -1,37 +1,42 @@
 import { motion } from 'framer-motion';
 import { SiMongodb, SiExpress, SiReact, SiNodedotjs, SiTailwindcss, SiGit, SiJavascript, SiNextdotjs, SiRedux, SiDocker, SiRedis, SiGithubactions, SiFigma, SiFramer, SiShadcnui } from 'react-icons/si';
-import { Code, Database, Settings, Layout } from 'lucide-react';
-import { use3DTilt } from '../hooks/use3DAnimations';
+import { Code, Database, Settings, Layout, Zap } from 'lucide-react';
 
 const SkillCard = ({ skill, skillVariants }) => {
-  const tiltRef = use3DTilt({ maxRotation: 8, perspective: 800 });
-
   return (
     <motion.div
       variants={skillVariants}
-      whileHover={{ y: -6 }}
-      transition={{ duration: 0.25, ease: 'easeOut' }}
-      className="group bg-gray-50 hover:bg-white p-6 border border-gray-200 hover:border-black skill-badge"
+      className="group relative bg-white p-5 border border-gray-100 transition-all duration-300"
       data-cursor="pointer"
-      style={{
-        boxShadow: '0 4px 8px rgba(0, 0, 0, 0.05)'
-      }}
       onMouseEnter={(e) => {
-        e.currentTarget.style.boxShadow = '0 12px 24px rgba(0, 0, 0, 0.1)';
+        e.currentTarget.style.borderColor = skill.hexColor || '#000';
+        e.currentTarget.style.boxShadow = `0 10px 25px -5px ${skill.hexColor}20`;
       }}
       onMouseLeave={(e) => {
-        e.currentTarget.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.05)';
+        e.currentTarget.style.borderColor = '#f3f4f6';
+        e.currentTarget.style.boxShadow = 'none';
       }}
     >
-      <div ref={tiltRef} style={{ perspective: '800px', transformStyle: 'preserve-3d' }} className="min-h-[160px] flex flex-col items-center justify-center">
-        <motion.div className="mb-5 flex justify-center" transition={{ duration: 0.2 }}>
+      <div className="flex items-center gap-4">
+        <div className={`p-3 rounded-xl transition-all duration-300 group-hover:scale-110 ${skill.bgColor || 'bg-gray-50'}`}>
           <div className={skill.iconColor}>{skill.icon}</div>
-        </motion.div>
+        </div>
 
-        <h4 className="text-lg font-semibold text-center text-black transition-colors duration-300">
-          {skill.name}
-        </h4>
+        <div>
+          <h4 className="text-base font-semibold text-gray-900 group-hover:text-black transition-colors">
+            {skill.name}
+          </h4>
+
+        </div>
       </div>
+
+      {/* Decorative corner accent */}
+      <div
+        className="absolute top-0 right-0 w-8 h-8 opacity-0 group-hover:opacity-10 transition-opacity duration-300"
+        style={{
+          background: `radial-gradient(circle at top right, ${skill.hexColor}, transparent)`
+        }}
+      ></div>
     </motion.div>
   );
 };
@@ -42,45 +47,45 @@ const Skills = () => {
       title: "Frontend",
       icon: <Code className="w-5 h-5" />,
       skills: [
-        { name: "React", icon: <SiReact size={32} />, iconColor: 'text-[#61DAFB]' },
-        { name: "JavaScript", icon: <SiJavascript size={32} />, iconColor: 'text-[#F7DF1E]' },
-        { name: "Next.js", icon: <SiNextdotjs size={32} />, iconColor: 'text-black' }
+        { name: "React", icon: <SiReact size={28} />, iconColor: 'text-[#61DAFB]', hexColor: '#61DAFB', bgColor: 'bg-[#61DAFB]10' },
+        { name: "JavaScript", icon: <SiJavascript size={28} />, iconColor: 'text-[#F7DF1E]', hexColor: '#F7DF1E', bgColor: 'bg-[#F7DF1E]10' },
+        { name: "Next.js", icon: <SiNextdotjs size={28} />, iconColor: 'text-black', hexColor: '#000000', bgColor: 'bg-gray-100' }
       ]
     },
     {
       title: "Backend",
       icon: <Database className="w-5 h-5" />,
       skills: [
-        { name: "Node.js", icon: <SiNodedotjs size={32} />, iconColor: 'text-[#339933]' },
-        { name: "Express.js", icon: <SiExpress size={32} />, iconColor: 'text-[#444444]' },
-        { name: "MongoDB", icon: <SiMongodb size={32} />, iconColor: 'text-[#47A248]' }
+        { name: "Node.js", icon: <SiNodedotjs size={28} />, iconColor: 'text-[#339933]', hexColor: '#339933', bgColor: 'bg-[#339933]10' },
+        { name: "Express.js", icon: <SiExpress size={28} />, iconColor: 'text-[#444444]', hexColor: '#444444', bgColor: 'bg-gray-100' },
+        { name: "MongoDB", icon: <SiMongodb size={28} />, iconColor: 'text-[#47A248]', hexColor: '#47A248', bgColor: 'bg-[#47A248]10' }
       ]
     },
     {
-      title: "Tools",
-      icon: <Settings className="w-5 h-5" />,
+      title: "Infrastructure",
+      icon: <Zap className="w-5 h-5" />,
       skills: [
-        { name: "Docker", icon: <SiDocker size={32} />, iconColor: 'text-[#2496ED]' },
-        { name: "Redis", icon: <SiRedis size={32} />, iconColor: 'text-[#DC382D]' },
-        { name: "GitHub Actions", icon: <SiGithubactions size={32} />, iconColor: 'text-[#2088FF]' }
+        { name: "Docker", icon: <SiDocker size={28} />, iconColor: 'text-[#2496ED]', hexColor: '#2496ED', bgColor: 'bg-[#2496ED]10' },
+        { name: "Redis", icon: <SiRedis size={28} />, iconColor: 'text-[#DC382D]', hexColor: '#DC382D', bgColor: 'bg-[#DC382D]10' },
+        { name: "GitHub Actions", icon: <SiGithubactions size={28} />, iconColor: 'text-[#2088FF]', hexColor: '#2088FF', bgColor: 'bg-[#2088FF]10' }
       ]
     },
     {
-      title: "State & Workflow",
+      title: "Workflow",
       icon: <Settings className="w-5 h-5" />,
       skills: [
-        { name: "RTK Query", icon: <SiRedux size={32} />, iconColor: 'text-[#764ABC]' },
-        { name: "Tailwind CSS", icon: <SiTailwindcss size={32} />, iconColor: 'text-[#06B6D4]' },
-        { name: "Git/GitHub", icon: <SiGit size={32} />, iconColor: 'text-[#F05032]' }
+        { name: "Redux / RTK", icon: <SiRedux size={28} />, iconColor: 'text-[#764ABC]', hexColor: '#764ABC', bgColor: 'bg-[#764ABC]10' },
+        { name: "Tailwind CSS", icon: <SiTailwindcss size={28} />, iconColor: 'text-[#06B6D4]', hexColor: '#06B6D4', bgColor: 'bg-[#06B6D4]10' },
+        { name: "Git", icon: <SiGit size={28} />, iconColor: 'text-[#F05032]', hexColor: '#F05032', bgColor: 'bg-[#F05032]10' }
       ]
     },
     {
       title: "UI & Design",
       icon: <Layout className="w-5 h-5" />,
       skills: [
-        { name: "Figma", icon: <SiFigma size={32} />, iconColor: 'text-[#F24E1E]' },
-        { name: "Framer Motion", icon: <SiFramer size={32} />, iconColor: 'text-[#0055FF]' },
-        { name: "Shadcn/UI", icon: <SiShadcnui size={32} />, iconColor: 'text-black dark:text-white' }
+        { name: "Figma", icon: <SiFigma size={28} />, iconColor: 'text-[#F24E1E]', hexColor: '#F24E1E', bgColor: 'bg-[#F24E1E]10' },
+        { name: "Framer Motion", icon: <SiFramer size={28} />, iconColor: 'text-[#0055FF]', hexColor: '#0055FF', bgColor: 'bg-[#0055FF]10' },
+        { name: "Shadcn/UI", icon: <SiShadcnui size={28} />, iconColor: 'text-black', hexColor: '#000000', bgColor: 'bg-gray-100' }
       ]
     }
   ];
@@ -172,9 +177,7 @@ const Skills = () => {
                 <motion.div
                   key={category.title}
                   variants={categoryVariants}
-                  whileHover={{ y: -3 }}
-                  transition={{ duration: 0.25, ease: 'easeOut' }}
-                  className="bg-white border border-gray-200 p-8 mb-6 last:mb-0 hover:border-gray-300"
+                  className="bg-white border border-gray-100 p-8 md:p-10 mb-8 last:mb-0"
                 >
                   {/* Category Header */}
                   <div className="flex items-center gap-4 mb-12">
