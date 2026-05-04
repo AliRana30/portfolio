@@ -11,7 +11,7 @@ const ContributionCard = ({ contribution, cardVariants }) => {
     <motion.div
       ref={cardRef}
       variants={cardVariants}
-      whileHover={{ y: -6, scale: 1.015, boxShadow: '0 0 0 1.5px rgba(255,255,255,0.15), 0 8px 32px rgba(0,0,0,0.25)' }}
+      whileHover={{ y: -6, boxShadow: '0 15px 40px rgba(0,0,0,0.06), 0 0 0 1px var(--border-subtle)' }}
       transition={{ duration: 0.25, ease: 'easeOut' }}
       className="contribution-card transition-all duration-300"
       style={{
@@ -20,19 +20,19 @@ const ContributionCard = ({ contribution, cardVariants }) => {
       }}
     >
       <div className="contribution-card-inner">
-        <div className="relative bg-white border border-gray-200 hover:border-gray-300 p-8 transition-all duration-300">
+        <div className="relative bg-surface border border-subtle p-10 transition-all duration-500 shadow-xl">
           <div className="contribution-border-glow"></div>
 
-          <div className="flex gap-3 mb-6">
-            <span className="inline-block px-4 py-2 bg-gray-100 text-gray-800 text-xs font-semibold border border-gray-200 hover:border-gray-400 transition-colors">
+          <div className="flex flex-wrap gap-4 mb-8">
+            <span className="inline-block px-5 py-2 bg-elevated text-primary text-[10px] font-bold uppercase tracking-widest border border-subtle hover:border-default transition-colors mono">
               {contribution.repo} {contribution.prNumber}
             </span>
-            <span className="inline-block px-4 py-2 bg-gray-50 text-gray-700 text-xs font-semibold border border-gray-200">
+            <span className="inline-block px-5 py-2 bg-elevated text-secondary text-[10px] font-bold uppercase tracking-widest border border-subtle mono">
               {contribution.language}
             </span>
           </div>
 
-          <p className="text-gray-700 font-light leading-relaxed mb-6">
+          <p className="text-secondary font-light leading-relaxed mb-8 text-base">
             {contribution.description}
           </p>
 
@@ -42,15 +42,15 @@ const ContributionCard = ({ contribution, cardVariants }) => {
             rel="noopener noreferrer"
             whileHover={{ x: 2 }}
             whileTap={{ scale: 0.98 }}
-            className="inline-flex items-center gap-2 px-4 py-2 text-sm border border-gray-200 text-black font-medium hover:border-black hover:bg-gray-50 transition-all duration-200 group"
+            className="inline-flex items-center gap-3 px-6 py-2.5 text-[11px] font-black uppercase tracking-[0.2em] border border-default text-primary hover:bg-primary transition-all duration-300 group mono"
           >
             <GitBranch className="w-4 h-4" />
-            View PR
-            <ExternalLink className="w-4 h-4 group-hover:rotate-45 group-hover:scale-110 transition-all duration-200" />
+            View Pull Request
+            <ExternalLink className="w-4 h-4 group-hover:rotate-45 transition-all duration-200" />
           </motion.a>
 
-          <div className="absolute top-8 right-8 opacity-5 transition-opacity">
-            <GitBranch className="w-12 h-12" />
+          <div className="absolute top-10 right-10 opacity-5 transition-opacity pointer-events-none">
+            <GitBranch className="w-16 h-16 text-primary" />
           </div>
         </div>
       </div>
@@ -103,56 +103,11 @@ const OpenSourceContributions = () => {
   };
 
   return (
-    <>
-      <style jsx>{`
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
-
-        * {
-          font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-        }
-
-        .mono {
-          font-family: 'JetBrains Mono', 'Fira Code', monospace;
-        }
-
-        .contribution-card {
-          perspective: 1200px;
-          transition: all 0.3s ease;
-        }
-
-        .contribution-card:hover {
-          transform: translateY(-8px);
-        }
-
-        .contribution-card-inner {
-          transform-style: preserve-3d;
-          transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-
-        .contribution-card:hover .contribution-card-inner {
-          transform: rotateX(5deg) rotateY(-5deg);
-        }
-
-        .contribution-border-glow {
-          position: absolute;
-          inset: 0;
-          background: linear-gradient(135deg, rgba(100, 200, 255, 0.2) 0%, rgba(100, 200, 255, 0.05) 100%);
-          border-radius: 12px;
-          opacity: 0;
-          transition: opacity 0.3s ease;
-          pointer-events: none;
-        }
-
-        .contribution-card:hover .contribution-border-glow {
-          opacity: 1;
-        }
-      `}</style>
-
-      <div className="relative bg-white">
+    <div className="relative bg-primary">
         <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute top-32 right-24 w-56 h-56 border border-gray-200 rotate-12"></div>
-          <div className="absolute bottom-24 left-20 w-32 h-32 border border-gray-200 rounded-full"></div>
-          <div className="absolute top-2/3 left-1/3 w-2 h-24 bg-gray-200 rotate-45"></div>
+          <div className="absolute top-32 right-24 w-56 h-56 border border-subtle rotate-12"></div>
+          <div className="absolute bottom-24 left-20 w-32 h-32 border border-subtle rounded-full"></div>
+          <div className="absolute top-2/3 left-1/3 w-2 h-24 bg-border-subtle rotate-45"></div>
         </div>
 
         <section id="openSource" className="py-24 relative z-10">
@@ -165,19 +120,19 @@ const OpenSourceContributions = () => {
               className="mb-20"
             >
               <div className="flex items-center gap-4 mb-8">
-                <div className="w-12 h-[1px] bg-black"></div>
-                <span className="text-sm font-medium text-gray-500 tracking-wider uppercase mono">Open Source</span>
+                <div className="w-12 h-[1.5px] bg-black"></div>
+                <span className="text-sm font-medium text-secondary tracking-wider uppercase mono">Open Source</span>
               </div>
 
               <div className="flex items-start justify-between">
                 <div>
                   <h2 className="text-3xl md:text-4xl font-light leading-tight mb-6 section-heading">
-                    <span className="font-extralight text-gray-700">Open Source</span>
+                    <span className="font-extralight text-secondary">Open Source</span>
                     <br />
-                    <span className="font-bold text-black">Contributions</span>
+                    <span className="font-bold text-primary">Contributions</span>
                   </h2>
 
-                  <p className="text-lg text-gray-600 font-light max-w-2xl">
+                  <p className="text-lg text-secondary font-light max-w-2xl leading-relaxed">
                     Contributing to meaningful open source projects that impact the developer community.
                   </p>
                 </div>
@@ -187,7 +142,7 @@ const OpenSourceContributions = () => {
                   whileInView={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
                   viewport={{ once: true, amount: 0.2 }}
-                  className="text-gray-600 opacity-75 hover:opacity-100 transition-opacity duration-300"
+                  className="text-primary opacity-20 hover:opacity-50 transition-opacity duration-300"
                 >
                   <SiApache size={48} />
                 </motion.div>
@@ -208,7 +163,6 @@ const OpenSourceContributions = () => {
           </div>
         </section>
       </div>
-    </>
   );
 };
 

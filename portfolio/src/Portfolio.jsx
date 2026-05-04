@@ -16,7 +16,7 @@ const Portfolio = () => {
   
 
   return (
-    <div className="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-100 min-h-screen">
+    <div className="bg-primary text-primary min-h-screen">
 
 
       {/* Navigation */}
@@ -26,7 +26,7 @@ const Portfolio = () => {
        <Hero/>
 
       {/* Code Object Section */}
-      <section className="relative z-10 bg-white py-8 md:py-12">
+      <section className="relative z-10 bg-primary py-8 md:py-12">
         <div className="container mx-auto px-6 max-w-6xl flex justify-center">
           <div className="w-full max-w-xl">
             <FloatingCodeBlock disableTilt={true} />

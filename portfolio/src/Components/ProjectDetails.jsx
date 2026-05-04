@@ -6,9 +6,9 @@ import { useParams, useNavigate } from 'react-router-dom';
 
 const ProjectDetails = () => {
   const [activeTab, setActiveTab] = useState('overview');
-  const { id } = useParams(); 
+  const { id } = useParams();
   const navigate = useNavigate();
-  
+
   const projects = {
     noretmy: {
       id: 'noretmy',
@@ -18,7 +18,7 @@ const ProjectDetails = () => {
       objectPosition: "center 10%",
       tech: ["Next.js", "Node.js", "MongoDB", "Express", "Redux Toolkit", "Socket.io", "Stripe", "PayPal", "AWS S3", "Cloudinary", "Framer Motion", "Tailwind CSS", "Shadcn/UI"],
       link: "https://noretmy.vercel.app/",
-      githubLink: "#",
+      githubLink: "https://github.com/AliRana30/Noretmy",
       category: "Full-Stack",
       featured: true,
       purpose: "Noretmy was engineered to solve the fragmentation in freelance platforms by merging gig-based services with milestone-driven project management. The goal was to build a robust system that handles the entire lifecycle of a freelance contract—from service listing and job posting to secure escrow-style payments, real-time collaboration, and automated performance tracking. It focuses on closing the operational gaps found in basic marketplace clones, such as formal dispute handling, VAT calculations, and dynamic seller leveling.",
@@ -60,7 +60,7 @@ const ProjectDetails = () => {
       image: "SonicWave.png",
       tech: ["Next.js", "TypeScript", "Framer Motion", "GSAP", "Tailwind CSS", "Canvas API", "ScrollTrigger", "App Router"],
       link: "https://sonicwave-animate.vercel.app/",
-      githubLink: "#",
+      githubLink: "https://github.com/AliRana30/SonicWave",
       category: "Frontend",
       featured: true,
       purpose: "Built SonicWave Pro as an immersive, high-fidelity brand storytelling experience where product identity is revealed progressively through scroll. The objective was to combine cinematic motion design, frame-perfect canvas rendering, and premium visual styling into a responsive and performance-aware landing page that feels modern, intentional, and interactive on every screen size.",
@@ -306,52 +306,51 @@ const ProjectDetails = () => {
       'shadcn/ui': <SiShadcnui className="w-4 h-4 md:w-5 md:h-5" />,
       'framer motion': <SiFramer className="w-4 h-4 md:w-5 md:h-5" />
     };
-    
+
     return iconMap[tech.toLowerCase()] || <Code2 className="w-4 h-4 md:w-5 md:h-5" />;
   };
 
   const getTechColor = (tech) => {
     const colorMap = {
       'react': 'text-[#61DAFB]',
-      'next.js': 'text-black',
+      'next.js': 'text-primary',
       'typescript': 'text-[#3178C6]',
       'framer motion': 'text-[#0055FF]',
       'gsap': 'text-[#88CE02]',
-      'canvas api': 'text-[#0F172A]',
+      'canvas api': 'text-[#888888]',
       'scrolltrigger': 'text-[#84CC16]',
-      'app router': 'text-gray-700',
+      'app router': 'text-[#888888]',
       'node.js': 'text-[#339933]',
       'mongodb': 'text-[#47A248]',
-      'express': 'text-gray-700',
-      'api integration': 'text-purple-600',
-      'ai api': 'text-indigo-600',
+      'express': 'text-[#888888]',
+      'api integration': 'text-purple-400',
+      'ai api': 'text-indigo-400',
       'tailwind css': 'text-[#06B6D4]',
       'cloudinary': 'text-[#3448C5]',
-      'jwt': 'text-pink-600',
+      'jwt': 'text-pink-400',
       'redis': 'text-[#DC382D]',
-      'socket.io': 'text-black',
+      'socket.io': 'text-primary',
       'stripe': 'text-[#635BFF]',
       'redux toolkit': 'text-[#764ABC]',
       'paypal': 'text-[#00457C]',
       'aws s3': 'text-[#FF9900]',
-      'shadcn/ui': 'text-gray-700'
+      'shadcn/ui': 'text-[#888888]'
     };
-    
-    return colorMap[tech.toLowerCase()] || 'text-gray-600';
+
+    return colorMap[tech.toLowerCase()] || 'text-[#888888]';
   };
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [id]);
-
   if (!project) {
     return (
-      <div className="min-h-screen bg-white flex items-center justify-center px-4">
+      <div className="min-h-screen bg-primary flex items-center justify-center px-4">
         <div className="text-center">
-          <h1 className="text-xl md:text-2xl font-bold text-black mb-4">Project not found</h1>
-          <button 
+          <h1 className="text-xl md:text-2xl font-bold text-primary mb-4">Project not found</h1>
+          <button
             onClick={() => navigate('/')}
-            className="inline-flex items-center gap-2 bg-black text-white px-6 py-3 hover:bg-gray-800 transition-colors"
+            className="inline-flex items-center gap-2 bg-elevated border border-subtle text-primary px-6 py-3 hover:bg-primary transition-all"
           >
             <ArrowLeft className="w-4 h-4" />
             Back to Portfolio
@@ -363,38 +362,26 @@ const ProjectDetails = () => {
 
   return (
     <>
-      <style jsx>{`
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
-        
-        * {
-          font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-        }
-        
-        .mono {
-          font-family: 'JetBrains Mono', 'Fira Code', monospace;
-        }
-      `}</style>
-
-      <div className="min-h-screen bg-white relative overflow-hidden">
+      <div className="min-h-screen bg-primary relative overflow-hidden">
         {/* Background elements */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-20 right-4 md:right-10 w-48 md:w-72 h-48 md:h-72 border border-gray-100 rotate-12"></div>
-          <div className="absolute bottom-20 left-4 md:left-10 w-32 md:w-48 h-32 md:h-48 border border-gray-100 rounded-full"></div>
+          <div className="absolute top-20 right-4 md:right-10 w-48 md:w-72 h-48 md:h-72 border border-subtle rotate-12"></div>
+          <div className="absolute bottom-20 left-4 md:left-10 w-32 md:w-48 h-32 md:h-48 border border-subtle rounded-full"></div>
         </div>
 
         <div className="relative z-10">
           {/* Header */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: -30 }}
             animate={{ opacity: 1, y: 0 }}
             className="container mx-auto px-4 sm:px-6 lg:px-8 py-6 md:py-8 max-w-7xl"
           >
-            <button 
+            <button
               onClick={() => navigate('/')}
-              className="inline-flex items-center gap-2 text-gray-600 hover:text-black transition-colors group text-sm md:text-base"
+              className="inline-flex items-center gap-2 text-secondary hover:text-primary transition-colors group text-sm md:text-base"
             >
               <ArrowLeft className="w-4 h-4 md:w-5 md:h-5 group-hover:-translate-x-1 transition-transform" />
-              <span className="font-medium">Back to Projects</span>
+              <span className="font-medium tracking-tight">Back to Projects</span>
             </button>
           </motion.div>
 
@@ -402,61 +389,40 @@ const ProjectDetails = () => {
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl pb-8 md:pb-12">
             <div className="grid lg:grid-cols-5 gap-8 md:gap-12">
               {/* Left: Image */}
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0, x: -30 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.2 }}
                 className="lg:col-span-2"
               >
-                <div className="relative h-[400px] md:h-[650px] overflow-hidden">
+                <div className="relative h-[400px] md:h-[650px] overflow-hidden border border-subtle bg-surface">
                   <motion.div
                     initial={{ scale: 1.05, opacity: 0 }}
                     animate={{ scale: 1, opacity: 1 }}
                     transition={{ duration: 0.8 }}
                     className="w-full h-full"
                   >
-                    <img 
-                      src={`/${project.image}`} 
+                    <img
+                      src={`/${project.image}`}
                       alt={project.title}
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-cover grayscale-[0.2] hover:grayscale-0 transition-all duration-500"
                       style={{ objectPosition: project.objectPosition || 'center' }}
                       onError={(e) => {
-                        e.target.src = 'https://via.placeholder.com/600x400/f3f4f6/374151?text=Project';
+                        e.target.src = 'https://via.placeholder.com/600x400/f5f5f5/999999?text=Project';
                       }}
                     />
                   </motion.div>
                   {project.featured && (
-                    <div className="absolute top-3 left-3 md:top-4 md:left-4 bg-black text-white px-2 py-1 md:px-3 md:py-1.5 text-xs font-medium mono">
+                    <div className="absolute top-3 left-3 md:top-4 md:left-4 bg-primary text-primary border border-default px-2 py-1 md:px-3 md:py-1.5 text-xs font-bold mono">
                       FEATURED
                     </div>
                   )}
                 </div>
 
-                {/* Action Buttons */}
-                <div className="flex flex-col sm:flex-row gap-3 mt-4 md:mt-6">
-                  <a 
-                    href={project.link} 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="flex-1 inline-flex items-center justify-center gap-2 bg-black text-white px-4 py-2.5 md:px-5 md:py-3 hover:bg-gray-800 transition-all font-medium text-sm"
-                  >
-                    <ExternalLink className="w-4 h-4" />
-                    <span>Live Demo</span>
-                  </a>
-                  <a 
-                    href={project.githubLink} 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="flex-1 inline-flex items-center justify-center gap-2 border-2 border-black text-black hover:bg-black hover:text-white px-4 py-2.5 md:px-5 md:py-3 transition-all font-medium text-sm"
-                  >
-                    <Github className="w-4 h-4" />
-                    <span>Code</span>
-                  </a>
-                </div>
               </motion.div>
 
               {/* Right: Content */}
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0, x: 30 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.3 }}
@@ -464,28 +430,28 @@ const ProjectDetails = () => {
               >
                 {/* Title */}
                 <div>
-                  <div className="inline-block px-2.5 py-1 md:px-3 md:py-1 bg-gray-100 text-gray-700 text-xs font-medium mono mb-3 md:mb-4">
+                  <div className="inline-block px-2.5 py-1 md:px-3 md:py-1 bg-elevated border border-subtle text-secondary text-xs font-medium mono mb-3 md:mb-4">
                     {project.category}
                   </div>
-                  <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-black mb-3 md:mb-4 break-words">
+                  <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-primary mb-3 md:mb-4 break-words">
                     {project.title}
                   </h1>
-                  <p className="text-base md:text-lg text-gray-600 leading-relaxed">
+                  <p className="text-base md:text-lg text-secondary leading-relaxed font-light">
                     {project.description}
                   </p>
                 </div>
 
                 {/* Tech Stack */}
                 <div>
-                  <h3 className="text-xs md:text-sm font-semibold text-black mb-3 md:mb-4 tracking-wide uppercase">Tech Stack</h3>
+                  <h3 className="text-xs md:text-sm font-semibold text-tertiary mb-3 md:mb-4 tracking-widest uppercase mono">Tech Stack</h3>
                   <div className="flex flex-wrap gap-2 md:gap-3">
                     {project.tech.map((tech) => (
                       <div
                         key={tech}
-                        className={`flex items-center gap-1.5 md:gap-2 px-2.5 py-1.5 md:px-3 md:py-2 border border-gray-200 bg-white hover:border-gray-400 transition-all ${getTechColor(tech)}`}
+                        className={`flex items-center gap-1.5 md:gap-2 px-2.5 py-1.5 md:px-3 md:py-2 border border-subtle bg-surface hover:border-default transition-all ${getTechColor(tech)}`}
                       >
                         {getTechIcon(tech)}
-                        <span className="text-xs md:text-sm font-medium text-gray-700">{tech}</span>
+                        <span className="text-xs md:text-sm font-medium text-primary">{tech}</span>
                       </div>
                     ))}
                   </div>
@@ -496,23 +462,22 @@ const ProjectDetails = () => {
 
           {/* Tabs Section */}
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-            <div className="border border-gray-200 bg-white mb-6 md:mb-8 overflow-x-auto px-4 md:px-6">
+            <div className="border border-subtle bg-surface mb-6 md:mb-8 overflow-x-auto px-4 md:px-6">
               <div className="flex gap-4 md:gap-8 min-w-max sm:min-w-0">
                 {['overview', 'features', 'challenges'].map((tab) => (
                   <button
                     key={tab}
                     onClick={() => setActiveTab(tab)}
-                    className={`py-3 md:py-4 text-xs md:text-sm font-medium uppercase tracking-wide transition-all relative whitespace-nowrap ${
-                      activeTab === tab 
-                        ? 'text-black' 
-                        : 'text-gray-500 hover:text-gray-700'
-                    }`}
+                    className={`py-3 md:py-4 text-xs md:text-sm font-medium uppercase tracking-[0.2em] transition-all relative whitespace-nowrap ${activeTab === tab
+                      ? 'text-primary'
+                      : 'text-tertiary hover:text-secondary'
+                      }`}
                   >
                     {tab}
                     {activeTab === tab && (
-                      <motion.div 
+                      <motion.div
                         layoutId="activeTab"
-                        className="absolute bottom-0 left-0 right-0 h-0.5 bg-black"
+                        className="absolute bottom-0 left-0 right-0 h-[2px] bg-primary"
                       />
                     )}
                   </button>
@@ -532,26 +497,26 @@ const ProjectDetails = () => {
                 <div className="space-y-6 md:space-y-8 max-w-4xl">
                   <div>
                     <div className="flex items-center gap-2 md:gap-3 mb-3 md:mb-4">
-                      <Target className="w-4 h-4 md:w-5 md:h-5 text-black flex-shrink-0" />
-                      <h3 className="text-lg md:text-xl font-semibold text-black">Project Purpose</h3>
+                      <Target className="w-4 h-4 md:w-5 md:h-5 text-primary flex-shrink-0" />
+                      <h3 className="text-lg md:text-xl font-semibold text-primary">Project Purpose</h3>
                     </div>
-                    <p className="text-sm md:text-base text-gray-700 leading-relaxed bg-gradient-to-br from-gray-50 to-white p-4 md:p-6 border border-gray-200 border-l-4 border-l-black shadow-sm">
+                    <p className="text-sm md:text-base text-secondary leading-relaxed bg-surface p-4 md:p-6 border border-subtle border-l-2 border-l-primary shadow-sm">
                       {project.purpose}
                     </p>
                   </div>
 
                   <div className="grid grid-cols-3 gap-3 md:gap-6 pt-4 md:pt-6">
-                    <div className="text-center p-4 md:p-6 border border-gray-200 bg-white hover:border-gray-400 hover:shadow-md transition-all duration-300">
-                      <div className="text-2xl md:text-3xl font-bold text-black mb-1 md:mb-2">{project.tech.length}</div>
-                      <div className="text-xs md:text-sm text-gray-600 font-medium mono uppercase">Technologies</div>
+                    <div className="text-center p-4 md:p-6 border border-subtle bg-surface hover:border-default transition-all duration-300">
+                      <div className="text-2xl md:text-3xl font-bold text-primary mb-1 md:mb-2">{project.tech.length}</div>
+                      <div className="text-[10px] md:text-xs text-tertiary font-bold mono uppercase tracking-widest">Technologies</div>
                     </div>
-                    <div className="text-center p-4 md:p-6 border border-gray-200 bg-white hover:border-gray-400 hover:shadow-md transition-all duration-300">
-                      <div className="text-2xl md:text-3xl font-bold text-black mb-1 md:mb-2">{project.keyFeatures.length}</div>
-                      <div className="text-xs md:text-sm text-gray-600 font-medium mono uppercase">Features</div>
+                    <div className="text-center p-4 md:p-6 border border-subtle bg-surface hover:border-default transition-all duration-300">
+                      <div className="text-2xl md:text-3xl font-bold text-primary mb-1 md:mb-2">{project.keyFeatures.length}</div>
+                      <div className="text-[10px] md:text-xs text-tertiary font-bold mono uppercase tracking-widest">Features</div>
                     </div>
-                    <div className="text-center p-4 md:p-6 border border-gray-200 bg-white hover:border-gray-400 hover:shadow-md transition-all duration-300">
-                      <div className="text-2xl md:text-3xl font-bold text-black mb-1 md:mb-2">{project.challenges.length}</div>
-                      <div className="text-xs md:text-sm text-gray-600 font-medium mono uppercase">Challenges</div>
+                    <div className="text-center p-4 md:p-6 border border-subtle bg-surface hover:border-default transition-all duration-300">
+                      <div className="text-2xl md:text-3xl font-bold text-primary mb-1 md:mb-2">{project.challenges.length}</div>
+                      <div className="text-[10px] md:text-xs text-tertiary font-bold mono uppercase tracking-widest">Challenges</div>
                     </div>
                   </div>
                 </div>
@@ -560,10 +525,10 @@ const ProjectDetails = () => {
               {activeTab === 'features' && (
                 <div className="max-w-4xl">
                   <div className="flex items-center gap-2 md:gap-3 mb-4 md:mb-6">
-                    <Zap className="w-4 h-4 md:w-5 md:h-5 text-black flex-shrink-0" />
-                    <h3 className="text-lg md:text-xl font-semibold text-black">Key Features</h3>
+                    <Zap className="w-4 h-4 md:w-5 md:h-5 text-primary flex-shrink-0" />
+                    <h3 className="text-lg md:text-xl font-semibold text-primary">Key Features</h3>
                   </div>
-                  
+
                   <div className="grid sm:grid-cols-2 gap-3 md:gap-4">
                     {project.keyFeatures.map((feature, index) => (
                       <motion.div
@@ -571,15 +536,15 @@ const ProjectDetails = () => {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: index * 0.1 }}
-                        className="flex items-start gap-2 md:gap-3 p-3 md:p-4 border border-gray-200 hover:border-gray-400 transition-all bg-white hover:shadow-md"
+                        className="flex items-start gap-2 md:gap-3 p-3 md:p-4 border border-subtle hover:border-default transition-all bg-surface"
                       >
-                        <div className="flex-shrink-0 w-4 h-4 md:w-5 md:h-5 rounded-full bg-green-100 flex items-center justify-center mt-0.5">
-                          <CheckCircle className="w-3 h-3 md:w-3.5 md:h-3.5 text-green-600" />
+                        <div className="flex-shrink-0 w-4 h-4 md:w-5 md:h-5 rounded-full bg-elevated flex items-center justify-center mt-0.5">
+                          <CheckCircle className="w-3 h-3 md:w-3.5 md:h-3.5 text-primary" />
                         </div>
                         <div className="space-y-1">
-                          <div className="text-[10px] md:text-xs text-gray-500 mono">FEATURE {String(index + 1).padStart(2, '0')}</div>
-                          <p className="text-xs md:text-sm text-gray-700 leading-relaxed">
-                          {feature}
+                          <div className="text-[10px] md:text-xs text-tertiary font-bold mono">FEATURE {String(index + 1).padStart(2, '0')}</div>
+                          <p className="text-xs md:text-sm text-secondary leading-relaxed">
+                            {feature}
                           </p>
                         </div>
                       </motion.div>
@@ -591,8 +556,8 @@ const ProjectDetails = () => {
               {activeTab === 'challenges' && (
                 <div className="max-w-5xl">
                   <div className="flex items-center gap-2 md:gap-3 mb-4 md:mb-6">
-                    <Lightbulb className="w-4 h-4 md:w-5 md:h-5 text-black flex-shrink-0" />
-                    <h3 className="text-lg md:text-xl font-semibold text-black">Challenges & Solutions</h3>
+                    <Lightbulb className="w-4 h-4 md:w-5 md:h-5 text-primary flex-shrink-0" />
+                    <h3 className="text-lg md:text-xl font-semibold text-primary">Challenges & Solutions</h3>
                   </div>
 
                   <div className="space-y-4 md:space-y-6">
@@ -602,29 +567,29 @@ const ProjectDetails = () => {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: index * 0.1 }}
-                        className="border border-gray-200 hover:border-gray-400 transition-all overflow-hidden bg-white hover:shadow-md"
+                        className="border border-subtle hover:border-default transition-all overflow-hidden bg-surface"
                       >
-                        <div className="px-4 md:px-6 py-2 border-b border-gray-200 bg-gray-50">
-                          <span className="text-[10px] md:text-xs text-gray-500 mono">CASE {String(index + 1).padStart(2, '0')}</span>
+                        <div className="px-4 md:px-6 py-2 border-b border-subtle bg-elevated">
+                          <span className="text-[10px] md:text-xs text-tertiary font-bold mono">CASE {String(index + 1).padStart(2, '0')}</span>
                         </div>
                         <div className="grid md:grid-cols-2">
-                          <div className="p-4 md:p-6 border-b md:border-b-0 md:border-r border-gray-200 bg-red-50/70">
+                          <div className="p-4 md:p-6 border-b md:border-b-0 md:border-r border-subtle">
                             <div className="flex items-start gap-2 md:gap-3">
-                              <AlertCircle className="w-4 h-4 md:w-5 md:h-5 text-red-600 flex-shrink-0 mt-0.5" />
+                              <AlertCircle className="w-4 h-4 md:w-5 md:h-5 text-red-500/60 flex-shrink-0 mt-0.5" />
                               <div>
-                                <h4 className="font-semibold text-black mb-1 md:mb-2 text-sm md:text-base">Challenge</h4>
-                                <p className="text-xs md:text-sm text-gray-700 leading-relaxed">
+                                <h4 className="font-semibold text-primary mb-1 md:mb-2 text-sm md:text-base tracking-tight">Challenge</h4>
+                                <p className="text-xs md:text-sm text-secondary leading-relaxed font-light">
                                   {item.challenge}
                                 </p>
                               </div>
                             </div>
                           </div>
-                          <div className="p-4 md:p-6 bg-green-50/70">
+                          <div className="p-4 md:p-6 bg-elevated/30">
                             <div className="flex items-start gap-2 md:gap-3">
-                              <Lightbulb className="w-4 h-4 md:w-5 md:h-5 text-green-600 flex-shrink-0 mt-0.5" />
+                              <Lightbulb className="w-4 h-4 md:w-5 md:h-5 text-green-600/60 flex-shrink-0 mt-0.5" />
                               <div>
-                                <h4 className="font-semibold text-black mb-1 md:mb-2 text-sm md:text-base">Solution</h4>
-                                <p className="text-xs md:text-sm text-gray-700 leading-relaxed">
+                                <h4 className="font-semibold text-primary mb-1 md:mb-2 text-sm md:text-base tracking-tight">Solution</h4>
+                                <p className="text-xs md:text-sm text-secondary leading-relaxed font-light">
                                   {item.solution}
                                 </p>
                               </div>

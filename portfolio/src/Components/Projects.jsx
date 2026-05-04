@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
-import { ExternalLink, ArrowUpRight, Eye } from 'lucide-react';
-import { SiReact, SiNodedotjs, SiMongodb, SiExpress, SiTailwindcss, SiStripe, SiCloudinary, SiJsonwebtokens, SiNextdotjs, SiRedis, SiSocketdotio } from 'react-icons/si';
+import { ExternalLink, ArrowUpRight, Eye, Github } from 'lucide-react';
+import { SiReact, SiNodedotjs, SiMongodb, SiExpress, SiTailwindcss, SiStripe, SiCloudinary, SiJsonwebtokens, SiNextdotjs, SiRedis, SiSocketdotio, SiRedux, SiPaypal, SiAmazons3, SiShadcnui, SiFramer } from 'react-icons/si';
 import { Lock, Bell, Zap } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
@@ -10,106 +10,103 @@ const ProjectCard = ({ project, index, cardVariants, getTechIcon, getTechColor }
       key={index}
       variants={cardVariants}
       whileHover={{
-        y: -6,
-        scale: 1.015,
-        boxShadow: '0 0 0 1.5px rgba(255,255,255,0.15), 0 8px 32px rgba(0,0,0,0.25)',
-        backgroundColor: 'rgb(253 253 253)'
+        boxShadow: '0 20px 40px rgba(0,0,0,0.05)',
       }}
       transition={{ duration: 0.25, ease: 'easeOut' }}
-      className="group bg-white border border-gray-200 hover:border-gray-300 overflow-hidden relative"
-      style={{ boxShadow: '0 1px 3px rgba(0, 0, 0, 0.08)' }}
+      className="group bg-surface border border-subtle hover:border-default overflow-hidden relative shadow-lg"
       data-cursor="pointer"
     >
       <div>
         {project.featured && (
           <div className="absolute top-4 left-4 z-10">
-            <div className="bg-black text-white px-3 py-1.5 text-xs font-medium mono">FEATURED</div>
+            <div className="bg-primary text-primary border border-default px-3 py-1.5 text-[10px] font-black uppercase tracking-widest mono shadow-2xl">FEATURED</div>
           </div>
         )}
 
         <div className="absolute top-4 right-4 z-10">
-          <div className="bg-white/95 backdrop-blur-sm border border-gray-300 text-black px-3 py-1.5 text-xs font-medium mono">
+          <div className="bg-black/80 backdrop-blur-md border border-white/10 text-white px-3 py-1.5 text-[10px] font-black uppercase tracking-widest mono shadow-xl">
             {project.category}
           </div>
         </div>
 
-        <div className="relative h-[350px] md:h-[450px] overflow-hidden">
+        <div className="relative h-[350px] md:h-[450px] overflow-hidden bg-primary">
           <img
             src={`/${project.image}`}
             alt={project.title}
-            className="w-full h-full object-cover transition-transform duration-500"
+            className="w-full h-full object-cover transition-transform duration-700 grayscale-[0.1] group-hover:grayscale-0"
             style={{ objectPosition: project.objectPosition || 'center' }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.transform = 'scale(1.02)';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.transform = 'scale(1)';
-            }}
-            onError={(e) => {
-              e.target.src = 'https://via.placeholder.com/600x400/e5e7eb/374151?text=Project+Image';
-            }}
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+          <div className="absolute inset-0 bg-gradient-to-t from-primary via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity duration-300" />
 
           <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">
             <a
               href={project.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-white hover:bg-gray-100 text-black p-3 border border-gray-300 transition-colors duration-200"
+              className="bg-surface/80 backdrop-blur-md border border-default text-primary p-4 rounded-full shadow-2xl transition-all duration-300 hover:bg-primary hover:text-primary"
             >
-              <ExternalLink className="w-5 h-5" />
+              <ExternalLink className="w-6 h-6" />
             </a>
           </div>
         </div>
 
-        <div className="p-6 space-y-4">
+        <div className="p-8 space-y-5">
           <Link to={`/project/${project.id}`} className="group/title inline-block" data-cursor="pointer">
             <div className="inline-flex items-center gap-2">
-              <h3 className="text-xl font-semibold text-black group-hover/title:text-gray-900 transition-colors duration-200">
+              <h3 className="text-2xl font-bold text-primary group-hover/title:text-primary transition-colors duration-200">
                 {project.title}
               </h3>
-              <ArrowUpRight className="w-4 h-4 text-gray-500 group-hover/title:text-black group-hover/title:rotate-45 transition-all duration-200" />
+              <ArrowUpRight className="w-5 h-5 text-secondary group-hover/title:text-primary group-hover/title:rotate-45 transition-all duration-200" />
             </div>
-            <span className="block h-[1px] bg-black mt-1 w-0 group-hover/title:w-full transition-all duration-300" />
+            <span className="block h-[1px] bg-accent/40 mt-1 w-0 group-hover/title:w-full transition-all duration-300" />
           </Link>
-          <p className="text-gray-600 text-sm leading-relaxed line-clamp-2">{project.description}</p>
+          <p className="text-secondary text-base leading-relaxed line-clamp-3 font-light">{project.description}</p>
 
-          <div className="flex flex-wrap gap-2 pt-2">
+          <div className="flex flex-wrap gap-2 pt-3">
             {project.tech.slice(0, 16).map((tech) => (
               <motion.div
                 key={tech}
-                  whileHover={{ scale: 1.08, borderColor: 'rgba(255,255,255,0.3)' }}
-                  transition={{ duration: 0.2 }}
-                className={`flex items-center gap-1.5 px-2.5 py-1 border bg-white text-xs font-medium mono transition-all duration-200 hover:border-gray-400 tech-pill ${getTechColor(tech)}`}
+                whileHover={{ borderColor: 'var(--border-default)', backgroundColor: 'var(--bg-elevated)' }}
+                className={`flex items-center gap-1.5 px-3 py-1.5 border border-subtle bg-surface text-xs font-medium mono text-primary transition-all duration-200`}
                 data-cursor="pointer"
               >
-                {getTechIcon(tech)}
-                <span className="text-gray-700">{tech}</span>
+                <span className={getTechColor(tech).split(' ')[0]}>{getTechIcon(tech)}</span>
+                <span>{tech}</span>
               </motion.div>
             ))}
           </div>
 
-          <div className="pt-4 flex gap-3">
+          <div className="pt-6 flex flex-wrap gap-3 md:gap-4">
             <Link
               to={`/project/${project.id}`}
-              className="flex-1 inline-flex items-center justify-center gap-2 border-2 border-black text-black px-4 py-2.5 hover:bg-black hover:text-white transition-all duration-300 font-medium"
+              className="flex-1 min-w-[120px] inline-flex items-center justify-center gap-2 border border-default text-primary px-4 py-3 hover:bg-primary hover:text-primary transition-all duration-300 font-semibold uppercase tracking-wider text-[10px] md:text-xs shadow-sm"
               data-cursor="pointer"
             >
               <Eye className="w-4 h-4" />
               <span>Details</span>
             </Link>
 
-            <motion.div className="flex-1">
+            <a
+              href={project.githubLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex-1 min-w-[100px] inline-flex items-center justify-center gap-2 border border-default bg-surface text-primary px-4 py-3 hover:bg-primary hover:text-primary transition-all duration-300 font-semibold uppercase tracking-wider text-[10px] md:text-xs shadow-sm"
+              data-cursor="pointer"
+            >
+              <Github className="w-4 h-4" />
+              <span>Code</span>
+            </a>
+
+            <motion.div className="flex-1 min-w-[130px]">
               <Link
                 to={project.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex w-full items-center justify-center gap-2 bg-black text-white px-4 py-2.5 hover:bg-gray-800 transition-all duration-300 font-medium group/link"
+                className="inline-flex w-full items-center justify-center gap-2 border border-default bg-surface text-primary px-4 py-3 hover:bg-primary hover:text-primary transition-all duration-300 font-bold uppercase tracking-wider text-[10px] md:text-xs group/link shadow-sm"
                 data-cursor="pointer"
               >
-                <span>Live Demo</span>
-                <motion.div whileHover={{ rotate: 45, scale: 1.15 }} transition={{ duration: 0.2 }}>
+                <span>Live</span>
+                <motion.div whileHover={{ rotate: 45 }} transition={{ duration: 0.2 }}>
                   <ArrowUpRight className="w-4 h-4" />
                 </motion.div>
               </Link>
@@ -131,7 +128,7 @@ const Projects = () => {
       objectPosition: "center 10%",
       tech: ["Next.js", "Node.js", "MongoDB", "Express", "Redux Toolkit", "Socket.io", "Stripe", "PayPal", "AWS S3", "Cloudinary", "Framer Motion", "Tailwind CSS", "Shadcn/UI"],
       link: "https://noretmy.vercel.app/",
-      githubLink: "#",
+      githubLink: "https://github.com/AliRana30/Noretmy",
       category: "Full-Stack",
       featured: true,
       purpose: "To build a highly robust and scalable freelancing platform that bridges the gap between gig-based services and milestone-driven project management, ensuring secure transactions and automated operational logic.",
@@ -180,7 +177,7 @@ const Projects = () => {
       description: "A comprehensive full-stack multivendor e-commerce platform where vendors can list products, manage inventory, and customers can shop across multiple stores with secure payments",
       image: "multivendor.png",
       objectPosition: "center 10%",
-      tech: ["React", "Node.js", "MongoDB", "Express","API Integration", "JWT" ,"Tailwind CSS"],
+      tech: ["React", "Node.js", "MongoDB", "Express", "API Integration", "JWT", "Tailwind CSS"],
       link: "http://multimarts.vercel.app/",
       githubLink: "https://github.com/AliRana30/multimart",
       category: "Full-Stack",
@@ -200,19 +197,14 @@ const Projects = () => {
     {
       id: 'sonicwave-pro',
       title: "SonicWave Pro",
-      description: "A cinematic scrollytelling landing page with scroll-linked canvas frame animation, glassmorphism UI, and high-performance motion design inspired by premium product launches.",
+      description: "A premium scrollytelling product page built with Next.js 14, TypeScript, Framer Motion, and Canvas-based frame sequencing for cinematic product reveal.",
       image: "SonicWave.png",
       tech: ["Next.js", "TypeScript", "Framer Motion", "GSAP", "Tailwind CSS", "Canvas API", "ScrollTrigger", "App Router"],
       link: "https://sonicwave-animate.vercel.app/",
-      githubLink: "#",
+      githubLink: "https://github.com/AliRana30/SonicWave",
       category: "Frontend",
       featured: true,
-      purpose: "To design and engineer an Awwwards-style, production-ready scrollytelling experience for a fictional premium headphone brand. The project focuses on cinematic storytelling through a scroll-scrubbed frame sequence, immersive section transitions, polished motion language, and strict performance optimization for smooth interaction across devices.",
       keyFeatures: [
-        "Scroll-linked frame-by-frame product reveal using Canvas API",
-        "Auto preload pipeline for frame sequence with loading progress UI",
-        "Pinning and scrubbed animation flow with Framer Motion + spring smoothing",
-        "Layered pseudo-3D visual depth using CSS perspective and transforms",
         "Floating text overlays synchronized to timeline checkpoints",
         "Premium dark visual system with noise grain and glassmorphism components",
         "Responsive behavior for mobile, tablet, and desktop scrollytelling",
@@ -226,7 +218,7 @@ const Projects = () => {
       title: "MovieMate",
       description: "A movie discovery platform that helps users find and explore movies with detailed information, reviews, and recommendations",
       image: "moviemate.png",
-      tech: ["React", "Node.js", "API Integration", "MongoDB", "Tailwind CSS", "JWT" , "Express"],
+      tech: ["React", "Node.js", "API Integration", "MongoDB", "Tailwind CSS", "JWT", "Express"],
       link: "https://moviemate-app-psi.vercel.app/",
       githubLink: "https://github.com/AliRana30/moviemate",
       category: "Full-Stack",
@@ -306,7 +298,7 @@ const Projects = () => {
 
   const getTechIcon = (tech) => {
     const techLower = tech.toLowerCase();
-    
+
     const iconMap = {
       'react': <SiReact className="w-4 h-4" />,
       'next.js': <SiNextdotjs className="w-4 h-4" />,
@@ -319,62 +311,55 @@ const Projects = () => {
       'jwt': <SiJsonwebtokens className="w-4 h-4" />,
       'redis': <SiRedis className="w-4 h-4" />,
       'socket.io': <SiSocketdotio className="w-4 h-4" />,
+      'redux toolkit': <SiRedux className="w-4 h-4" />,
+      'paypal': <SiPaypal className="w-4 h-4" />,
+      'aws s3': <SiAmazons3 className="w-4 h-4" />,
+      'shadcn/ui': <SiShadcnui className="w-4 h-4" />,
+      'framer motion': <SiFramer className="w-4 h-4" />,
       'bcrypt': <Lock className="w-4 h-4" />,
       'react-hot-toast': <Bell className="w-4 h-4" />
     };
-    
+
     return iconMap[techLower] || <Zap className="w-4 h-4" />;
   };
 
   const getTechColor = (tech) => {
     const techLower = tech.toLowerCase();
-    
+
     const colorMap = {
-      'react': 'text-[#61DAFB] border-gray-200',
-      'next.js': 'text-black border-gray-200',
-      'node.js': 'text-[#339933] border-gray-200',
-      'mongodb': 'text-[#47A248] border-gray-200',
-      'express': 'text-gray-700 border-gray-200',
-      'api integration': 'text-purple-600 border-gray-200',
-      'ai api': 'text-indigo-600 border-gray-200',
-      'tailwind css': 'text-[#06B6D4] border-gray-200',
-      'stripe': 'text-[#635BFF] border-gray-200',
-      'cloudinary': 'text-[#3448C5] border-gray-200',
-      'jwt': 'text-pink-600 border-gray-200',
-      'redis': 'text-[#DC382D] border-gray-200',
-      'socket.io': 'text-black border-gray-200',
-      'bcrypt': 'text-red-600 border-gray-200',
-      'react-hot-toast': 'text-amber-600 border-gray-200'
+      'react': 'text-[#61DAFB]',
+      'next.js': 'text-primary',
+      'node.js': 'text-[#339933]',
+      'mongodb': 'text-[#47A248]',
+      'express': 'text-secondary',
+      'api integration': 'text-purple-600',
+      'ai api': 'text-indigo-600',
+      'tailwind css': 'text-[#06B6D4]',
+      'stripe': 'text-[#635BFF]',
+      'cloudinary': 'text-[#3448C5]',
+      'jwt': 'text-pink-500',
+      'redis': 'text-[#DC382D]',
+      'socket.io': 'text-primary',
+      'bcrypt': 'text-red-500',
+      'react-hot-toast': 'text-amber-600'
     };
-    
-    return colorMap[techLower] || 'text-gray-600 border-gray-200';
+
+    return colorMap[techLower] || 'text-[#888888]';
   };
 
   return (
     <>
-      <style jsx>{`
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
-        
-        * {
-          font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-        }
-        
-        .mono {
-          font-family: 'JetBrains Mono', 'Fira Code', monospace;
-        }
-      `}</style>
-      
-      <div className="relative bg-white">
+      <div className="relative bg-primary">
         {/* Minimal geometric background */}
         <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute top-24 left-16 w-64 h-64 border border-gray-100 rotate-45"></div>
-          <div className="absolute bottom-32 right-20 w-40 h-40 border border-gray-100 rounded-full"></div>
-          <div className="absolute top-1/2 right-1/4 w-2 h-32 bg-gray-100 rotate-12"></div>
+          <div className="absolute top-24 left-16 w-64 h-64 border border-subtle rotate-45"></div>
+          <div className="absolute bottom-32 right-20 w-40 h-40 border border-subtle rounded-full"></div>
+          <div className="absolute top-1/2 right-1/4 w-2 h-32 bg-border-default rotate-12"></div>
         </div>
 
         <section id="projects" className="py-16 md:py-24 relative z-10">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
@@ -382,21 +367,21 @@ const Projects = () => {
               className="mb-12 md:mb-20"
             >
               <div className="flex items-center gap-4 mb-8">
-                <div className="w-12 h-[1px] bg-black"></div>
-                <span className="text-sm font-medium text-gray-500 tracking-wider uppercase mono">Projects</span>
+                <div className="w-12 h-[1.5px] bg-black"></div>
+                <span className="text-sm font-medium text-secondary tracking-wider uppercase mono">Projects</span>
               </div>
-              
+
               <h2 className="text-3xl md:text-3xl font-light leading-tight mb-6 section-heading">
-                <span className="font-extralight text-gray-700">Featured</span>
+                <span className="font-extralight text-secondary">Featured</span>
                 <br />
-                <span className="font-bold text-black">Projects</span>
+                <span className="font-bold text-primary">Projects</span>
               </h2>
-              
-              <p className="text-lg text-gray-600 font-light max-w-2xl">
-                Explore my latest work showcasing modern web development with cutting-edge technologies.
+
+              <p className="text-lg text-secondary font-light max-w-2xl leading-relaxed">
+                Explore my latest work showcasing modern web development with cutting-edge technologies and user-centric design patterns.
               </p>
             </motion.div>
-            <motion.div 
+            <motion.div
               variants={containerVariants}
               initial="hidden"
               whileInView="visible"

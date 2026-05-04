@@ -15,25 +15,25 @@ const CertificateCard = ({ cert, index, onOpen }) => {
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
       viewport={{ once: true }}
-      className="group w-full text-left border border-gray-200 bg-white p-4 transition-all duration-300 hover:border-black"
+      className="group w-full text-left border border-subtle bg-surface p-4 transition-all duration-300 hover:border-default"
       onClick={onOpen}
       onMouseEnter={(e) => {
         e.currentTarget.style.transform = 'translateY(-6px)';
-        e.currentTarget.style.boxShadow = '0 12px 24px rgba(0, 0, 0, 0.12)';
+        e.currentTarget.style.boxShadow = '0 20px 40px rgba(0, 0, 0, 0.05)';
       }}
       onMouseLeave={(e) => {
         e.currentTarget.style.transform = 'translateY(0)';
-        e.currentTarget.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.06)';
+        e.currentTarget.style.boxShadow = 'none';
       }}
     >
       <div ref={tiltRef} style={{ perspective: '800px', transformStyle: 'preserve-3d' }}>
-        <div className="relative overflow-hidden border border-gray-200 bg-gray-100">
-          <img src={`/${cert.image}`} alt={cert.name} className="h-48 w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]" />
-          <div className="absolute inset-0 flex items-center justify-center bg-black/0 transition-colors duration-300 group-hover:bg-black/25">
+        <div className="relative overflow-hidden border border-subtle bg-elevated">
+          <img src={`/${cert.image}`} alt={cert.name} className="h-48 w-full object-cover grayscale-[0.2] transition-transform duration-300 group-hover:scale-[1.05] group-hover:grayscale-0" />
+          <div className="absolute inset-0 flex items-center justify-center bg-black/0 transition-colors duration-300 group-hover:bg-black/40">
             <Eye className="h-6 w-6 text-white opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
           </div>
         </div>
-        <p className="mt-3 inline-block text-sm font-medium text-black border-b border-transparent transition-all duration-200 group-hover:border-black">
+        <p className="mt-3 inline-block text-sm font-medium text-primary border-b border-transparent transition-all duration-200 group-hover:border-primary/40">
           {cert.name}
         </p>
       </div>
@@ -77,10 +77,10 @@ const EducationTimeline = () => {
 
 
   return (
-    <div className="relative bg-gray-50">
+    <div className="relative bg-primary">
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-32 right-24 h-56 w-56 border border-gray-200 rotate-12" />
-        <div className="absolute bottom-24 left-20 h-32 w-32 border border-gray-200 rounded-full" />
+        <div className="absolute top-32 right-24 h-56 w-56 border border-subtle rotate-12" />
+        <div className="absolute bottom-24 left-20 h-32 w-32 border border-subtle rounded-full" />
       </div>
 
       <section id="education" className="relative z-10 py-24">
@@ -93,57 +93,57 @@ const EducationTimeline = () => {
             className="mb-20"
           >
             <div className="mb-8 flex items-center gap-4">
-              <div className="h-[1px] w-12 bg-black" />
-              <span className="mono text-sm font-medium uppercase tracking-wider text-gray-500">Education</span>
+              <div className="h-[1.5px] w-12 bg-black" />
+              <span className="mono text-sm font-medium uppercase tracking-wider text-secondary">Education</span>
             </div>
 
             <h2 className="section-heading mb-6 text-3xl font-light leading-tight md:text-4xl">
-              <span className="font-extralight text-gray-700">Education and</span>
+              <span className="font-extralight text-secondary">Education and</span>
               <br />
-              <span className="font-bold text-black">Certifications</span>
+              <span className="font-bold text-primary">Certifications</span>
             </h2>
 
-            <p className="max-w-2xl text-lg font-light text-gray-600">
+            <p className="max-w-2xl text-lg font-light text-secondary leading-relaxed">
               A timeline of formal education and verified milestones with certificate previews.
             </p>
           </motion.div>
 
-          <div className="mb-20 border-l-2 border-gray-200 pl-8">
+          <div className="mb-20 border-l-2 border-subtle pl-8">
             {timelineEntries.map((entry, index) => (
               <motion.div
                 key={entry.id}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: index * 0.08 }}
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: index * 0.1 }}
                 viewport={{ once: true, amount: 0.2 }}
-                className="relative mb-10 last:mb-0"
+                className="relative mb-12 last:mb-0"
               >
-                <span className="absolute -left-[42px] top-1 h-4 w-4 rounded-full border-2 border-black bg-white" />
+                <span className="absolute -left-[41px] top-1 h-4 w-4 rounded-full border-4 border-primary bg-surface shadow-[0_0_10px_rgba(0,0,0,0.05)]" />
 
-                <div className="border border-gray-200 bg-white p-6 transition-colors duration-300 hover:border-black">
-                  <div className="mb-4 flex items-start justify-between gap-3">
+                <div className="border border-subtle bg-surface p-8 transition-all duration-500 hover:border-default hover:shadow-xl">
+                  <div className="mb-6 flex flex-col md:flex-row md:items-start justify-between gap-4">
                     <div>
-                      <h3 className="text-lg font-semibold text-black">{entry.title}</h3>
-                      <p className="text-sm font-medium text-gray-600">{entry.subtitle}</p>
+                      <h3 className="text-xl font-bold text-primary mb-1">{entry.title}</h3>
+                      <p className="text-sm font-medium text-secondary tracking-wide">{entry.subtitle}</p>
                     </div>
-                    <span className="border border-gray-300 px-3 py-1 text-xs font-medium text-gray-700">{entry.badge}</span>
+                    <span className="inline-block self-start border border-subtle bg-elevated px-4 py-1.5 text-[10px] font-bold uppercase tracking-widest text-primary">{entry.badge}</span>
                   </div>
 
-                  <div className="mb-3 flex flex-wrap items-center gap-3 text-sm text-gray-600">
-                    <span className="inline-flex items-center gap-1">
-                      <Calendar className="h-4 w-4" />
+                  <div className="mb-4 flex flex-wrap items-center gap-4 text-xs font-bold uppercase tracking-wider text-tertiary">
+                    <span className="inline-flex items-center gap-2">
+                      <Calendar className="h-3.5 w-3.5" />
                       {entry.duration}
                     </span>
-                    <span>•</span>
+                    <span className="hidden md:inline opacity-20 text-primary">•</span>
                     <span>{entry.location}</span>
                   </div>
 
-                  <p className="leading-relaxed text-gray-700">{entry.description}</p>
+                  <p className="leading-relaxed text-secondary font-light text-sm max-w-3xl">{entry.description}</p>
                 </div>
               </motion.div>
             ))}
           </div>
-        
+
         </div>
       </section>
 

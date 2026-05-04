@@ -11,50 +11,50 @@ const CertificationCard = ({ cert, index, onOpen, onViewDetails }) => {
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: index * 0.08 }}
       viewport={{ once: true, amount: 0.2 }}
-      className="group border border-gray-200 bg-white p-4 transition-all duration-300 hover:border-black hover:shadow-sm"
+      className="group border border-subtle bg-surface p-5 transition-all duration-300 hover:border-default hover:shadow-xl"
     >
       <div>
-        <button type="button" className="group/image relative mb-5 block h-48 w-full overflow-hidden border border-gray-200" onClick={onOpen}>
-          <img src={`/${cert.image}`} alt={cert.title} className="h-full w-full object-cover transition-transform duration-300 group-hover/image:scale-[1.02]" />
-          <div className="absolute inset-0 flex items-center justify-center bg-black/0 transition-colors duration-300 group-hover/image:bg-black/25">
-            <Eye className="h-6 w-6 text-white opacity-0 transition-opacity duration-300 group-hover/image:opacity-100" />
+        <button type="button" className="group/image relative mb-6 block h-52 w-full overflow-hidden border border-subtle bg-primary" onClick={onOpen}>
+          <img src={`/${cert.image}`} alt={cert.title} className="h-full w-full object-cover grayscale-[0.2] transition-all duration-500 group-hover/image:grayscale-0" />
+          <div className="absolute inset-0 flex items-center justify-center bg-black/0 transition-colors duration-300 group-hover/image:bg-black/40">
+            <Eye className="h-8 w-8 text-white opacity-0 transition-all duration-300 group-hover/image:opacity-100" />
           </div>
-          <div className="absolute right-3 top-3 bg-white p-2">
-            <Award className="h-5 w-5 text-black" />
+          <div className="absolute right-4 top-4 bg-surface/90 p-2.5 backdrop-blur-md border border-subtle">
+            <Award className="h-5 w-5 text-primary" />
           </div>
         </button>
 
         <div className="space-y-4">
-          <div className="flex items-start justify-between gap-2">
-            <h3 className="leading-tight text-black text-lg font-bold">
+          <div className="flex items-start justify-between gap-3">
+            <h3 className="leading-tight text-primary text-xl font-bold group-hover:text-primary transition-colors duration-200">
               {cert.title}
             </h3>
-            <CheckCircle className="h-5 w-5 flex-shrink-0 text-gray-400" />
+            <CheckCircle className="h-5 w-5 flex-shrink-0 text-primary" />
           </div>
 
-          <div className="flex items-center gap-2 text-sm text-gray-600">
+          <div className="flex items-center gap-2 text-sm text-secondary">
             <Calendar className="h-4 w-4" />
-            <span>{cert.issuer}</span>
+            <span className="font-medium">{cert.issuer}</span>
           </div>
 
-          <p className="text-sm leading-relaxed text-gray-600">{cert.description}</p>
+          <p className="text-sm leading-relaxed text-secondary line-clamp-2 font-light">{cert.description}</p>
 
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-2 pt-1">
             {cert.skills.map((skill) => (
-              <span key={skill} className="mono border border-gray-200 px-3 py-1 text-xs font-medium text-gray-700">
+              <span key={skill} className="mono border border-subtle bg-elevated px-3 py-1 text-[10px] font-medium text-primary uppercase tracking-wider">
                 {skill}
               </span>
             ))}
           </div>
 
-          <div className="flex items-center justify-between border-t border-gray-100 pt-4">
-            <span className="mono text-sm font-medium text-gray-500">{cert.date}</span>
+          <div className="flex items-center justify-between border-t border-subtle pt-5 mt-2">
+            <span className="mono text-xs font-semibold text-tertiary">{cert.date}</span>
             <button
               type="button"
               onClick={onViewDetails}
-              className="group/link inline-flex items-center gap-2 text-sm font-medium text-black transition-all duration-200 hover:gap-3"
+              className="group/link inline-flex items-center gap-2 text-xs font-bold text-primary uppercase tracking-widest transition-all duration-200 hover:text-primary hover:gap-3"
             >
-              View Details
+              Details
               <ExternalLink className="h-3 w-3 transition-transform duration-200 group-hover/link:rotate-45" />
             </button>
           </div>
@@ -95,26 +95,13 @@ const Certifications = () => {
   ];
 
   return (
-    <>
-      <style jsx>{`
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
-        
-        * {
-          font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-        }
-        
-        .mono {
-          font-family: 'JetBrains Mono', 'Fira Code', monospace;
-        }
-      `}</style>
-
-      <div className="relative bg-gray-50">
-        {/* Minimal geometric background */}
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute top-20 right-32 w-48 h-48 border border-gray-200 rotate-12"></div>
-          <div className="absolute bottom-32 left-24 w-32 h-32 border border-gray-200 rounded-full"></div>
-          <div className="absolute top-2/3 left-1/3 w-2 h-20 bg-gray-200 rotate-45"></div>
-        </div>
+    <div className="relative bg-primary">
+      {/* Minimal geometric background */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute top-20 right-32 w-48 h-48 border border-subtle rotate-12"></div>
+        <div className="absolute bottom-32 left-24 w-32 h-32 border border-subtle rounded-full"></div>
+        <div className="absolute top-2/3 left-1/3 w-2 h-20 bg-border-default rotate-45"></div>
+      </div>
 
         <section id="certifications" className="py-24 relative z-10">
           <div className="container mx-auto px-8 max-w-6xl">
@@ -126,18 +113,18 @@ const Certifications = () => {
               className="mb-20"
             >
               <div className="flex items-center gap-4 mb-8">
-                <div className="w-12 h-[1px] bg-black"></div>
-                <span className="text-sm font-medium text-gray-500 tracking-wider uppercase mono">Achievements</span>
+                <div className="w-12 h-[1.5px] bg-black"></div>
+                <span className="text-sm font-medium text-secondary tracking-wider uppercase mono">Achievements</span>
               </div>
 
               <h2 className="text-3xl md:text-3xl font-light leading-tight mb-6 section-heading">
-                <span className="font-extralight text-gray-700">Professional</span>
+                <span className="font-extralight text-secondary">Professional</span>
                 <br />
-                <span className="font-bold text-black">Certifications</span>
+                <span className="font-bold text-primary">Certifications</span>
               </h2>
 
-              <p className="text-lg text-gray-600 font-light max-w-2xl">
-                Professional achievements and continuous learning milestones.
+              <p className="text-lg text-secondary font-light max-w-2xl leading-relaxed">
+                Professional achievements and continuous learning milestones in my software engineering journey.
               </p>
             </motion.div>
 
@@ -175,58 +162,64 @@ const Certifications = () => {
 
             {selectedCert && (
               <div
-                className="fixed inset-0 z-[60] grid place-items-center bg-black/60 p-4"
+                className="fixed inset-0 z-[60] grid place-items-center bg-surface/90 p-4 backdrop-blur-md"
                 onClick={() => setSelectedCert(null)}
               >
                 <motion.div
                   initial={{ opacity: 0, y: 20, scale: 0.98 }}
                   animate={{ opacity: 1, y: 0, scale: 1 }}
                   onClick={(e) => e.stopPropagation()}
-                  className="w-full max-w-xl max-h-[82vh] overflow-hidden border border-gray-200 bg-white"
+                  className="w-full max-w-xl max-h-[82vh] overflow-hidden border border-default bg-surface shadow-2xl"
                 >
-                  <div className="flex items-start justify-between border-b border-gray-200 px-5 py-4 md:px-6">
+                  <div className="flex items-start justify-between border-b border-subtle px-6 py-5">
                     <div>
-                      <p className="mono text-xs uppercase tracking-wide text-gray-500">Certification Details</p>
-                      <h3 className="mt-1 text-xl font-bold text-black">{selectedCert.title}</h3>
+                      <p className="mono text-[10px] uppercase tracking-[0.2em] text-secondary">Certification Details</p>
+                      <h3 className="mt-1 text-2xl font-bold text-primary">{selectedCert.title}</h3>
                     </div>
                     <button
                       type="button"
                       onClick={() => setSelectedCert(null)}
-                      className="border border-gray-300 p-2 text-gray-600 hover:border-black hover:text-black"
+                      className="border border-default p-2 text-secondary hover:border-primary hover:text-primary transition-all duration-200"
                       aria-label="Close details"
                     >
-                      <X className="h-4 w-4" />
+                      <X className="h-5 w-5" />
                     </button>
                   </div>
 
-                  <div className="space-y-5 overflow-y-auto px-5 py-5 md:px-6 max-h-[56vh]">
-                    <img src={`/${selectedCert.image}`} alt={selectedCert.title} className="h-44 w-full border border-gray-200 object-cover" />
+                  <div className="space-y-6 overflow-y-auto px-6 py-6 max-h-[56vh]">
+                    <img src={`/${selectedCert.image}`} alt={selectedCert.title} className="h-52 w-full border border-subtle object-cover grayscale-[0.2]" />
 
-                    <div className="grid gap-3 text-sm text-gray-700 md:grid-cols-2">
-                      <p><span className="font-semibold text-black">Issuer:</span> {selectedCert.issuer}</p>
-                      <p><span className="font-semibold text-black">Year:</span> {selectedCert.date}</p>
+                    <div className="grid gap-4 text-sm text-secondary md:grid-cols-2">
+                      <p><span className="font-bold text-primary uppercase text-[11px] tracking-wider block mb-1">Issuer</span> {selectedCert.issuer}</p>
+                      <p><span className="font-bold text-primary uppercase text-[11px] tracking-wider block mb-1">Year</span> {selectedCert.date}</p>
                     </div>
 
-                    <p className="text-sm leading-relaxed text-gray-700">
-                      {selectedCert.details || selectedCert.description}
-                    </p>
+                    <div className="space-y-2">
+                      <span className="font-bold text-primary uppercase text-[11px] tracking-wider block">Description</span>
+                      <p className="text-sm leading-relaxed text-secondary font-light">
+                        {selectedCert.details || selectedCert.description}
+                      </p>
+                    </div>
 
-                    <div className="flex flex-wrap gap-2">
-                      {selectedCert.skills.map((skill) => (
-                        <span key={skill} className="mono border border-gray-200 px-3 py-1 text-xs font-medium text-gray-700">
-                          {skill}
-                        </span>
-                      ))}
+                    <div className="space-y-3">
+                      <span className="font-bold text-primary uppercase text-[11px] tracking-wider block">Skills Acquired</span>
+                      <div className="flex flex-wrap gap-2">
+                        {selectedCert.skills.map((skill) => (
+                          <span key={skill} className="mono border border-subtle bg-elevated px-3 py-1.5 text-[10px] font-medium text-primary uppercase tracking-wider">
+                            {skill}
+                          </span>
+                        ))}
+                      </div>
                     </div>
                   </div>
 
-                  <div className="flex items-center justify-end gap-3 border-t border-gray-200 px-5 py-4 md:px-6">
+                  <div className="flex items-center justify-end gap-3 border-t border-subtle px-6 py-5">
                     <button
                       type="button"
                       onClick={() => setSelectedCert(null)}
-                      className="border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 hover:border-black hover:text-black"
+                      className="border border-default px-6 py-2.5 text-xs font-bold uppercase tracking-widest text-primary hover:bg-primary transition-all duration-300"
                     >
-                      Close
+                      Close Window
                     </button>
                   </div>
                 </motion.div>
@@ -235,7 +228,6 @@ const Certifications = () => {
           </div>
         </section>
       </div>
-    </>
   );
 };
 

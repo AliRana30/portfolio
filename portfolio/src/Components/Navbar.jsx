@@ -9,11 +9,7 @@ const Navbar = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 50) {
-        setScrolled(true);
-      } else {
-        setScrolled(false);
-      }
+      setScrolled(window.scrollY > 50);
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -31,13 +27,14 @@ const Navbar = () => {
   };
 
   const navLinks = [
+    { name: "Home", to: "home" },
     { name: "About", to: "about" },
     { name: "Skills", to: "skills" },
     { name: "Projects", to: "projects" },
     { name: "Open Source", to: "openSource" },
     { name: "Education", to: "education" },
     { name: "Certifications", to: "certifications" },
-    { name: "Contact", to: "socials" }
+    { name: "Socials", to: "socials" }
   ];
 
   const socialLinks = [
@@ -48,41 +45,14 @@ const Navbar = () => {
 
   return (
     <>
-      <style jsx>{`
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
-        
-        * {
-          font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-        }
-        
-        .mono {
-          font-family: 'JetBrains Mono', 'Fira Code', monospace;
-        }
-      `}</style>
-      
-      <nav className={`fixed w-full top-0 z-50 transition-all duration-300 ${
-        scrolled 
-          ? 'bg-white/85 backdrop-blur-xl border-b border-gray-200 shadow-sm' 
-          : 'bg-white/65 backdrop-blur-lg'
-      }`}>
+      <nav className={`fixed w-full top-0 z-50 transition-all duration-300 ${scrolled
+        ? 'bg-primary/80 backdrop-blur-xl border-b border-subtle shadow-lg'
+        : 'bg-transparent'
+        }`}>
         <div className="max-w-6xl mx-auto px-6">
-          <div className="flex justify-between items-center h-20">
-            {/* Logo */}
-            <div className="flex-shrink-0">
-              <ScrollLink
-                to="home"
-                smooth={true}
-                duration={500}
-                className="cursor-pointer"
-              >
-                <h1 className="text-2xl font-bold text-black hover:text-gray-700 transition-colors mono">
-                  Ali.dev
-                </h1>
-              </ScrollLink>
-            </div>
-
+          <div className="flex justify-between items-center h-20 relative">
             {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center gap-7 lg:gap-9">
+            <div className="hidden lg:flex items-center gap-7 lg:gap-9">
               {navLinks.map((link) => (
                 <ScrollLink
                   key={link.name}
@@ -92,11 +62,10 @@ const Navbar = () => {
                   spy={true}
                   offset={-80}
                   onSetActive={() => setActiveSection(link.to)}
-                  className={`text-sm font-medium px-2 py-1 rounded-md transition-all duration-200 cursor-pointer hover:text-black hover:bg-gray-100 ${
-                    activeSection === link.to
-                      ? 'text-black bg-gray-100'
-                      : 'text-gray-600'
-                  }`}
+                  className={`text-xs font-semibold uppercase tracking-widest px-2 py-1 transition-all duration-300 cursor-pointer hover:text-primary ${activeSection === link.to
+                    ? 'text-primary border-b border-primary/40'
+                    : 'text-secondary'
+                    }`}
                 >
                   {link.name}
                 </ScrollLink>
@@ -104,22 +73,24 @@ const Navbar = () => {
             </div>
 
             {/* Desktop Actions */}
-            <div className="hidden md:flex items-center gap-3">
+            <div className="hidden lg:flex items-center gap-6">
+
+              <div className="w-[1px] h-6 bg-border-subtle" />
+
               <button
                 onClick={handleResumeDownload}
-                className="flex items-center gap-2 px-5 py-3 rounded-xl bg-black text-white hover:bg-gray-800 transition-colors duration-200 font-medium text-sm"
+                className="flex items-center gap-2 px-6 py-2.5 rounded-full border border-subtle bg-elevated text-primary hover:bg-primary transition-all duration-300 font-bold text-[10px] uppercase tracking-widest"
               >
-                <FaDownload className="w-2 h-2" />
-                <span>Resume</span>
+                <FaDownload className="w-2.5 h-2.5" />
+                <span>CV</span>
               </button>
-
             </div>
 
             {/* Mobile Navigation Toggle */}
-            <div className="md:hidden">
+            <div className="lg:hidden flex items-center gap-4">
               <button
                 onClick={() => setIsOpen(!isOpen)}
-                className="p-2 text-gray-700 hover:text-black transition-colors duration-200"
+                className="p-2 text-secondary hover:text-primary transition-colors duration-200"
                 aria-label="Toggle navigation menu"
               >
                 {isOpen ? <FaTimes className="w-6 h-6" /> : <FaBars className="w-6 h-6" />}
@@ -129,13 +100,12 @@ const Navbar = () => {
         </div>
 
         {/* Mobile Navigation Menu */}
-        <div className={`md:hidden transition-all duration-300 ease-in-out ${
-          isOpen 
-            ? 'max-h-screen opacity-100' 
-            : 'max-h-0 opacity-0 overflow-hidden'
-        }`}>
-          <div className="bg-white border-t border-gray-200">
-            <div className="px-6 py-6 space-y-4">
+        <div className={`lg:hidden transition-all duration-500 ease-[0.22, 1, 0.36, 1] ${isOpen
+          ? 'max-h-screen opacity-100'
+          : 'max-h-0 opacity-0 overflow-hidden'
+          }`}>
+          <div className="bg-surface border-t border-subtle shadow-2xl h-screen">
+            <div className="px-8 py-12 space-y-6">
               {navLinks.map((link) => (
                 <ScrollLink
                   key={link.name}
@@ -146,29 +116,28 @@ const Navbar = () => {
                   offset={-80}
                   onClick={() => setIsOpen(false)}
                   onSetActive={() => setActiveSection(link.to)}
-                  className={`block px-4 py-3 text-base font-medium transition-colors duration-200 cursor-pointer border-l-4 ${
-                    activeSection === link.to
-                      ? 'text-black border-black bg-gray-50'
-                      : 'text-gray-600 border-transparent hover:text-black hover:border-gray-300'
-                  }`}
+                  className={`block text-2xl font-bold transition-all duration-300 cursor-pointer ${activeSection === link.to
+                    ? 'text-primary translate-x-2'
+                    : 'text-secondary hover:text-primary hover:translate-x-1'
+                    }`}
                 >
                   {link.name}
                 </ScrollLink>
               ))}
-              
+
               <button
                 onClick={() => {
                   handleResumeDownload();
                   setIsOpen(false);
                 }}
-                className="w-full flex items-center justify-center gap-2 px-4 py-3 mt-6 bg-black text-white hover:bg-gray-800 transition-colors duration-200 font-medium"
+                className="w-full flex items-center justify-center gap-3 px-6 py-5 mt-10 border border-default bg-elevated text-primary hover:bg-primary transition-all duration-300 font-bold rounded-xl text-xs uppercase tracking-widest shadow-sm"
               >
                 <FaDownload className="w-4 h-4" />
                 <span>Download Resume</span>
               </button>
-              
-              <div className="pt-4 border-t border-gray-200">
-                <div className="flex justify-center space-x-6">
+
+              <div className="pt-12 border-t border-subtle">
+                <div className="flex justify-start space-x-8">
                   {socialLinks.map((social, index) => {
                     const IconComponent = social.icon;
                     return (
@@ -178,9 +147,9 @@ const Navbar = () => {
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label={social.label}
-                        className="p-3 text-gray-600 hover:text-black hover:bg-gray-50 transition-all duration-200"
+                        className="text-secondary hover:text-primary transition-all duration-300"
                       >
-                        <IconComponent className="w-6 h-6" />
+                        <IconComponent className="w-7 h-7" />
                       </a>
                     );
                   })}

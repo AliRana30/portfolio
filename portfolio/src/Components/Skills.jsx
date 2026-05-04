@@ -6,33 +6,30 @@ const SkillCard = ({ skill, skillVariants }) => {
   return (
     <motion.div
       variants={skillVariants}
-      className="group relative bg-white p-5 border border-gray-100 transition-all duration-300"
+      className="group relative bg-elevated p-6 border border-subtle transition-all duration-500 hover:border-default"
       data-cursor="pointer"
       onMouseEnter={(e) => {
-        e.currentTarget.style.borderColor = skill.hexColor || '#000';
-        e.currentTarget.style.boxShadow = `0 10px 25px -5px ${skill.hexColor}20`;
+        e.currentTarget.style.boxShadow = `0 15px 35px -5px ${skill.hexColor}25`;
       }}
       onMouseLeave={(e) => {
-        e.currentTarget.style.borderColor = '#f3f4f6';
         e.currentTarget.style.boxShadow = 'none';
       }}
     >
-      <div className="flex items-center gap-4">
-        <div className={`p-3 rounded-xl transition-all duration-300 group-hover:scale-110 ${skill.bgColor || 'bg-gray-50'}`}>
+      <div className="flex items-center gap-5">
+        <div className={`p-4 rounded-2xl transition-all duration-500 bg-surface border border-subtle group-hover:border-default shadow-inner`}>
           <div className={skill.iconColor}>{skill.icon}</div>
         </div>
 
         <div>
-          <h4 className="text-base font-semibold text-gray-900 group-hover:text-black transition-colors">
+          <h4 className="text-sm font-bold tracking-wider uppercase text-primary transition-colors duration-300">
             {skill.name}
           </h4>
-
         </div>
       </div>
 
       {/* Decorative corner accent */}
       <div
-        className="absolute top-0 right-0 w-8 h-8 opacity-0 group-hover:opacity-10 transition-opacity duration-300"
+        className="absolute top-0 right-0 w-12 h-12 opacity-0 group-hover:opacity-20 transition-opacity duration-500"
         style={{
           background: `radial-gradient(circle at top right, ${skill.hexColor}, transparent)`
         }}
@@ -49,7 +46,7 @@ const Skills = () => {
       skills: [
         { name: "React", icon: <SiReact size={28} />, iconColor: 'text-[#61DAFB]', hexColor: '#61DAFB', bgColor: 'bg-[#61DAFB]10' },
         { name: "JavaScript", icon: <SiJavascript size={28} />, iconColor: 'text-[#F7DF1E]', hexColor: '#F7DF1E', bgColor: 'bg-[#F7DF1E]10' },
-        { name: "Next.js", icon: <SiNextdotjs size={28} />, iconColor: 'text-black', hexColor: '#000000', bgColor: 'bg-gray-100' }
+        { name: "Next.js", icon: <SiNextdotjs size={28} />, iconColor: 'text-primary', hexColor: '#888888', bgColor: 'bg-elevated' }
       ]
     },
     {
@@ -57,7 +54,7 @@ const Skills = () => {
       icon: <Database className="w-5 h-5" />,
       skills: [
         { name: "Node.js", icon: <SiNodedotjs size={28} />, iconColor: 'text-[#339933]', hexColor: '#339933', bgColor: 'bg-[#339933]10' },
-        { name: "Express.js", icon: <SiExpress size={28} />, iconColor: 'text-[#444444]', hexColor: '#444444', bgColor: 'bg-gray-100' },
+        { name: "Express.js", icon: <SiExpress size={28} />, iconColor: 'text-secondary', hexColor: '#888888', bgColor: 'bg-elevated' },
         { name: "MongoDB", icon: <SiMongodb size={28} />, iconColor: 'text-[#47A248]', hexColor: '#47A248', bgColor: 'bg-[#47A248]10' }
       ]
     },
@@ -85,7 +82,7 @@ const Skills = () => {
       skills: [
         { name: "Figma", icon: <SiFigma size={28} />, iconColor: 'text-[#F24E1E]', hexColor: '#F24E1E', bgColor: 'bg-[#F24E1E]10' },
         { name: "Framer Motion", icon: <SiFramer size={28} />, iconColor: 'text-[#0055FF]', hexColor: '#0055FF', bgColor: 'bg-[#0055FF]10' },
-        { name: "Shadcn/UI", icon: <SiShadcnui size={28} />, iconColor: 'text-black', hexColor: '#000000', bgColor: 'bg-gray-100' }
+        { name: "Shadcn/UI", icon: <SiShadcnui size={28} />, iconColor: 'text-primary', hexColor: '#888888', bgColor: 'bg-elevated' }
       ]
     }
   ];
@@ -124,26 +121,13 @@ const Skills = () => {
   };
 
   return (
-    <>
-      <style jsx>{`
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
-        
-        * {
-          font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-        }
-        
-        .mono {
-          font-family: 'JetBrains Mono', 'Fira Code', monospace;
-        }
-      `}</style>
-
-      <div className="relative bg-gray-50">
-        {/* Minimal geometric background */}
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute top-32 right-24 w-56 h-56 border border-gray-200 rotate-12"></div>
-          <div className="absolute bottom-24 left-20 w-32 h-32 border border-gray-200 rounded-full"></div>
-          <div className="absolute top-2/3 right-1/3 w-2 h-24 bg-gray-200 rotate-45"></div>
-        </div>
+    <div className="relative bg-primary">
+      {/* Minimal geometric background */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute top-32 right-24 w-56 h-56 border border-subtle rotate-12"></div>
+        <div className="absolute bottom-24 left-20 w-32 h-32 border border-subtle rounded-full"></div>
+        <div className="absolute top-2/3 right-1/3 w-2 h-24 bg-border-default rotate-45"></div>
+      </div>
 
         <section id="skills" className="pt-8 pb-16 md:pt-12 md:pb-24 relative z-10">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
@@ -155,14 +139,14 @@ const Skills = () => {
               className="mb-12 md:mb-20"
             >
               <div className="flex items-center gap-4 mb-8">
-                <div className="w-12 h-[1px] bg-black"></div>
-                <span className="text-sm font-medium text-gray-500 tracking-wider uppercase mono">Skills & Expertise</span>
+                <div className="w-12 h-[1.5px] bg-black"></div>
+                <span className="text-sm font-medium text-secondary tracking-wider uppercase mono">Skills & Expertise</span>
               </div>
 
               <h2 className="text-3xl md:text-3xl font-light leading-tight mb-6 section-heading">
-                <span className="font-extralight text-gray-700">Technical</span>
+                <span className="font-extralight text-secondary">Technical</span>
                 <br />
-                <span className="font-bold text-black">Proficiency</span>
+                <span className="font-bold text-primary">Proficiency</span>
               </h2>
 
             </motion.div>
@@ -177,31 +161,31 @@ const Skills = () => {
                 <motion.div
                   key={category.title}
                   variants={categoryVariants}
-                  className="bg-white border border-gray-100 p-8 md:p-10 mb-8 last:mb-0"
+                  className="bg-surface border border-subtle p-8 md:p-12 mb-10 last:mb-0 shadow-xl"
                 >
                   {/* Category Header */}
-                  <div className="flex items-center gap-4 mb-12">
+                  <div className="flex items-center gap-6 mb-16">
                     <motion.div
-                      className="p-3 border border-black text-black bg-white"
+                      className="p-4 border border-default text-primary bg-elevated rounded-2xl backdrop-blur-sm"
                       transition={{ duration: 0.2 }}
                     >
                       {category.icon}
                     </motion.div>
                     <div>
-                      <h3 className="text-2xl font-bold text-black mb-1">
+                      <h3 className="text-3xl font-bold text-primary mb-2 tracking-tight">
                         {category.title}
                       </h3>
                       <div className="flex items-center gap-3">
-                        <div className="w-8 h-[1px] bg-black"></div>
-                        <span className="text-sm text-gray-500 mono">
-                          {category.skills.length} Technologies
+                        <div className="w-10 h-[1.5px] bg-black"></div>
+                        <span className="text-xs text-secondary uppercase tracking-[0.2em] font-bold mono">
+                          {category.skills.length} Stack
                         </span>
                       </div>
                     </div>
                   </div>
 
                   {/* Skills Grid */}
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {category.skills.map((skill) => (
                       <SkillCard key={skill.name} skill={skill} skillVariants={skillVariants} />
                     ))}
@@ -209,20 +193,9 @@ const Skills = () => {
                 </motion.div>
               ))}
             </motion.div>
-
-            {/* Additional Info */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-              viewport={{ once: true, amount: 0.2 }}
-              className="mt-20 text-center"
-            >
-            </motion.div>
           </div>
         </section>
       </div>
-    </>
   );
 };
 
